@@ -1,2 +1,2 @@
-AndroidView
+Android Project
 ===========
