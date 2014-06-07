@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project
+    name="Create Jar with classes from Java projects"
+    default="create_jar" >
+
+    <target name="create_jar" >
+
+        <jar destfile="libs/Controller.jar" >
+
+            <fileset dir="../Controller/bin" />
+        </jar>
+
+        <jar destfile="libs/Model.jar" >
+
+            <fileset dir="../Model/bin" />
+        </jar>
+    </target>
+
+</project>

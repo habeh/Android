@@ -10,10 +10,11 @@ import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
 public class WebService {
-	protected final String NAMESPACE = "http://fpkaroon.com/";
+	protected final String NAMESPACE = "http://tempuri.org/";
+	protected final String URL = "http://10.0.2.2:6694/";	
 
 	protected String getURL() {
-		return NAMESPACE + "Service.asmx";
+		return URL + "Service.asmx";
 	}
 
 	public SoapObject callMethod(String methodName,
@@ -40,6 +41,5 @@ public class WebService {
 		SoapObject response = (SoapObject) envelope.getResponse();
 
 		return response;
-
 	}
 }
