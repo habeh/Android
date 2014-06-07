@@ -6,7 +6,7 @@ import java.util.Date;
 
 import org.ksoap2.serialization.SoapObject;
 
-/*User Class*/
+/*User Class second change*/
 public class TbUser {
 	private int id;
 	private String userName;
