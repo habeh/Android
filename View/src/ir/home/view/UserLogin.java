@@ -13,13 +13,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class UserLogin extends Activity {
-public static EditText  UserName;
-public static EditText UserPassword;
-public static Button Login;
-
+private  EditText  UserName;
+private  EditText UserPassword;
+private  Button Login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

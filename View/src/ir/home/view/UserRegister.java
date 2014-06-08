@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class UserRegister extends Activity {
-	public static EditText UserName;
-	public static EditText UserEmail;
-	public static EditText UserPassword;
-	public static Button Register;
+	private  EditText UserName;
+	private  EditText UserEmail;
+	private  EditText UserPassword;
+	private  Button Register;
 	
 	 @Override
 	    protected void onCreate(Bundle savedInstanceState) {
