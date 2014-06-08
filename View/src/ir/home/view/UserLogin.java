@@ -16,35 +16,35 @@ import android.widget.EditText;
 
 public class UserLogin extends Activity {
 
-	private  EditText  UserName;
-private  EditText UserPassword;
-private  Button Login;
+	private EditText UserName;
+	private EditText UserPassword;
+	private Button Login;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.userlogin);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.userlogin);
 
-        	UserName=(EditText)findViewById(R.id.UserName);
-        	UserPassword=(EditText)findViewById(R.id.UserPassword );
-        	Login=(Button)findViewById(R.id.Login );
-        	
-        			Login.setOnClickListener(new OnClickListener(){
-        				
-        				public void onClick(View arg0) {
-					
-        					
-					UserController controller=new UserController();
-					try {
-						controller.login(UserName.getText().toString(), UserPassword.getText().toString());
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (XmlPullParserException e) {
-						e.printStackTrace();
-					}
-					
-        				}
-        			}
-        	);
-    }
+		UserName = (EditText) findViewById(R.id.UserName);
+		UserPassword = (EditText) findViewById(R.id.UserPassword);
+		Login = (Button) findViewById(R.id.Login);
+
+		Login.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+
+				UserController controller = new UserController();
+				try {
+					controller.login(UserName.getText().toString(),
+							UserPassword.getText().toString());
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (XmlPullParserException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+	}
+
 }
