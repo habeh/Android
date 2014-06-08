@@ -4,5 +4,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ir.home.view.MainActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ورود به برنامه" />
+
+        <Button
+            android:id="@+id/Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ثبت نام" />
+
+        <Button
+            android:id="@+id/OnlineMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="جملک های انلاین" />
+
+        <Button
+            android:id="@+id/OfflineMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ارشیو ذخیره شده جملک" />
+
+        <Button
+            android:id="@+id/Findpeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="یافتن دوستان" />
+
+        <Button
+            android:id="@+id/UsContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="تماس با ما" />
+
+        <Button
+            android:id="@+id/UsAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="درباره ما" />
+
+        <Button
+            android:id="@+id/HabbehAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="درباره حبه" />
+
+    </LinearLayout>
+
+   
+</FrameLayout>
 
