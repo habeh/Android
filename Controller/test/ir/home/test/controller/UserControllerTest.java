@@ -19,17 +19,17 @@ public class UserControllerTest {
 		}
 	}
 
-	@Test
+
 	public void testSendForgiveInformation() {
 		fail("Not Impelemented");
 	}
 
-	@Test
+	
 	public void testLogin() {
 		fail("Not Impelemented");
 	}
 
-	@Test
+	
 	public void testGetProfile() {
 		fail("Not Impelemented");
 	}

@@ -12,10 +12,12 @@ import ir.home.webservice.UserService;
 public class UserController {
 	
 	public void register(String userName,String email,String password) throws IOException, XmlPullParserException{		
-		HashMap<String,Object> params = new HashMap<String,Object>();
-		params.put("userName", userName);
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
 		params.put("email", email);
 		params.put("password", password);
+		params.put("userName", userName);
+		
 		new UserService().callMethod("Register", params);
 	}
 	
