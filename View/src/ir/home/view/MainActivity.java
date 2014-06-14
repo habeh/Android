@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
    
 	private Button Login;
+	private Button Profile;
 	private Button Register;
 	private Button OnlineMessage;
 	private Button OfflineMessage;
@@ -18,6 +20,7 @@ public class MainActivity extends Activity {
 	private Button UsContact;
 	private Button UsAbout;
 	private Button HabbehAbout;
+	private Button search;
 
 	
     @Override
@@ -31,6 +34,7 @@ public class MainActivity extends Activity {
         public void onClick(View view){
 			Intent myIntent = new Intent(view.getContext(), UserLogin.class);
             startActivityForResult(myIntent, 0);	
+        	
         }
       }
     );
@@ -41,6 +45,27 @@ public class MainActivity extends Activity {
         	
         public void onClick(View view){
 			Intent myIntent = new Intent(view.getContext(), UserRegister.class);
+            startActivityForResult(myIntent, 0);	
+        }
+      }
+    );
+      
+      Profile=(Button)findViewById(R.id.Profile);
+      Profile.setOnClickListener(new OnClickListener() {
+        	
+        public void onClick(View view){
+			Intent myIntent = new Intent(view.getContext(), UserProfile.class);
+            startActivityForResult(myIntent, 0);	
+        }
+      }
+    );
+      
+      
+      search=(Button)findViewById(R.id.search);
+      search.setOnClickListener(new OnClickListener() {
+        	
+        public void onClick(View view){
+			Intent myIntent = new Intent(view.getContext(), UserSearch.class);
             startActivityForResult(myIntent, 0);	
         }
       }

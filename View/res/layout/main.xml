@@ -18,6 +18,18 @@
             android:text="ورود به برنامه" />
 
         <Button
+            android:id="@+id/Profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="دیدن پروفایل" />
+        
+        <Button
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="جستجوی کاربران" />
+        
+        <Button
             android:id="@+id/Register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
