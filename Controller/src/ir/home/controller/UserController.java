@@ -36,11 +36,20 @@ public class UserController {
 		return new TbUser(result);
 	}
 	
-    public TbUser getProfile(int userId) throws IOException, XmlPullParserException
+    public TbUser getProfile(String username) throws IOException, XmlPullParserException
     {
 		HashMap<String,Object> params = new HashMap<String,Object>();
-		params.put("userId", userId);
+		params.put("userName", username);
 		SoapObject result = new UserService().callMethod("GetProfile", params);
+		return new TbUser(result);
+    }
+    
+    
+    public TbUser Search(String usersearch) throws IOException, XmlPullParserException
+    {
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("searchText", usersearch);
+		SoapObject result = new UserService().callMethod("Search", params);
 		return new TbUser(result);
     }
     
