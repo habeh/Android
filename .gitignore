@@ -2,6 +2,10 @@
 *.apk
 *.ap_
 
+# Java Automaticly Build
+Controller.jar
+Model.jar
+
 # Files for the Dalvik VM
 *.dex
 
