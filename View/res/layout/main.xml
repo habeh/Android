@@ -11,19 +11,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-
         <Button
             android:id="@+id/Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="دیدن پروفایل" />
-        
+
         <Button
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="جستجوی کاربران" />
-        
+
         <Button
             android:id="@+id/Register"
             android:layout_width="match_parent"
@@ -36,48 +35,38 @@
             android:layout_height="160dp"
             android:text="جملک های انلاین" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/OfflineMessage"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:text="ارشیو ذخیره شده جملک" />
 
-            <Button
-                android:id="@+id/OfflineMessage"
-                android:layout_width="160dp"
-                android:layout_height="80dp"
-                android:text="ارشیو ذخیره شده جملک" />
+        <Button
+            android:id="@+id/Findpeople"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_toRightOf="@+id/OfflineMessage"
+            android:text="یافتن دوستان" />
 
-            <Button
-                android:id="@+id/Findpeople"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_toRightOf="@+id/OfflineMessage"
-                android:text="یافتن دوستان" />
-        </RelativeLayout>
+        <Button
+            android:id="@+id/UsContact"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:text="تماس با ما" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/UsAbout"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_toRightOf="@+id/UsContact"
+            android:text="درباره ما" />
 
-            <Button
-                android:id="@+id/UsContact"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:text="تماس با ما" />
-
-            <Button
-                android:id="@+id/UsAbout"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:layout_toRightOf="@+id/UsContact"
-                android:text="درباره ما" />
-
-            <Button
-                android:id="@+id/HabbehAbout"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_toRightOf="@+id/UsAbout"
-                android:text="درباره حبه" />
-        </RelativeLayout>
+        <Button
+            android:id="@+id/HabbehAbout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_toRightOf="@+id/UsAbout"
+            android:text="درباره حبه" />
     </LinearLayout>
 
 </FrameLayout>
