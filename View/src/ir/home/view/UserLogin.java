@@ -51,14 +51,14 @@ public class UserLogin extends Activity {
 							e.printStackTrace();
 						  }
 						  
-							 
+							
 						  if ( Result == null){
 								 Toast.makeText(getBaseContext(), 
-											"نام کاربری یا رمز عبور اشتباه است",
+											"ظ†ط§ظ… ع©ط§ط±ط¨ط±غŒ غŒط§ ط±ظ…ط² ط¹ط¨ظˆط± ط§ط´طھط¨ط§ظ‡ ط§ط³طھ",
 											Toast.LENGTH_LONG).show();
 								  
 							 } else {
-					              
+
 								 
 								 //Get And Save Data
 								  SavePrefs("UserNameC",Result.getUserName().toString()); 
