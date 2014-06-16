@@ -32,40 +32,37 @@
         <Button
             android:id="@+id/OnlineMessage"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:text="جملک های انلاین" />
 
         <Button
             android:id="@+id/OfflineMessage"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="ارشیو ذخیره شده جملک" />
 
         <Button
             android:id="@+id/Findpeople"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_toRightOf="@+id/OfflineMessage"
+            android:layout_height="wrap_content"
             android:text="یافتن دوستان" />
 
         <Button
             android:id="@+id/UsContact"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="تماس با ما" />
 
         <Button
             android:id="@+id/UsAbout"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_toRightOf="@+id/UsContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
             android:text="درباره ما" />
 
         <Button
             android:id="@+id/HabbehAbout"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_toRightOf="@+id/UsAbout"
+            android:layout_height="wrap_content"
             android:text="درباره حبه" />
     </LinearLayout>
 

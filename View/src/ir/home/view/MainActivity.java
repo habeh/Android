@@ -27,15 +27,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		Login = (Button) findViewById(R.id.Login);
-		Login.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(), UserLogin.class);
-				startActivityForResult(myIntent, 0);
-
-			}
-		});
 
 		Register = (Button) findViewById(R.id.Register);
 		Register.setOnClickListener(new OnClickListener() {
