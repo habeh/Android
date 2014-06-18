@@ -1,6 +1,7 @@
 # Built application files
 *.apk
 *.ap_
+*.jar
 
 # Java Automaticly Build
 Controller.jar

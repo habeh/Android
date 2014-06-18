@@ -20,18 +20,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ir.home.view.UserLogin" ></activity>
-        <activity android:name="ir.home.view.UserRegister" ></activity>
-        <activity android:name="ir.home.view.OnlineTextMessage" ></activity>
-        <activity android:name="ir.home.view.OfflineTextMessage" ></activity>
-        <activity android:name="ir.home.view.Findpeople" ></activity>
-        <activity android:name="ir.home.view.UsContact" ></activity>
-        <activity android:name="ir.home.view.UsAbout" ></activity>
-        <activity android:name="ir.home.view.HabbehAbout" ></activity>
-        <activity android:name="ir.home.view.UserProfile" ></activity>
-        <activity android:name="ir.home.view.UserSearch" ></activity>
-         <activity android:name="ir.home.view.UserForgiveInformation" ></activity>
-        
+        <activity android:name="ir.home.view.UserLogin" >
+        </activity>
+        <activity android:name="ir.home.view.UserRegister" >
+        </activity>
+        <activity android:name="ir.home.view.OnlineTextMessage" >
+        </activity>
+        <activity android:name="ir.home.view.OfflineTextMessage" >
+        </activity>
+        <activity android:name="ir.home.view.Findpeople" >
+        </activity>
+        <activity android:name="ir.home.view.UsContact" >
+        </activity>
+        <activity android:name="ir.home.view.UsAbout" >
+        </activity>
+        <activity android:name="ir.home.view.HabbehAbout" >
+        </activity>
+        <activity android:name="ir.home.view.UserProfile" >
+        </activity>
+        <activity android:name="ir.home.view.UserSearch" >
+        </activity>
+        <activity android:name="ir.home.view.UserForgiveInformation" >
+        </activity>
     </application>
 
 </manifest>

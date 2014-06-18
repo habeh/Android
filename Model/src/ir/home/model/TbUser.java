@@ -2,7 +2,9 @@ package ir.home.model;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -22,35 +24,6 @@ public class TbUser {
 
 	public TbUser() {
 
-	}
-
-	public TbUser(SoapObject obj) {
-		parseSOAPObject(obj);
-	}
-
-	private void parseSOAPObject(SoapObject obj) {
-		if (obj != null) {
-			this.setId(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("Id")));
-			this.setUserName(obj.getPrimitivePropertySafelyAsString("UserName"));
-			this.setPassword(obj.getPrimitivePropertySafelyAsString("Password"));
-			this.setFirstName(obj.getPrimitivePropertySafelyAsString("FirstName"));
-			this.setLastName(obj.getPrimitivePropertySafelyAsString("LastName"));
-			this.setEmail(obj.getPrimitivePropertySafelyAsString("Email"));
-			this.setPhoneNo(obj.getPrimitivePropertySafelyAsString("PhoneNo"));
-			this.setLocation(obj.getPrimitivePropertySafelyAsString("Location"));
-			this.setPicture(obj.getPrimitivePropertySafelyAsString("Picture"));
-			
-			String date=obj.getPrimitivePropertySafelyAsString("RegisterDate");
-			try {
-				Date d =DateFormat.getInstance().parse(date);
-				this.setRegisterDate(d);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}			
-			
-			this.setStatusId(Integer.parseInt(obj.getPrimitivePropertySafelyAsString("StatusId")));
-		}
 	}
 
 	public int getId() {
@@ -139,5 +112,59 @@ public class TbUser {
 
 	public void setStatusId(int statusId) {
 		this.statusId = statusId;
+	}
+
+	private static TbUser parseSOAPObject(SoapObject obj) {
+		TbUser result = null;
+		if (obj != null) {
+			result = new TbUser();
+			result.setId(Integer.parseInt(obj
+					.getPrimitivePropertySafelyAsString("Id")));
+			result.setUserName(obj
+					.getPrimitivePropertySafelyAsString("UserName"));
+			result.setPassword(obj
+					.getPrimitivePropertySafelyAsString("Password"));
+			result.setFirstName(obj
+					.getPrimitivePropertySafelyAsString("FirstName"));
+			result.setLastName(obj
+					.getPrimitivePropertySafelyAsString("LastName"));
+			result.setEmail(obj.getPrimitivePropertySafelyAsString("Email"));
+			result.setPhoneNo(obj.getPrimitivePropertySafelyAsString("PhoneNo"));
+			result.setLocation(obj
+					.getPrimitivePropertySafelyAsString("Location"));
+			result.setPicture(obj.getPrimitivePropertySafelyAsString("Picture"));
+
+			String date = obj
+					.getPrimitivePropertySafelyAsString("RegisterDate");
+			try {
+				Date d = DateFormat.getInstance().parse(date);
+				result.setRegisterDate(d);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			result.setStatusId(Integer.parseInt(obj
+					.getPrimitivePropertySafelyAsString("StatusId")));
+		}
+		return result;
+	}
+
+	public static TbUser ToEntity(SoapObject obj) {
+		return parseSOAPObject(obj);
+	}
+
+	public static List<TbUser> ToList(SoapObject obj) {        	
+		List<TbUser> result = null;
+        if (obj != null) {
+        	result=new ArrayList<TbUser>();
+            int count = obj.getPropertyCount();
+            for (int i = 0; i < count; i++) {
+                SoapObject userObj = (SoapObject) obj.getProperty(i);
+                TbUser newUser = parseSOAPObject(userObj);
+                result.add(newUser);
+            }
+        }
+
+        return result;
 	}
 }

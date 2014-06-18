@@ -2,6 +2,7 @@ package ir.home.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
@@ -33,7 +34,7 @@ public class UserController {
 		params.put("userName", userName);
 		params.put("password", password);
 		SoapObject result = new UserService().callMethod("Login", params);
-		return new TbUser(result);
+		return TbUser.ToEntity(result);
 	}
 	
     public TbUser getProfile(String username) throws IOException, XmlPullParserException
@@ -41,16 +42,15 @@ public class UserController {
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("userName", username);
 		SoapObject result = new UserService().callMethod("GetProfile", params);
-		return new TbUser(result);
+		return TbUser.ToEntity(result);
     }
-    
-    
-    public TbUser Search(String usersearch) throws IOException, XmlPullParserException
+        
+    public List<TbUser> Search(String usersearch) throws IOException, XmlPullParserException
     {
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("searchText", usersearch);
 		SoapObject result = new UserService().callMethod("Search", params);
-		return new TbUser(result);
+		return TbUser.ToList(result);
     }
     
 

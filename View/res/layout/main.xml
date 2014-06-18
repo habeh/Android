@@ -12,23 +12,17 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/Login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ورود به برنامه" />
-
-        <Button
             android:id="@+id/Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="دیدن پروفایل" />
-        
+
         <Button
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="جستجوی کاربران" />
-        
+
         <Button
             android:id="@+id/Register"
             android:layout_width="match_parent"
@@ -62,7 +56,7 @@
         <Button
             android:id="@+id/UsAbout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"            
             android:text="درباره ما" />
 
         <Button
@@ -70,9 +64,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="درباره حبه" />
-
     </LinearLayout>
 
-   
 </FrameLayout>
-
