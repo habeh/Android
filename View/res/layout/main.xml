@@ -24,6 +24,12 @@
             android:text="جستجوی کاربران" />
 
         <Button
+            android:id="@+id/Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ورود" />
+        
+        <Button
             android:id="@+id/Register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

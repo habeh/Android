@@ -91,15 +91,7 @@ public class UserLogin extends Activity {
 	}
 	
 	
-	 private void loadPrefs() {
-	final  SharedPreferences sp = this.getSharedPreferences("UserName", MODE_PRIVATE);
-			  	        String st = sp.getString("UserNameC", "");
-			  	      Toast.makeText(getBaseContext(), 
-								st,
-								Toast.LENGTH_LONG).show();
-			         
-			         
-   }
+	 
 }
 
 

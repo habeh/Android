@@ -1,15 +1,16 @@
 package ir.home.view;
 
+import ir.home.controller.UserController;
+import ir.home.habbeh.R;
+import ir.home.model.TbUser;
+import ir.home.view.adapter.UserAdapter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParserException;
 
-import ir.home.controller.UserController;
-import ir.home.habbeh.R;
-import ir.home.model.TbUser;
-import ir.home.view.adapter.UserAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class UserSearch extends Activity {
 
