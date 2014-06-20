@@ -7,6 +7,8 @@ import java.util.List;
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
+import sun.rmi.runtime.Log;
+
 import ir.home.model.TbUser;
 import ir.home.webservice.UserService;
 
@@ -53,5 +55,20 @@ public class UserController {
 		return TbUser.ToList(result);
     }
     
-
+    
+    public void  SaveProfile(String username,String firstName,String lastName,String email,String Status,String password) throws IOException, XmlPullParserException{		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("username", username);
+		params.put("firstname", firstName);
+		params.put("lastname", lastName);
+		params.put("email", email);
+		params.put("status", Status);
+		params.put("password", password);
+	
+		
+		new UserService().callMethod("SaveProfile", params);
+	}
+    
+    
 }
