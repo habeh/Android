@@ -7,7 +7,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="UserName" />
 
     <EditText
         android:id="@+id/UserName"
@@ -22,18 +22,24 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Password" />
 
     <EditText
         android:id="@+id/UserPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
-
+
     <Button
         android:id="@+id/Login"
-        android:layout_width="101dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ورود" />
+
+    <Button
+        android:id="@+id/Forgiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="رمز خود را فراموش کردم" />
 
 </LinearLayout>
