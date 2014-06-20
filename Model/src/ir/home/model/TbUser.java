@@ -20,7 +20,7 @@ public class TbUser {
 	private String location;
 	private String picture;
 	private Date registerDate;
-	private int statusId;
+	private String status;
 
 	public TbUser() {
 
@@ -106,12 +106,12 @@ public class TbUser {
 		this.registerDate = registerDate;
 	}
 
-	public int getStatusId() {
-		return statusId;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	private static TbUser parseSOAPObject(SoapObject obj) {
@@ -142,9 +142,8 @@ public class TbUser {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-
-			result.setStatusId(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("StatusId")));
+			result.setStatus(obj.getPrimitivePropertySafelyAsString("Status"));
+			
 		}
 		return result;
 	}

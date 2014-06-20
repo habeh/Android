@@ -23,6 +23,7 @@ public class UserLogin extends Activity {
 	private EditText UserName;
 	private EditText UserPassword;
 	private Button Login;
+	private Button Forgiv;
 	private TbUser Result;
 	
 
@@ -54,14 +55,15 @@ public class UserLogin extends Activity {
 							
 						  if ( Result == null){
 								 Toast.makeText(getBaseContext(), 
-											"ظ†ط§ظ… ع©ط§ط±ط¨ط±غŒ غŒط§ ط±ظ…ط² ط¹ط¨ظˆط± ط§ط´طھط¨ط§ظ‡ ط§ط³طھ",
+											"Login Failed",
 											Toast.LENGTH_LONG).show();
 								  
 							 } else {
 
 								 
 								 //Get And Save Data
-								  SavePrefs("UserNameC",Result.getUserName().toString()); 
+								  SavePrefs("UserName",Result.getUserName().toString()); 
+								  SavePrefs("UserId",Integer.toString(Result.getId()));
 									 Toast.makeText(getBaseContext(), 
 												Result.getEmail().toString(),
 												Toast.LENGTH_LONG).show();
@@ -73,33 +75,35 @@ public class UserLogin extends Activity {
 									 
 					            }
 							 
-				/*note : Object Result Dar sorat vared kardan Data  Eshetbah 
-						  bad az login movafaght null nemishavad */
+		
 				
     }
 			
   });
-
+		
+		Forgiv = (Button) findViewById(R.id.Forgiv);
+		Forgiv.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View arg0) {
+				
+				Intent myIntent = new Intent(arg0.getContext(),
+						UserForgiveInformation.class);
+				startActivityForResult(myIntent, 0);
+			}
 }
+		);}
+	
 	
 	private void SavePrefs(String key, String value) {
-		 SharedPreferences sp = this.getSharedPreferences("UserName", MODE_PRIVATE);
+		 SharedPreferences sp = this.getSharedPreferences("UserInformation", MODE_PRIVATE);
 		    SharedPreferences.Editor edit =  sp.edit();
 		      edit.putString(key ,value);
 		        edit.commit();
-		 
+		       
 	}
 	
 	
-	 private void loadPrefs() {
-	final  SharedPreferences sp = this.getSharedPreferences("UserName", MODE_PRIVATE);
-			  	        String st = sp.getString("UserNameC", "");
-			  	      Toast.makeText(getBaseContext(), 
-								st,
-								Toast.LENGTH_LONG).show();
-			         
-			         
-   }
+	 
 }
 
 
