@@ -58,13 +58,16 @@ public class UserAdapter extends BaseAdapter {
 			vi = inflater.inflate(R.layout.user_item, null);
 
 		TextView text = (TextView) vi.findViewById(R.id.userItemUserNameTextView);
+		TextView Status=(TextView)vi.findViewById(R.id.UserStatus );
 
 		if (data.size() <= 0) {
 			text.setText("No Data");
+			Status.setText("No Data");
 		} else {
 			TbUser temp = (TbUser) data.get(position);
 
 			text.setText(temp.getUserName());
+			Status.setText(temp.getStatus());
 
 		}
 		return vi;
