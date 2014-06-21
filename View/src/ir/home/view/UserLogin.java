@@ -55,14 +55,15 @@ public class UserLogin extends Activity {
 							
 						  if ( Result == null){
 								 Toast.makeText(getBaseContext(), 
-											"ظ†ط§ظ… ع©ط§ط±ط¨ط±غŒ غŒط§ ط±ظ…ط² ط¹ط¨ظˆط± ط§ط´طھط¨ط§ظ‡ ط§ط³طھ",
+											"Login Failed",
 											Toast.LENGTH_LONG).show();
 								  
 							 } else {
 
 								 
 								 //Get And Save Data
-								  SavePrefs("UserNameC",Result.getUserName().toString()); 
+								  SavePrefs("UserName",Result.getUserName().toString()); 
+								  SavePrefs("UserId",Integer.toString(Result.getId()));
 									 Toast.makeText(getBaseContext(), 
 												Result.getEmail().toString(),
 												Toast.LENGTH_LONG).show();
@@ -94,11 +95,11 @@ public class UserLogin extends Activity {
 	
 	
 	private void SavePrefs(String key, String value) {
-		 SharedPreferences sp = this.getSharedPreferences("UserName", MODE_PRIVATE);
+		 SharedPreferences sp = this.getSharedPreferences("UserInformation", MODE_PRIVATE);
 		    SharedPreferences.Editor edit =  sp.edit();
 		      edit.putString(key ,value);
 		        edit.commit();
-		 
+		       
 	}
 	
 	

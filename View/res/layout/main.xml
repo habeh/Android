@@ -34,6 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ثبت نام" />
+        
+         <Button
+            android:id="@+id/SendMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ارسال جملک" />
 
         <Button
             android:id="@+id/OnlineMessage"

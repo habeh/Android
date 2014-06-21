@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UserName"
+        android:layout_marginTop="10dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/panel2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="2dip" >
+
+            <EditText
+                android:id="@+id/CategoryId"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text=": ایدی گروه   "
+                android:textColor="#ffffff"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panel3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="2dip" >
+
+            <EditText
+                android:id="@+id/UserId"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text=": ایدی کاربر"
+                android:textColor="#ffffff"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panel4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="2dip" >
+
+            <EditText
+                android:id="@+id/Description"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text=": جملک"
+                android:textColor="#ffffff"
+                android:textSize="13dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:paddingBottom="2dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="2dip" >
+
+            <Button
+                android:id="@+id/Send"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="ارسال" />
+        </LinearLayout>
+    </LinearLayout>
+
+    
+
+</RelativeLayout>

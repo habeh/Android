@@ -42,6 +42,8 @@
         </activity>
         <activity android:name="ir.home.view.UserForgiveInformation" >
         </activity>
+         <activity android:name="ir.home.view.SendMessage" >
+        </activity>
     </application>
 
 </manifest>

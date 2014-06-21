@@ -33,7 +33,9 @@ android:paddingTop="2dip" >
 android:id="@+id/UserEmail"
 android:layout_width="0dip"
 android:layout_height="wrap_content"
-android:layout_weight="0.7"/>
+android:layout_weight="0.7"
+android:textSize="15dip"
+/>
     
     
 

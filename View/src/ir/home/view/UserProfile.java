@@ -49,8 +49,8 @@ public class UserProfile extends Activity {
 		
 		
 		
-		final  SharedPreferences sp = this.getSharedPreferences("UserName", MODE_PRIVATE);
-        final String UserNameP = sp.getString("UserNameC", "");
+		final  SharedPreferences sp = this.getSharedPreferences("UserNameInformation", MODE_PRIVATE);
+        final String UserNameP = sp.getString("UserName", "");
 		 UserController controller=new UserController();
 		try {
 			  Result=controller.getProfile(UserNameP.toString());
