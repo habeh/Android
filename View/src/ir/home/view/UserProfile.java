@@ -49,11 +49,11 @@ public class UserProfile extends Activity {
 		
 		
 		
-		final  SharedPreferences sp = this.getSharedPreferences("UserNameInformation", MODE_PRIVATE);
-        final String UserNameP = sp.getString("UserName", "");
+		final  SharedPreferences sp = this.getSharedPreferences("UserInformation", MODE_PRIVATE);
+        final int UserIdP = Integer.parseInt(sp.getString("UserId", ""));
 		 UserController controller=new UserController();
 		try {
-			  Result=controller.getProfile(UserNameP.toString());
+			  Result=controller.getProfile(UserIdP);
 		  }catch (IOException e) {
 			e.printStackTrace();
 		  } catch (XmlPullParserException e) {

@@ -13,10 +13,13 @@ public class TbMessage {
 	private int id;
 	private int CategoryId;
 	private int UserId;
+	private int CountLike;
 	private String Description;
 	private Date RegisterDate;
 	private Date SendDate;
 	private int NewMessageCount;
+	private String Title;
+	
 	
 
 	public TbMessage() {
@@ -39,6 +42,14 @@ public class TbMessage {
 		this.CategoryId = CategoryId;
 	}
 
+	public int getCountLike() {
+		return CountLike;
+	}
+
+	public void setCountLike(int CountLike) {
+		this.CountLike = CountLike;
+	}
+	
 	public int getUserId() {
 		return UserId;
 	}
@@ -81,6 +92,14 @@ public class TbMessage {
 	public void setNewMessageCount(int NewMessageCount) {
 		this.NewMessageCount = NewMessageCount;
 	}
+	
+	public String getTitle() {
+		return Title;
+	}
+
+	public void setTitle(String Title) {
+		this.Title = Title;
+	}
 
 	private static TbMessage parseSOAPObject(SoapObject obj) {
 		TbMessage result = null;
@@ -88,6 +107,8 @@ public class TbMessage {
 			result = new TbMessage();
 			result.setNewMessageCount(Integer.parseInt(obj
 					.getPrimitivePropertySafelyAsString("Count")));
+			result.setCountLike(Integer.parseInt(obj
+					.getPrimitivePropertySafelyAsString("CountLike")));
 			result.setId(Integer.parseInt(obj
 					.getPrimitivePropertySafelyAsString("Id")));
 			result.setCategoryId(Integer.parseInt(obj
@@ -96,6 +117,8 @@ public class TbMessage {
 					.getPrimitivePropertySafelyAsString("UserId")));
 			result.setDescription(obj
 					.getPrimitivePropertySafelyAsString("Description"));
+			result.setTitle(obj
+					.getPrimitivePropertySafelyAsString("Title"));
 			
 			String regdate = obj.getPrimitivePropertySafelyAsString("RegisterDate");
 			String senddate = obj.getPrimitivePropertySafelyAsString("SendDate");

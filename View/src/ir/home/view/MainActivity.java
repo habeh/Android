@@ -157,7 +157,7 @@ public class MainActivity extends Activity {
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		}
-		OnlineMessage.setText("New Message For Receipt ( "+ Integer.toString(Result.getnewMessageCount()).toString()+" )" );
+		//OnlineMessage.setText("New Message For Receipt ( "+ Integer.toString(Result.getnewMessageCount()).toString()+" )" );
 
 	}
 }

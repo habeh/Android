@@ -39,10 +39,10 @@ public class UserController {
 		return TbUser.ToEntity(result);
 	}
 	
-    public TbUser getProfile(String username) throws IOException, XmlPullParserException
+    public TbUser getProfile(int userid) throws IOException, XmlPullParserException
     {
 		HashMap<String,Object> params = new HashMap<String,Object>();
-		params.put("userName", username);
+		params.put("userid", userid);
 		SoapObject result = new UserService().callMethod("GetProfile", params);
 		return TbUser.ToEntity(result);
     }

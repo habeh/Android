@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+        <TextView
+        android:id="@+id/Message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message" 
+        android:textColor="#ffff00"
+        android:textSize="20dip" />
+
+        <TextView
+            android:id="@+id/Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserName"
+            android:textSize="14dip"
+             />
+        
+          <TextView
+            android:id="@+id/Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textSize="14dip"
+             />
+          
+          <TextView
+            android:id="@+id/ShowLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowLike"
+            android:textSize="14dip"
+             />
+          
+          <Button
+        android:id="@+id/Like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Like This Message" />
+        
+    </LinearLayout>
+    
+</LinearLayout>

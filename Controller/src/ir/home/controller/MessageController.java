@@ -41,4 +41,31 @@ public class MessageController {
 		return TbMessage.ToEntity(result);
     }
 	
+	public List<TbMessage> ShowOnlineMessage(String date) throws IOException, XmlPullParserException
+    {
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("lastUpdateMessage", date);
+		SoapObject result = new MessageService().callMethod("ReadMessage", params);
+		return TbMessage.ToList(result);
+    }
+	
+	
+	public TbMessage LikeCount(int messageid) throws IOException, XmlPullParserException
+    {
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("messageid", messageid);
+		SoapObject result = new MessageService().callMethod("CountLike", params);
+		return TbMessage.ToEntity(result);
+    }
+	
+	
+	public void Like(int userid,int messageid ) throws IOException, XmlPullParserException{		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("userId", userid);
+		params.put("messageId", messageid);
+		
+		new MessageService().callMethod("LikeMessage", params);
+	}
+	
 }
