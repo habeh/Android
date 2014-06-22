@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	private Button HabbehAbout;
 	private Button search;
 	private Button SendMessage;
-	private TbMessage Result;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -145,8 +145,9 @@ public class MainActivity extends Activity {
 		now.setToNow();
 
 		MessageController controller = new MessageController();
+		int count=0;
 		try {
-			Result = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
+			count = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
 					.toString());
 		} catch (IOException e) {
 			e.printStackTrace();

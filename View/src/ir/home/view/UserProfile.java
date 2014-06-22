@@ -42,7 +42,7 @@ public class UserProfile extends Activity {
 
 		final SharedPreferences sp = this.getSharedPreferences(
 				"UserInformation", MODE_PRIVATE);
-		final int UserIdP = Integer.parseInt(sp.getString("UserId", ""));
+		final int UserIdP = Integer.parseInt(sp.getString("UserId", "0"));
 		UserController controller = new UserController();
 		try {
 			Result = controller.getProfile(UserIdP);

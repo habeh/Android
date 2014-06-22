@@ -10,8 +10,6 @@ import javax.xml.crypto.Data;
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
-import sun.rmi.runtime.Log;
-
 import ir.home.model.TbMessage;
 import ir.home.model.TbUser;
 import ir.home.webservice.MessageService;
@@ -30,31 +28,31 @@ public class MessageController {
 		new MessageService().callMethod("InsertMessage", params);
 	}
 
-	public TbMessage CountNewMessage(String date) throws IOException,
+	public int CountNewMessage(String date) throws IOException,
 			XmlPullParserException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("LastReadMessage", date);
-		SoapObject result = new MessageService().callMethod("CountNewMessage",
+		Object result = new MessageService().callMethod("CountNewMessage",
 				params);
-		return TbMessage.ToEntity(result);
+		return Integer.parseInt(result.toString());
 	}
 
 	public List<TbMessage> ShowOnlineMessage(String date) throws IOException,
 			XmlPullParserException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lastUpdateMessage", date);
-		SoapObject result = new MessageService().callMethod("ReadMessage",
+		SoapObject result = (SoapObject)new MessageService().callMethod("ReadMessage",
 				params);
 		return TbMessage.ToList(result);
 	}
 
-	public TbMessage CountLike(int messageid) throws IOException,
+	public int CountLike(int messageid) throws IOException,
 			XmlPullParserException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("messageid", messageid);
-		SoapObject result = new MessageService()
+		Object result = new MessageService()
 				.callMethod("CountLike", params);
-		return TbMessage.ToEntity(result);
+		return Integer.parseInt(result.toString());
 	}
 
 	public void LikeMessage(int userid, int messageid) throws IOException,

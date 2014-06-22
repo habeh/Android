@@ -17,7 +17,7 @@ public class WebService {
 		return URL + "Service.asmx";
 	}
 
-	public SoapObject callMethod(String methodName,
+	public Object callMethod(String methodName,
 			HashMap<String, Object> params) throws IOException,
 			XmlPullParserException {
 
@@ -38,7 +38,7 @@ public class WebService {
 
 		androidHttpTransport.call(NAMESPACE + methodName, envelope);
 
-		SoapObject response = (SoapObject) envelope.getResponse();
+		Object response =  envelope.getResponse();
 
 		return response;
 	}

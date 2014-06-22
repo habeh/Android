@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 public class OnlineTextMessage extends Activity {
 
-	private TbMessage Result;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +26,20 @@ public class OnlineTextMessage extends Activity {
 		Time now = new Time();
 		now.setToNow();
 		MessageController controller = new MessageController();
+		int count=0;
 		try {
-			Result = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
+			count = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
 					.toString());
+			
+			count = controller.CountNewMessage("2014-01-01");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		}
 		Toast.makeText(getBaseContext(),
-				Integer.toString(Result.getnewMessageCount()).toString(),
+				Integer.toString(count).toString(),
 				Toast.LENGTH_LONG).show();
 		// textview1.setText(Integer.toString(Result.getnewMessageCount()));
 	}
