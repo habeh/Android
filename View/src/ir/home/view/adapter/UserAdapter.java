@@ -19,7 +19,6 @@ public class UserAdapter extends BaseAdapter {
 	private List<TbUser> data;
 	private static LayoutInflater inflater = null;
 
-
 	public UserAdapter(Activity a, List<TbUser> students) {
 
 		activity = a;
@@ -40,7 +39,7 @@ public class UserAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return  data.get(position);
+		return data.get(position);
 	}
 
 	@Override
@@ -56,14 +55,18 @@ public class UserAdapter extends BaseAdapter {
 		if (convertView == null)
 			vi = inflater.inflate(R.layout.user_item, null);
 
-		TextView text = (TextView) vi.findViewById(R.id.userItemUserNameTextView);
+		TextView text = (TextView) vi
+				.findViewById(R.id.userItemUserNameTextView);
+		TextView Status = (TextView) vi.findViewById(R.id.UserStatus);
 
 		if (data.size() <= 0) {
 			text.setText("No Data");
+			Status.setText("No Data");
 		} else {
 			TbUser temp = (TbUser) data.get(position);
 
 			text.setText(temp.getUserName());
+			Status.setText(temp.getStatus());
 
 		}
 		return vi;

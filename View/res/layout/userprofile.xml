@@ -1,60 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/UserProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical" >
+ 
+<TextView
+android:id="@+id/UserName"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="10dip"
+android:gravity="center_horizontal"
+android:text="------"
+android:textColor="#ffff00"
+android:textSize="20dip" />
+ 
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_below="@+id/UserName"
+android:layout_marginTop="10dip"
+android:orientation="vertical" >
+ 
+<LinearLayout
+android:id="@+id/panel1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="2dip"
+android:paddingLeft="10dip"
+android:paddingRight="10dip"
+android:paddingTop="2dip" >
+ 
+<EditText
+android:id="@+id/UserFirstName"
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.7"/>
     
-      <TextView
-        android:id="@+id/FirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-      
-        <TextView
-        android:id="@+id/LastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-        
-        
-
-    <TextView
-        android:id="@+id/UserEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
     
-      <TextView
-        android:id="@+id/PhoneNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-      
-            <TextView
-        android:id="@+id/Location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+<TextView
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.3"
+android:text=": نام"
+android:textColor="#ffffff"
+android:textSize="15dip" />
 
-    <TextView
-        android:id="@+id/UserRegisterDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/UserId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    
-
-    
 </LinearLayout>
+ 
+<LinearLayout
+android:id="@+id/panel2"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="2dip"
+android:paddingLeft="10dip"
+android:paddingRight="10dip"
+android:paddingTop="2dip" >
+ 
+
+ 
+<EditText
+android:id="@+id/UserLastName"
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.7"/>
+
+<TextView
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.3"
+android:text=": نام خانوادگی "
+android:textColor="#ffffff"
+android:textSize="15dip" />
+</LinearLayout>
+ 
+<LinearLayout
+android:id="@+id/panel3"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="2dip"
+android:paddingLeft="10dip"
+android:paddingRight="10dip"
+android:paddingTop="2dip" >
+ 
+
+ 
+<EditText
+android:id="@+id/UserEmail"
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.7"/>
+
+<TextView
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.3"
+android:text=": ایمیل"
+android:textColor="#ffffff"
+android:textSize="15dip" />
+
+</LinearLayout>
+
+
+<LinearLayout
+android:id="@+id/panel4"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="2dip"
+android:paddingLeft="10dip"
+android:paddingRight="10dip"
+android:paddingTop="2dip" >
+ 
+
+ 
+<EditText
+android:id="@+id/UserStatus"
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.7"/>
+
+<TextView
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.3"
+android:text=": حالت"
+android:textColor="#ffffff"
+android:textSize="15dip" />
+
+</LinearLayout>
+
+
+
+<LinearLayout
+android:id="@+id/panel5"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="2dip"
+android:paddingLeft="10dip"
+android:paddingRight="10dip"
+android:paddingTop="2dip" >
+ 
+
+ 
+<EditText
+android:id="@+id/UserPassword"
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.7"/>
+
+<TextView
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.3"
+android:text=": رمــز عبور"
+android:textColor="#ffffff"
+android:textSize="15dip" />
+
+</LinearLayout>
+ 
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="15dip"
+android:paddingBottom="2dip"
+android:paddingLeft="10dip"
+android:paddingRight="10dip"
+android:paddingTop="2dip" >
+ 
+<Button
+android:id="@+id/Update"
+android:layout_width="0dip"
+android:layout_height="wrap_content"
+android:layout_weight="0.5"
+android:text="بــــــروز رسانی" />
+</LinearLayout>
+</LinearLayout>
+ 
+</RelativeLayout>
