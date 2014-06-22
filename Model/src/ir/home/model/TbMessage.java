@@ -10,18 +10,8 @@ import org.ksoap2.serialization.SoapObject;
 
 public class TbMessage {
 	private int id;
-	private int CategoryId;
-	private int UserId;
-	private int CountLike;
-	private String Description;
-	private Date RegisterDate;
-	private Date SendDate;
-	private int NewMessageCount;
-	private String Title;
-
-	public TbMessage() {
-
-	}
+	private int categoryId;
+	private String categoryTitle;
 
 	public int getId() {
 		return id;
@@ -32,78 +22,62 @@ public class TbMessage {
 	}
 
 	public int getCategoryId() {
-		return CategoryId;
+		return categoryId;
 	}
 
-	public void setCategoryId(int CategoryId) {
-		this.CategoryId = CategoryId;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
-	public int getCountLike() {
-		return CountLike;
+	public String getCategoryTitle() {
+		return categoryTitle;
 	}
 
-	public void setCountLike(int CountLike) {
-		this.CountLike = CountLike;
+	public void setCategoryTitle(String categoryTitle) {
+		this.categoryTitle = categoryTitle;
 	}
 
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
-	public void setUserId(int UserId) {
-		this.UserId = UserId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	public void setDescription(String Description) {
-		this.Description = Description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getRegisterDate() {
-		return RegisterDate;
+		return registerDate;
 	}
 
-	public void setRegisterDate(Date RegisterDate) {
-		this.RegisterDate = RegisterDate;
-
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
 	}
 
 	public Date getSendDate() {
-		return RegisterDate;
+		return sendDate;
 	}
 
-	public void setSendDate(Date SendDate) {
-		this.SendDate = SendDate;
+	public void setSendDate(Date sendDate) {
+		this.sendDate = sendDate;
 	}
 
-	public int getnewMessageCount() {
-		return NewMessageCount;
-	}
-
-	public void setNewMessageCount(int NewMessageCount) {
-		this.NewMessageCount = NewMessageCount;
-	}
-
-	public String getTitle() {
-		return Title;
-	}
-
-	public void setTitle(String Title) {
-		this.Title = Title;
-	}
+	private int userId;
+	private String description;
+	private Date registerDate;
+	private Date sendDate;
 
 	private static TbMessage parseSOAPObject(SoapObject obj) {
 		TbMessage result = null;
 		if (obj != null) {
 			result = new TbMessage();
-			result.setNewMessageCount(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("Count")));
-			result.setCountLike(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("CountLike")));
 			result.setId(Integer.parseInt(obj
 					.getPrimitivePropertySafelyAsString("Id")));
 			result.setCategoryId(Integer.parseInt(obj
@@ -112,16 +86,20 @@ public class TbMessage {
 					.getPrimitivePropertySafelyAsString("UserId")));
 			result.setDescription(obj
 					.getPrimitivePropertySafelyAsString("Description"));
-			result.setTitle(obj.getPrimitivePropertySafelyAsString("Title"));
+			result.setCategoryTitle(obj
+					.getPrimitivePropertySafelyAsString("CategoryTitle"));
 			String regdate = obj
 					.getPrimitivePropertySafelyAsString("RegisterDate");
 			String senddate = obj
 					.getPrimitivePropertySafelyAsString("SendDate");
 			try {
-				Date d = DateFormat.getInstance().parse(regdate);
-				Date d1 = DateFormat.getInstance().parse(senddate);
-				result.setRegisterDate(d);
-				result.setSendDate(d1);
+				Date regDate = DateFormat.getInstance().parse(regdate);
+				result.setRegisterDate(regDate);
+
+				if (!senddate.isEmpty()) {
+					Date sendDate = DateFormat.getInstance().parse(senddate);
+					result.setSendDate(sendDate);
+				}
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
