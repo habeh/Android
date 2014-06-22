@@ -22,8 +22,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MessageAdapter extends BaseAdapter {
-	private TbUser Result;
-	private TbMessage TbMessageResult;
+	private TbUser Result;	
 	private Activity activity;
 	private List<TbMessage> data;
 	private static LayoutInflater inflater = null;
@@ -110,15 +109,16 @@ public class MessageAdapter extends BaseAdapter {
 
 			// ShowLike Count For This Message
 			MessageController controllerlike = new MessageController();
+			int count=0;
 			try {
-				TbMessageResult = controllerlike.CountLike(temp.getId());
+				count = controllerlike.CountLike(temp.getId());
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (XmlPullParserException e) {
 				e.printStackTrace();
 			}
 			ShowLike.setText("Liked : "
-					+ Integer.toString(TbMessageResult.getCountLike()));
+					+ Integer.toString(count));
 
 		}
 		return vi;
