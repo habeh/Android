@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="baseButton" parent="android:Widget.Button">
+        <item name="android:layout_margin">1dp</item>
+        <item  name="android:textSize">12sp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="baseButton.redButton">
+        <item name="android:background">@drawable/red</item>
+    </style>
+
+    <style name="baseButton.blueButton">
+        <item name="android:background">@drawable/blue</item>
+    </style>
+
+    <style name="baseButton.blueLightButton">
+        <item name="android:background">@drawable/blue_light</item>
+    </style>
+
+    <style name="baseButton.greenButton">
+        <item name="android:background">@drawable/green</item>
+    </style>
+
+    <style name="baseButton.violetButton">
+        <item name="android:background">@drawable/violet</item>
+    </style>
+
+    <style name="baseButton.redDarkButton">
+        <item name="android:background">@drawable/red_dark</item>
+    </style>
+
+    <style name="baseButton.grayButton">
+        <item name="android:background">@drawable/gray</item>
+    </style>
+
+</resources>

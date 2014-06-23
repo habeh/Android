@@ -77,7 +77,7 @@ public class MessageAdapter extends BaseAdapter {
 		} else {
 			final TbMessage temp = (TbMessage) data.get(position);
 			Message.setText(temp.getDescription());
-			Category.setText("Category :" + temp.getTitle());
+			Category.setText("Category :" + temp.getCategoryTitle());
 
 			// get UseName By Pass UserId To WebService
 

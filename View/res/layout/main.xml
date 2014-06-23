@@ -1,81 +1,153 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="ir.home.view.MainActivity"
     tools:ignore="MergeRootFrame" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/Profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/baseButton.greenButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:text="دیدن پروفایل" />
 
         <Button
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="جستجوی کاربران" />
-
-        <Button
             android:id="@+id/Login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/baseButton.blueLightButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/login_icon"
             android:text="ورود" />
-        
-        <Button
-            android:id="@+id/Register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ثبت نام" />
-        
-         <Button
-            android:id="@+id/SendMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ارسال جملک" />
 
-        <Button
-            android:id="@+id/OnlineMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="جملک های انلاین" />
+        <ImageButton
+            android:id="@+id/imageButton1"
+            style="@style/baseButton.greenButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription=""
+            android:src="@drawable/habbeh_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/OfflineMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ارشیو ذخیره شده جملک" />
+            style="@style/baseButton.grayButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:drawableLeft="@drawable/archive_icon"
+            android:text="ارشیو ذخیره شده " />
+
+        <Button
+            android:id="@+id/Register"
+            style="@style/baseButton.violetButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/register_icon"
+            android:text="ثبت نام" />
+
+        <Button
+            android:id="@+id/UsAbout"
+            style="@style/baseButton.blueButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/about_icon"
+            android:text="درباره ما" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/search"
+            style="@style/baseButton.blueButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/find_gps_icon"
+            android:text="جستجوی کاربران" />
+
+        <Button
+            android:id="@+id/OnlineMessage"
+            style="@style/baseButton.redButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/online_text_message"
+            android:text="جملک های انلاین" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/Findpeople"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/baseButton.violetButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/find_friend_icon"
             android:text="یافتن دوستان" />
 
         <Button
             android:id="@+id/UsContact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/baseButton.blueLightButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/contact_icon"
             android:text="تماس با ما" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <Button
-            android:id="@+id/UsAbout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"            
-            android:text="درباره ما" />
+            android:id="@+id/SendMessage"
+            style="@style/baseButton.blueLightButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/send_message_icon"
+            android:text="ارسال جملک" />
 
         <Button
             android:id="@+id/HabbehAbout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/baseButton.redDarkButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/setting_icon"
             android:text="درباره حبه" />
     </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </LinearLayout>
+
+</LinearLayout>
