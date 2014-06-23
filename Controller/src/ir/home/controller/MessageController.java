@@ -1,19 +1,12 @@
 package ir.home.controller;
 
+import ir.home.model.TbMessage;
+import ir.home.webservice.MessageService;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.xml.crypto.Data;
-
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
-
-import ir.home.model.TbMessage;
-import ir.home.model.TbUser;
-import ir.home.webservice.MessageService;
-import ir.home.webservice.UserService;
 
 public class MessageController {
 
@@ -41,8 +34,8 @@ public class MessageController {
 			XmlPullParserException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lastUpdateMessage", date);
-		SoapObject result = (SoapObject)new MessageService().callMethod("ReadMessage",
-				params);
+		SoapObject result = (SoapObject) new MessageService().callMethod(
+				"ReadMessage", params);
 		return TbMessage.ToList(result);
 	}
 
@@ -50,8 +43,7 @@ public class MessageController {
 			XmlPullParserException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("messageid", messageid);
-		Object result = new MessageService()
-				.callMethod("CountLike", params);
+		Object result = new MessageService().callMethod("CountLike", params);
 		return Integer.parseInt(result.toString());
 	}
 

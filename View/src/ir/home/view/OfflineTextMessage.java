@@ -1,24 +1,17 @@
 package ir.home.view;
 
+import ir.home.controller.MessageController;
+import ir.home.habbeh.R;
+import ir.home.model.TbMessage;
+import ir.home.view.adapter.MessageAdapter;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.xmlpull.v1.XmlPullParserException;
-
-import ir.home.controller.MessageController;
-import ir.home.controller.UserController;
-import ir.home.habbeh.R;
-import ir.home.model.TbMessage;
-
-import ir.home.view.adapter.MessageAdapter;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

@@ -15,14 +15,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MessageAdapter extends BaseAdapter {
-	private TbUser Result;	
+	private TbUser Result;
 	private Activity activity;
 	private List<TbMessage> data;
 	private static LayoutInflater inflater = null;
@@ -109,7 +109,7 @@ public class MessageAdapter extends BaseAdapter {
 
 			// ShowLike Count For This Message
 			MessageController controllerlike = new MessageController();
-			int count=0;
+			int count = 0;
 			try {
 				count = controllerlike.CountLike(temp.getId());
 			} catch (IOException e) {
@@ -117,8 +117,7 @@ public class MessageAdapter extends BaseAdapter {
 			} catch (XmlPullParserException e) {
 				e.printStackTrace();
 			}
-			ShowLike.setText("Liked : "
-					+ Integer.toString(count));
+			ShowLike.setText("Liked : " + Integer.toString(count));
 
 		}
 		return vi;
