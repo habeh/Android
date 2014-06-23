@@ -17,29 +17,29 @@ import android.widget.Toast;
 
 public class UserRegister extends Activity {
 
-	private EditText UserName;
-	private EditText UserEmail;
-	private EditText UserPassword;
-	private Button Register;
+	private EditText userName;
+	private EditText userEmail;
+	private EditText userPassword;
+	private Button register;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userregister);
 
-		UserName = (EditText) findViewById(R.id.UserName);
-		UserEmail = (EditText) findViewById(R.id.UserEmail);
-		UserPassword = (EditText) findViewById(R.id.UserPassword);
-		Register = (Button) findViewById(R.id.Register);
+		userName = (EditText) findViewById(R.id.userName);
+		userEmail = (EditText) findViewById(R.id.userEmail);
+		userPassword = (EditText) findViewById(R.id.userPassword);
+		register = (Button) findViewById(R.id.register);
 
-		Register.setOnClickListener(new OnClickListener() {
+		register.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 
 				if (IsConnectedToInternet() == true) {
 					UserController controller = new UserController();
 					try {
-						controller.register(UserName.getText().toString(),
-								UserEmail.getText().toString(), UserPassword
+						controller.register(userName.getText().toString(),
+								userEmail.getText().toString(), userPassword
 										.getText().toString());
 					} catch (IOException e) {
 						e.printStackTrace();
