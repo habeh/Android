@@ -1,45 +1,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_blue_radial"
     android:orientation="vertical" >
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:src="@drawable/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:gravity="right|center_vertical"
+            android:text="نام کاربری" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/UserPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" 
+            android:gravity="right|center_vertical"
+            android:text="رمز عبور" />
+
+        <Button
+            android:id="@+id/Login"
+            style="@style/baseButton.loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:text="ورود"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/Forgiv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="رمز خود را فراموش کردم"
+            android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" >
+
+            <TextView
+                android:id="@+id/registerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="ثبت نام کن"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="10sp" />
+
+            <TextView                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="حساب حبه نداری؟"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UserName" />
-
-    <EditText
-        android:id="@+id/UserName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password" />
-
-    <EditText
-        android:id="@+id/UserPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    <Button
-        android:id="@+id/Login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ورود" />
-
-    <Button
-        android:id="@+id/Forgiv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="رمز خود را فراموش کردم" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="solid_gray_dark">#404040ff</drawable>
+    <drawable name="solid_black">#000000</drawable>
+    <drawable name="solid_red">#ff00ff</drawable>
+    <drawable name="solid_green">#0ff0ff</drawable>
+    <drawable name="solid_gray_light">#c0c0c0ff</drawable>
+    <drawable name="solid_white">#ffffffff</drawable>
+    <drawable name="solid_yellow">#ffff00ff</drawable>
+    <drawable name="solid_blue_light">#00ffff</drawable>
+    <drawable name="solid_blue_dark">#0000ff</drawable>
+    <drawable name="solid_gray">#808080ff</drawable>
+    <drawable name="solid_magenta">#ff00ffff</drawable>
+    <drawable name="solid_cyan">#00ffffff</drawable>
+
+</resources>

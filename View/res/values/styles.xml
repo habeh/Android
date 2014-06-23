@@ -2,8 +2,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="baseButton" parent="android:Widget.Button">
-        <item name="android:layout_margin">1dp</item>
-        <item  name="android:textSize">12sp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:padding">2dp</item>
     </style>
 
@@ -33,6 +33,10 @@
 
     <style name="baseButton.grayButton">
         <item name="android:background">@drawable/gray</item>
+    </style>
+
+    <style name="baseButton.loginButton">
+        <item name="android:background">@drawable/blue_solid</item>
     </style>
 
 </resources>

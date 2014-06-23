@@ -16,33 +16,35 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class UserLogin extends Activity {
 
-	private EditText UserName;
-	private EditText UserPassword;
-	private Button Login;
-	private Button Forgiv;
-	private TbUser Result;
+	private EditText userName;
+	private EditText userPassword;
+	private Button login;
+	private TextView forgiv;
+	private TextView registerTextView;
+	private TbUser result;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userlogin);
 
-		UserName = (EditText) findViewById(R.id.UserName);
-		UserPassword = (EditText) findViewById(R.id.UserPassword);
-		Login = (Button) findViewById(R.id.Login);
-
-		Login.setOnClickListener(new OnClickListener() {
+		userName = (EditText) findViewById(R.id.UserName);
+		userPassword = (EditText) findViewById(R.id.UserPassword);
+		login = (Button) findViewById(R.id.Login);
+		
+		login.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
 
 				UserController controller = new UserController();
 				try {
-					Result = controller.login(UserName.getText().toString(),
-							UserPassword.getText().toString());
+					result = controller.login(userName.getText().toString(),
+							userPassword.getText().toString());
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -50,16 +52,16 @@ public class UserLogin extends Activity {
 					e.printStackTrace();
 				}
 
-				if (Result == null) {
+				if (result == null) {
 					Toast.makeText(getBaseContext(), "Login Failed",
 							Toast.LENGTH_LONG).show();
 
 				} else {
 
-					SavePrefs("UserName", Result.getUserName().toString());
-					SavePrefs("UserId", Integer.toString(Result.getId()));
+					SavePrefs("UserName", result.getUserName().toString());
+					SavePrefs("UserId", Integer.toString(result.getId()));
 					Toast.makeText(getBaseContext(),
-							Result.getEmail().toString(), Toast.LENGTH_LONG)
+							result.getEmail().toString(), Toast.LENGTH_LONG)
 							.show();
 
 					// Go To Next Page
@@ -73,13 +75,24 @@ public class UserLogin extends Activity {
 
 		});
 
-		Forgiv = (Button) findViewById(R.id.Forgiv);
-		Forgiv.setOnClickListener(new OnClickListener() {
+		forgiv = (TextView) findViewById(R.id.Forgiv);	
+		forgiv.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
 
 				Intent myIntent = new Intent(arg0.getContext(),
 						UserForgiveInformation.class);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+		
+		registerTextView= (TextView) findViewById(R.id.registerTextView);
+		registerTextView.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+
+				Intent myIntent = new Intent(arg0.getContext(),
+						UserRegister.class);
 				startActivityForResult(myIntent, 0);
 			}
 		});

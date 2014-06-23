@@ -1,51 +1,93 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_blue_radial"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="نام کاربری شما" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:src="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/UserName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="نامی که دیگران می بینند"
+            android:textSize="14sp" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="پست الکترونیک" />
+            <requestFocus />
+        </EditText>
 
-    <EditText
-        android:id="@+id/UserEmail"
+        <EditText
+            android:id="@+id/userEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="نام کاربری"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/userPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="رمز عبور"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/register"
+            style="@style/baseButton.loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="ثبت نام"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="قوانین حبه را مطالعه و قبول دارم"
+            android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" >
+
+            <TextView                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="وارد شو"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="حساب حبه داری؟"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView        
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="رمز عبور" />
-
-    <EditText
-        android:id="@+id/UserPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    <Button
-        android:id="@+id/Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ثبت نام" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
