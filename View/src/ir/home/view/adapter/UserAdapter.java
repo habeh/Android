@@ -3,7 +3,6 @@ package ir.home.view.adapter;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
 
-
 import java.util.List;
 
 import android.app.Activity;
@@ -19,7 +18,6 @@ public class UserAdapter extends BaseAdapter {
 	private Activity activity;
 	private List<TbUser> data;
 	private static LayoutInflater inflater = null;
-
 
 	public UserAdapter(Activity a, List<TbUser> students) {
 
@@ -41,7 +39,7 @@ public class UserAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return  data.get(position);
+		return data.get(position);
 	}
 
 	@Override
@@ -57,8 +55,9 @@ public class UserAdapter extends BaseAdapter {
 		if (convertView == null)
 			vi = inflater.inflate(R.layout.user_item, null);
 
-		TextView text = (TextView) vi.findViewById(R.id.userItemUserNameTextView);
-		TextView Status=(TextView)vi.findViewById(R.id.UserStatus );
+		TextView text = (TextView) vi
+				.findViewById(R.id.userItemUserNameTextView);
+		TextView Status = (TextView) vi.findViewById(R.id.UserStatus);
 
 		if (data.size() <= 0) {
 			text.setText("No Data");

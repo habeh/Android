@@ -3,9 +3,6 @@
 *.ap_
 *.jar
 
-# Java Automaticly Build
-Controller.jar
-Model.jar
 
 # Files for the Dalvik VM
 *.dex

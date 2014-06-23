@@ -32,9 +32,7 @@ public class UserRegister extends Activity {
 		Register = (Button) findViewById(R.id.Register);
 
 		Register.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View arg0) {
-
 				UserController controller = new UserController();
 				try {
 					controller.register(UserName.getText().toString(),

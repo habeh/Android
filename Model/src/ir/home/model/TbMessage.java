@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.ksoap2.serialization.SoapObject;
 
-
 public class TbMessage {
 	private int id;
 	private int CategoryId;
@@ -19,8 +18,6 @@ public class TbMessage {
 	private Date SendDate;
 	private int NewMessageCount;
 	private String Title;
-	
-	
 
 	public TbMessage() {
 
@@ -49,7 +46,7 @@ public class TbMessage {
 	public void setCountLike(int CountLike) {
 		this.CountLike = CountLike;
 	}
-	
+
 	public int getUserId() {
 		return UserId;
 	}
@@ -66,17 +63,15 @@ public class TbMessage {
 		this.Description = Description;
 	}
 
-	
 	public Date getRegisterDate() {
 		return RegisterDate;
 	}
 
 	public void setRegisterDate(Date RegisterDate) {
 		this.RegisterDate = RegisterDate;
-		
+
 	}
 
-	
 	public Date getSendDate() {
 		return RegisterDate;
 	}
@@ -84,7 +79,7 @@ public class TbMessage {
 	public void setSendDate(Date SendDate) {
 		this.SendDate = SendDate;
 	}
-	
+
 	public int getnewMessageCount() {
 		return NewMessageCount;
 	}
@@ -92,7 +87,7 @@ public class TbMessage {
 	public void setNewMessageCount(int NewMessageCount) {
 		this.NewMessageCount = NewMessageCount;
 	}
-	
+
 	public String getTitle() {
 		return Title;
 	}
@@ -117,21 +112,19 @@ public class TbMessage {
 					.getPrimitivePropertySafelyAsString("UserId")));
 			result.setDescription(obj
 					.getPrimitivePropertySafelyAsString("Description"));
-			result.setTitle(obj
-					.getPrimitivePropertySafelyAsString("Title"));
-			
-			String regdate = obj.getPrimitivePropertySafelyAsString("RegisterDate");
-			String senddate = obj.getPrimitivePropertySafelyAsString("SendDate");
+			result.setTitle(obj.getPrimitivePropertySafelyAsString("Title"));
+			String regdate = obj
+					.getPrimitivePropertySafelyAsString("RegisterDate");
+			String senddate = obj
+					.getPrimitivePropertySafelyAsString("SendDate");
 			try {
 				Date d = DateFormat.getInstance().parse(regdate);
-				Date d1=DateFormat.getInstance().parse(senddate);
+				Date d1 = DateFormat.getInstance().parse(senddate);
 				result.setRegisterDate(d);
 				result.setSendDate(d1);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
-			
 
 		}
 		return result;
@@ -141,18 +134,18 @@ public class TbMessage {
 		return parseSOAPObject(obj);
 	}
 
-	public static List<TbMessage> ToList(SoapObject obj) {        	
+	public static List<TbMessage> ToList(SoapObject obj) {
 		List<TbMessage> result = null;
-        if (obj != null) {
-        	result=new ArrayList<TbMessage>();
-            int count = obj.getPropertyCount();
-            for (int i = 0; i < count; i++) {
-                SoapObject messageObj = (SoapObject) obj.getProperty(i);
-                TbMessage newmessage = parseSOAPObject(messageObj);
-                result.add(newmessage);
-            }
-        }
+		if (obj != null) {
+			result = new ArrayList<TbMessage>();
+			int count = obj.getPropertyCount();
+			for (int i = 0; i < count; i++) {
+				SoapObject messageObj = (SoapObject) obj.getProperty(i);
+				TbMessage newmessage = parseSOAPObject(messageObj);
+				result.add(newmessage);
+			}
+		}
 
-        return result;
+		return result;
 	}
 }

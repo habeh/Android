@@ -19,29 +19,29 @@ public class UserForgiveInformation extends Activity {
 	private EditText Email;
 	private Button Send;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.forgivinformation);
-		
-		Email=(EditText)findViewById(R.id.UserEmail);
-		Send=(Button)findViewById(R.id.Send);
+
+		Email = (EditText) findViewById(R.id.UserEmail);
+		Send = (Button) findViewById(R.id.Send);
 		Send.setOnClickListener(new OnClickListener() {
-			public void onClick(View arg0){
+			public void onClick(View arg0) {
 				UserController controller = new UserController();
-				
+
 				try {
-					controller.sendForgiveInformation(Email.getText().toString());
+					controller.sendForgiveInformation(Email.getText()
+							.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
 				}
-				Toast.makeText(getBaseContext(), "Send Email Successfuly , Please Check Your MailBox", Toast.LENGTH_LONG).show();
+				Toast.makeText(getBaseContext(),
+						"Send Email Successfuly , Please Check Your MailBox",
+						Toast.LENGTH_LONG).show();
 			}
-		}
-		);
+		});
 	}
 }
-

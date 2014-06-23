@@ -24,12 +24,11 @@ public class SendMessage extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sendmessage);
 
-		//Load Data From Shared
-		final  SharedPreferences sp = this.getSharedPreferences("UserInformation", MODE_PRIVATE);
-        final String UserIdP = sp.getString("UserId", "");
-		
-		
-		
+		// Load Data From Shared
+		final SharedPreferences sp = this.getSharedPreferences(
+				"UserInformation", MODE_PRIVATE);
+		final String UserIdP = sp.getString("UserId", "");
+
 		CategoryId = (EditText) findViewById(R.id.CategoryId);
 		UserId = (EditText) findViewById(R.id.UserId);
 		Description = (EditText) findViewById(R.id.Description);
@@ -41,11 +40,12 @@ public class SendMessage extends Activity {
 
 			public void onClick(View arg0) {
 
-				MessageController controller=new MessageController();
+				MessageController controller = new MessageController();
 				try {
-					controller.InsertMessage(Integer.parseInt(CategoryId.getText().toString()),
-							Integer.parseInt(UserId.getText().toString()), Description
-									.getText().toString());
+					controller.InsertMessage(
+							Integer.parseInt(CategoryId.getText().toString()),
+							Integer.parseInt(UserId.getText().toString()),
+							Description.getText().toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {

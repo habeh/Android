@@ -26,19 +26,19 @@ public class OnlineTextMessage extends Activity {
 		
 		Time now = new Time();
 		now.setToNow();
-
-		MessageController controller=new MessageController();
+		MessageController controller = new MessageController();
 		try {
-			Result=controller.NewMessageCount(now.format("%m/%d/%Y %H:%M:%S").toString());
-	} catch (IOException e) {
+			Result = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
+					.toString());
+		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		}
-		Toast.makeText(getBaseContext(), 
+		Toast.makeText(getBaseContext(),
 				Integer.toString(Result.getnewMessageCount()).toString(),
 				Toast.LENGTH_LONG).show();
-	//	textview1.setText(Integer.toString(Result.getnewMessageCount()));
+		// textview1.setText(Integer.toString(Result.getnewMessageCount()));
 	}
 
 }

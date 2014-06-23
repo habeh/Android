@@ -1,12 +1,10 @@
 package ir.home.view;
 
-import java.io.IOException;
-
-import org.xmlpull.v1.XmlPullParserException;
-
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
+import java.io.IOException;
+import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -30,6 +27,7 @@ public class MainActivity extends Activity {
 	private Button search;
 	private Button SendMessage;
 	private TbMessage Result;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,14 +37,11 @@ public class MainActivity extends Activity {
 		Login.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(),
-						UserLogin.class);
+				Intent myIntent = new Intent(view.getContext(), UserLogin.class);
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		
-		
-		
+
 		Register = (Button) findViewById(R.id.Register);
 		Register.setOnClickListener(new OnClickListener() {
 
@@ -134,7 +129,7 @@ public class MainActivity extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		
+
 		SendMessage = (Button) findViewById(R.id.SendMessage);
 		SendMessage.setOnClickListener(new OnClickListener() {
 
@@ -144,20 +139,22 @@ public class MainActivity extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		
-		//get Count new message For Retrieve By User
+
+		// get Count new message For Retrieve By User
 		Time now = new Time();
 		now.setToNow();
 
-		MessageController controller=new MessageController();
+		MessageController controller = new MessageController();
 		try {
-			Result=controller.NewMessageCount(now.format("%m/%d/%Y %H:%M:%S").toString());
-	} catch (IOException e) {
+			Result = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
+					.toString());
+		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		}
-		//OnlineMessage.setText("New Message For Receipt ( "+ Integer.toString(Result.getnewMessageCount()).toString()+" )" );
+		// OnlineMessage.setText("New Message For Receipt ( "+
+		// Integer.toString(Result.getnewMessageCount()).toString()+" )" );
 
 	}
 }

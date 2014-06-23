@@ -6,8 +6,6 @@ import android.os.Bundle;
 
 public class UsContact extends Activity {
 
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

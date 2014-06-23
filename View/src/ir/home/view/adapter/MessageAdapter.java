@@ -6,7 +6,6 @@ import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.model.TbUser;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -23,12 +22,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MessageAdapter extends BaseAdapter {
-   private TbUser Result;
-   private TbMessage TbMessageResult;
+	private TbUser Result;
+	private TbMessage TbMessageResult;
 	private Activity activity;
 	private List<TbMessage> data;
 	private static LayoutInflater inflater = null;
-
 
 	public MessageAdapter(Activity a, List<TbMessage> students) {
 
@@ -50,7 +48,7 @@ public class MessageAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return  data.get(position);
+		return data.get(position);
 	}
 
 	@Override
@@ -67,9 +65,9 @@ public class MessageAdapter extends BaseAdapter {
 			vi = inflater.inflate(R.layout.message_item, null);
 
 		TextView Message = (TextView) vi.findViewById(R.id.Message);
-		TextView UserName=(TextView)vi.findViewById(R.id.Username);
-		TextView Category=(TextView)vi.findViewById(R.id.Category );
-		TextView ShowLike=(TextView)vi.findViewById(R.id.ShowLike );
+		TextView UserName = (TextView) vi.findViewById(R.id.Username);
+		TextView Category = (TextView) vi.findViewById(R.id.Category);
+		TextView ShowLike = (TextView) vi.findViewById(R.id.ShowLike);
 		Button Like = (Button) vi.findViewById(R.id.Like);
 
 		if (data.size() <= 0) {
@@ -80,31 +78,28 @@ public class MessageAdapter extends BaseAdapter {
 		} else {
 			final TbMessage temp = (TbMessage) data.get(position);
 			Message.setText(temp.getDescription());
-			Category.setText("Category :"+temp.getTitle());
-			
-			
-			//get UseName By Pass UserId To WebService
-			
-			 UserController controller=new UserController();
-				try {
-					  Result=controller.getProfile(temp.getUserId());
-				 }catch (IOException e) {
-					e.printStackTrace();
-				 } catch (XmlPullParserException e) {
-					e.printStackTrace();
-				 }
-			UserName.setText("Send By :"+Result.getUserName().toString());
+			Category.setText("Category :" + temp.getTitle());
 
-			
-			
-			//Setlike for this message
+			// get UseName By Pass UserId To WebService
+
+			UserController controller = new UserController();
+			try {
+				Result = controller.getProfile(temp.getUserId());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			}
+			UserName.setText("Send By :" + Result.getUserName().toString());
+
+			// Setlike for this message
 			Like.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
 
 					MessageController controller = new MessageController();
 					try {
-						controller.Like(temp.getUserId(), temp.getId());
+						controller.LikeMessage(temp.getUserId(), temp.getId());
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (XmlPullParserException e) {
@@ -112,22 +107,19 @@ public class MessageAdapter extends BaseAdapter {
 					}
 				}
 			});
-			
-			
-			
-			
-			
-			//ShowLike Count For This Message
-			MessageController controllerlike=new MessageController();
+
+			// ShowLike Count For This Message
+			MessageController controllerlike = new MessageController();
 			try {
-				TbMessageResult=controllerlike.LikeCount(temp.getId());
-			 }catch (IOException e) {
+				TbMessageResult = controllerlike.CountLike(temp.getId());
+			} catch (IOException e) {
 				e.printStackTrace();
-			 } catch (XmlPullParserException e) {
+			} catch (XmlPullParserException e) {
 				e.printStackTrace();
-			 }
-			ShowLike.setText("Liked : "+Integer.toString(TbMessageResult.getCountLike()));
-			
+			}
+			ShowLike.setText("Liked : "
+					+ Integer.toString(TbMessageResult.getCountLike()));
+
 		}
 		return vi;
 	}
