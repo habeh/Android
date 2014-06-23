@@ -2,16 +2,23 @@ package ir.home.view;
 
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
-import ir.home.model.TbMessage;
+
 import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -26,12 +33,14 @@ public class MainActivity extends Activity {
 	private Button HabbehAbout;
 	private Button search;
 	private Button SendMessage;
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		final SharedPreferences sp = this.getSharedPreferences(
+				"UserInformation", MODE_PRIVATE);
 
 		Login = (Button) findViewById(R.id.Login);
 		Login.setOnClickListener(new OnClickListener() {
@@ -56,9 +65,17 @@ public class MainActivity extends Activity {
 		Profile.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(),
-						UserProfile.class);
-				startActivityForResult(myIntent, 0);
+
+				if (sp.getString("UserId", "0") == "0") {
+					Toast.makeText(getBaseContext(), "Please First Login",
+							Toast.LENGTH_LONG).show();
+
+				} else {
+					Intent myIntent = new Intent(view.getContext(),
+							UserProfile.class);
+					startActivityForResult(myIntent, 0);
+				}
+
 			}
 		});
 
@@ -72,6 +89,8 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		
+		
 		OnlineMessage = (Button) findViewById(R.id.OnlineMessage);
 		OnlineMessage.setOnClickListener(new OnClickListener() {
 
@@ -139,23 +158,31 @@ public class MainActivity extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-
-		// get Count new message For Retrieve By User
-		Time now = new Time();
-		now.setToNow();
-
-		MessageController controller = new MessageController();
-		int count=0;
-		try {
-			count = controller.CountNewMessage(now.format("%m/%d/%Y %H:%M:%S")
-					.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
+		
+		if (IsConnectedToInternet() == true) {
+			MessageController controller = new MessageController();
+			int count = 0;
+			try {
+				count = controller.CountNewMessage("2014-01-01");
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			}
+			OnlineMessage.setText("You Have  " + count + "  New Message");
+		} else {
+			Toast.makeText(getBaseContext(),
+					"For Receipt New Message Please Connect To Internet",
+					Toast.LENGTH_LONG).show();
 		}
-		// OnlineMessage.setText("New Message For Receipt ( "+
-		// Integer.toString(Result.getnewMessageCount()).toString()+" )" );
+	}
 
+	public boolean IsConnectedToInternet() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
 	}
 }

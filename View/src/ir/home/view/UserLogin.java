@@ -56,7 +56,6 @@ public class UserLogin extends Activity {
 
 				} else {
 
-					// Get And Save Data
 					SavePrefs("UserName", Result.getUserName().toString());
 					SavePrefs("UserId", Integer.toString(Result.getId()));
 					Toast.makeText(getBaseContext(),
