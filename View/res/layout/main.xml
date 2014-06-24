@@ -1,15 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/solid_black"
     android:orientation="vertical"
+    android:weightSum="6"
     tools:context="ir.home.view.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
@@ -36,12 +38,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription=""
-            android:src="@drawable/habbeh_icon" />
-    </LinearLayout>
+            android:contentDescription=""            
+            android:src="@drawable/habbeh_icon" 
+            />
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
@@ -60,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableTop="@drawable/register_icon"
+            android:drawableTop="@drawable/register_icon"           
             android:text="ثبت نام" />
 
         <Button
@@ -71,10 +75,11 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/about_icon"
             android:text="درباره ما" />
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
@@ -95,10 +100,11 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/online_text_message"
             android:text="جملک های انلاین" />
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
@@ -119,10 +125,11 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/contact_icon"
             android:text="تماس با ما" />
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
@@ -143,12 +150,6 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/setting_icon"
             android:text="درباره حبه" />
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
-    </LinearLayout>
-
-</LinearLayout>
+</TableLayout>

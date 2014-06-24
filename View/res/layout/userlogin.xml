@@ -54,12 +54,13 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="رمز خود را فراموش کردم"
-            android:textSize="10sp" />
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right" >
+            android:gravity="right"
+            android:layout_marginTop="5dp" >
 
             <TextView
                 android:id="@+id/registerTextView"
@@ -68,14 +69,14 @@
                 android:gravity="right"
                 android:text="ثبت نام کن"
                 android:textColor="@android:color/holo_blue_light"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
 
             <TextView                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="حساب حبه نداری؟"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 
