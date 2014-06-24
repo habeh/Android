@@ -9,6 +9,7 @@ import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserProfile extends Activity {
 
@@ -74,10 +76,24 @@ public class UserProfile extends Activity {
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
 				}
+				Toast.makeText(getBaseContext(),
+						"Update Your Profile Succesfully", Toast.LENGTH_LONG)
+						.show();
+				Intent myIntent = new Intent(arg0.getContext(),
+						MainActivity.class);
+				startActivityForResult(myIntent, 0);
+				finish();
 
 			}
 		});
 
+	}
+
+	@Override
+	public void onBackPressed() {
+		Intent myIntent = new Intent(UserProfile.this, MainActivity.class);
+		startActivityForResult(myIntent, 0);
+		super.onBackPressed();
 	}
 
 }

@@ -4,13 +4,17 @@ import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.view.adapter.MessageAdapter;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,6 +70,14 @@ public class OfflineTextMessage extends Activity {
 			}
 		});
 
+	}
+
+	@Override
+	public void onBackPressed() {
+		Intent myIntent = new Intent(OfflineTextMessage.this,
+				MainActivity.class);
+		startActivityForResult(myIntent, 0);
+		super.onBackPressed();
 	}
 
 }
