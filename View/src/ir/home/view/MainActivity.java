@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -41,6 +40,13 @@ public class MainActivity extends Activity {
 
 		final SharedPreferences sp = this.getSharedPreferences(
 				"UserInformation", MODE_PRIVATE);
+		// sp.edit().clear().commit();
+		if (sp.getString("UserId", "0") == "0") {
+			Intent myIntent = new Intent(MainActivity.this,
+					UserLogin.class);
+			startActivityForResult(myIntent, 0);
+
+		} 
 
 		Login = (Button) findViewById(R.id.Login);
 		Login.setOnClickListener(new OnClickListener() {
@@ -48,6 +54,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UserLogin.class);
 				startActivityForResult(myIntent, 0);
+				finish();
 			}
 		});
 
@@ -62,6 +69,10 @@ public class MainActivity extends Activity {
 		});
 
 		Profile = (Button) findViewById(R.id.Profile);
+		if (sp.getString("UserId", "0") == "0") {
+			Profile.setVisibility(View.GONE);
+
+		}
 		Profile.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
@@ -80,6 +91,10 @@ public class MainActivity extends Activity {
 		});
 
 		search = (Button) findViewById(R.id.search);
+		if (sp.getString("UserId", "0") == "0") {
+			search.setVisibility(View.GONE);
+
+		}
 		search.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
@@ -89,8 +104,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		
-		
 		OnlineMessage = (Button) findViewById(R.id.OnlineMessage);
 		OnlineMessage.setOnClickListener(new OnClickListener() {
 
@@ -112,6 +125,10 @@ public class MainActivity extends Activity {
 		});
 
 		Findpeople = (Button) findViewById(R.id.Findpeople);
+		if (sp.getString("UserId", "0") == "0") {
+			Findpeople.setVisibility(View.GONE);
+
+		}
 		Findpeople.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
@@ -134,8 +151,10 @@ public class MainActivity extends Activity {
 		UsAbout.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
+				// sp.edit().clear().commit();
 				Intent myIntent = new Intent(view.getContext(), UsAbout.class);
 				startActivityForResult(myIntent, 0);
+
 			}
 		});
 
@@ -150,6 +169,10 @@ public class MainActivity extends Activity {
 		});
 
 		SendMessage = (Button) findViewById(R.id.SendMessage);
+		if (sp.getString("UserId", "0") == "0") {
+			SendMessage.setVisibility(View.GONE);
+
+		}
 		SendMessage.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
@@ -158,7 +181,6 @@ public class MainActivity extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		
 		if (IsConnectedToInternet() == true) {
 			MessageController controller = new MessageController();
 			int count = 0;

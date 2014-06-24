@@ -21,8 +21,8 @@ import android.widget.Toast;
 
 public class UserLogin extends Activity {
 
-	private EditText userName;
-	private EditText userPassword;
+	private EditText UserName;
+	private EditText UserPassword;
 	private Button login;
 	private TextView forgiv;
 	private TextView registerTextView;
@@ -33,41 +33,57 @@ public class UserLogin extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userlogin);
 
-		userName = (EditText) findViewById(R.id.UserName);
-		userPassword = (EditText) findViewById(R.id.UserPassword);
+		UserName = (EditText) findViewById(R.id.UserName);
+		UserPassword = (EditText) findViewById(R.id.UserPassword);
 		login = (Button) findViewById(R.id.Login);
-		
 		login.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
 
-				UserController controller = new UserController();
-				try {
-					result = controller.login(userName.getText().toString(),
-							userPassword.getText().toString());
-
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
+				String UserNameCheck = UserName.getText().toString();
+				String UserPasswordCheck = UserPassword.getText().toString();
+				if (UserNameCheck.matches("")) {
+					Toast.makeText(getBaseContext(),
+							"You did not enter a UserName", Toast.LENGTH_SHORT)
+							.show();
 				}
 
-				if (result == null) {
-					Toast.makeText(getBaseContext(), "Login Failed",
-							Toast.LENGTH_LONG).show();
-
+				else if (UserPasswordCheck.matches("")) {
+					Toast.makeText(getBaseContext(),
+							"You did not enter a Password", Toast.LENGTH_SHORT)
+							.show();
 				} else {
 
-					SavePrefs("UserName", result.getUserName().toString());
-					SavePrefs("UserId", Integer.toString(result.getId()));
-					Toast.makeText(getBaseContext(),
-							result.getEmail().toString(), Toast.LENGTH_LONG)
-							.show();
+					UserController controller = new UserController();
+					try {
+						result = controller.login(
+								UserName.getText().toString(), UserPassword
+										.getText().toString());
 
-					// Go To Next Page
-					Intent myIntent = new Intent(getBaseContext(),
-							UserProfile.class);
-					startActivityForResult(myIntent, 0);
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (XmlPullParserException e) {
+						e.printStackTrace();
+					}
+
+					if (result == null) {
+						Toast.makeText(getBaseContext(), "Login Failed",
+								Toast.LENGTH_LONG).show();
+
+					} else {
+
+						SavePrefs("UserName", result.getUserName().toString());
+						SavePrefs("UserId", Integer.toString(result.getId()));
+						Toast.makeText(getBaseContext(),
+								"You Login Successfully In Habbeh",
+								Toast.LENGTH_LONG).show();
+
+						// Go To Next Page
+						Intent myIntent = new Intent(getBaseContext(),
+								OfflineTextMessage.class);
+						startActivityForResult(myIntent, 0);
+
+					}
 
 				}
 
@@ -75,7 +91,7 @@ public class UserLogin extends Activity {
 
 		});
 
-		forgiv = (TextView) findViewById(R.id.Forgiv);	
+		forgiv = (TextView) findViewById(R.id.Forgiv);
 		forgiv.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
@@ -85,8 +101,8 @@ public class UserLogin extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		
-		registerTextView= (TextView) findViewById(R.id.registerTextView);
+
+		registerTextView = (TextView) findViewById(R.id.registerTextView);
 		registerTextView.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
@@ -94,6 +110,7 @@ public class UserLogin extends Activity {
 				Intent myIntent = new Intent(arg0.getContext(),
 						UserRegister.class);
 				startActivityForResult(myIntent, 0);
+				finish();
 			}
 		});
 	}
