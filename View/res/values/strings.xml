@@ -2,7 +2,27 @@
 <resources>
 
     <string name="app_name">Habbeh</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="profileShow">دیدن پروفایل</string>
+    <string name="login">ورود</string>
+    <string name="habbeh">حبه</string>
+    <string name="archiveSaved">آرشیو ذخیره شده</string>
+    <string name="register">ثبت نام کن</string>
+    <string name="aboutUs">درباره ما</string>
+    <string name="searchUsers">جستجوی کاربران</string>
+    <string name="onLineMessage">جملک های انلاین</string>
+    <string name="findFriends">یافتن دوستان</string>
+    <string name="contactUs">تماس با ما</string>
+    <string name="sendMessage">ارسال جملک</string>
+    <string name="aboutHabbeh">درباره حبه</string>
+    <string name="userName">نام کاربری</string>
+    <string name="password">رمز عبور</string>
+    <string name="forgiveMyPassword">رمز خود را فراموش کردم</string>
+    <string name="registeration">ثبت نام</string>
+    <string name="dontHaveHabbehAccount">حساب حبه نداری؟</string>
+    <string name="emailAddress">آدرس الکترونیک</string>
+    <string name="agreeWithHabbehRules">قوانین حبه را مطالعه و قبول دارم</string>
+    <string name="loginTo">وارد شو</string>
+    <string name="haveHabbehAccount">حساب حبه داری؟</string>
 
 </resources>

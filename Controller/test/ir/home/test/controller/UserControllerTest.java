@@ -3,8 +3,8 @@ package ir.home.test.controller;
 import static org.junit.Assert.*;
 import java.io.IOException;
 import ir.home.controller.UserController;
+import ir.home.utility.HabehException;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -20,7 +20,9 @@ public class UserControllerTest {
 			fail(e.toString());
 		} catch (XmlPullParserException e) {
 			fail(e.toString());
-		}
+		} catch (HabehException e) {
+           fail(e.toString());
+        }
 	}
 
 	public void testSendForgiveInformation() {

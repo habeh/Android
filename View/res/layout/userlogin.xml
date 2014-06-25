@@ -5,81 +5,80 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:contentDescription="@string/habbeh"
         android:src="@drawable/logo" />
-
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <EditText
-            android:id="@+id/UserName"
+            android:id="@+id/userlogin_edittext_UserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
             android:gravity="right|center_vertical"
-            android:text="نام کاربری" >
-
-            <requestFocus />
+            android:hint="@string/userName"            
+            android:textSize="14sp" >
         </EditText>
 
         <EditText
-            android:id="@+id/UserPassword"
+            android:id="@+id/userlogin_edittext_UserPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp" 
             android:gravity="right|center_vertical"
-            android:text="رمز عبور" />
-
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textSize="14sp" />
+
         <Button
-            android:id="@+id/Login"
-            style="@style/baseButton.loginButton"
+            android:id="@+id/userlogin_button_Login"
+            style="@style/ButtonBase.ButtonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_margin="10dp"
-            android:text="ورود"
+            android:text="@string/login"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/Forgiv"
+            android:id="@+id/userlogin_textview_Forgiv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="رمز خود را فراموش کردم"
+            android:text="@string/forgiveMyPassword"
             android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_marginTop="5dp" >
+            android:layout_marginTop="5dp"
+            android:gravity="right" >
 
             <TextView
-                android:id="@+id/registerTextView"
+                android:id="@+id/userlogin_textview_registerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="ثبت نام کن"
+                android:text="@string/register"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="13sp" />
 
-            <TextView                
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="حساب حبه نداری؟"
+                android:text="@string/dontHaveHabbehAccount"
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
-
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"

@@ -1,3 +1,4 @@
+
 package ir.home.view;
 
 import ir.home.controller.UserController;
@@ -21,107 +22,122 @@ import android.widget.Toast;
 
 public class UserLogin extends Activity {
 
-	private EditText UserName;
-	private EditText UserPassword;
-	private Button login;
-	private TextView forgiv;
-	private TextView registerTextView;
-	private TbUser result;
+    private EditText userName;
+    private EditText userPassword;
+    private Button login;
+    private TextView forgivePassword;
+    private TextView registerTextView;
+    private TbUser result;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.userlogin);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.userlogin);
 
-		UserName = (EditText) findViewById(R.id.UserName);
-		UserPassword = (EditText) findViewById(R.id.UserPassword);
-		login = (Button) findViewById(R.id.Login);
-		login.setOnClickListener(new OnClickListener() {
+        userName = (EditText) findViewById(R.id.userlogin_edittext_UserName);
+        userPassword = (EditText) findViewById(R.id.userlogin_edittext_UserPassword);
 
-			public void onClick(View arg0) {
+        initLogin();
 
-				String UserNameCheck = UserName.getText().toString();
-				String UserPasswordCheck = UserPassword.getText().toString();
-				if (UserNameCheck.matches("")) {
-					Toast.makeText(getBaseContext(),
-							"You did not enter a UserName", Toast.LENGTH_SHORT)
-							.show();
-				}
+        initForgivePassword();
 
-				else if (UserPasswordCheck.matches("")) {
-					Toast.makeText(getBaseContext(),
-							"You did not enter a Password", Toast.LENGTH_SHORT)
-							.show();
-				} else {
+        initRegisterTextView();
+    }
 
-					UserController controller = new UserController();
-					try {
-						result = controller.login(
-								UserName.getText().toString(), UserPassword
-										.getText().toString());
+    private void initRegisterTextView() {
+        registerTextView = (TextView) findViewById(R.id.userlogin_textview_registerTextView);
+        registerTextView.setOnClickListener(new OnClickListener() {
 
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (XmlPullParserException e) {
-						e.printStackTrace();
-					}
+            public void onClick(View arg0) {
 
-					if (result == null) {
-						Toast.makeText(getBaseContext(), "Login Failed",
-								Toast.LENGTH_LONG).show();
+                Intent myIntent = new Intent(arg0.getContext(),
+                        UserRegister.class);
+                startActivityForResult(myIntent, 0);
+                finish();
+            }
+        });
+    }
 
-					} else {
+    private void initForgivePassword() {
+        forgivePassword = (TextView) findViewById(R.id.userlogin_textview_Forgiv);
+        forgivePassword.setOnClickListener(new OnClickListener() {
 
-						SavePrefs("UserName", result.getUserName().toString());
-						SavePrefs("UserId", Integer.toString(result.getId()));
-						Toast.makeText(getBaseContext(),
-								"You Login Successfully In Habbeh",
-								Toast.LENGTH_LONG).show();
+            public void onClick(View arg0) {
 
-						// Go To Next Page
-						Intent myIntent = new Intent(getBaseContext(),
-								OfflineTextMessage.class);
-						startActivityForResult(myIntent, 0);
+                Intent myIntent = new Intent(arg0.getContext(),
+                        UserForgiveInformation.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
+    }
 
-					}
+    private void initLogin() {
+        login = (Button) findViewById(R.id.userlogin_button_Login);
+        login.setOnClickListener(new OnClickListener() {
 
-				}
+            public void onClick(View arg0) {
 
-			}
+                String userNameText = userName.getText().toString();
+                String userPasswordText = userPassword.getText().toString();
+                String error = "";
 
-		});
+                if (userNameText.isEmpty()) {
+                    error = "You did not enter a UserName";
+                }
 
-		forgiv = (TextView) findViewById(R.id.Forgiv);
-		forgiv.setOnClickListener(new OnClickListener() {
+                if (userPasswordText.isEmpty()) {
+                    error += "\nYou did not enter a Password";
+                }
 
-			public void onClick(View arg0) {
+                if (error.isEmpty()) {
+                    UserController controller = new UserController();
+                    try {
+                        result = controller.login(userNameText, userPasswordText);
 
-				Intent myIntent = new Intent(arg0.getContext(),
-						UserForgiveInformation.class);
-				startActivityForResult(myIntent, 0);
-			}
-		});
+                        if (result == null) {
+                            Toast.makeText(getBaseContext(), "Login Failed",
+                                    Toast.LENGTH_LONG).show();
 
-		registerTextView = (TextView) findViewById(R.id.registerTextView);
-		registerTextView.setOnClickListener(new OnClickListener() {
+                        } else {
 
-			public void onClick(View arg0) {
+                            SavePrefs("UserName", result.getUserName().toString());
+                            SavePrefs("UserId", Integer.toString(result.getId()));
+                            Toast.makeText(getBaseContext(),
+                                    "You Login Successfully In Habbeh",
+                                    Toast.LENGTH_LONG).show();
 
-				Intent myIntent = new Intent(arg0.getContext(),
-						UserRegister.class);
-				startActivityForResult(myIntent, 0);
-				finish();
-			}
-		});
-	}
+                            // Go To Next Page
+                            Intent myIntent = new Intent(getBaseContext(),
+                                    OfflineTextMessage.class);
+                            startActivityForResult(myIntent, 0);
 
-	private void SavePrefs(String key, String value) {
-		SharedPreferences sp = this.getSharedPreferences("UserInformation",
-				MODE_PRIVATE);
-		SharedPreferences.Editor edit = sp.edit();
-		edit.putString(key, value);
-		edit.commit();
+                        }
+                        
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (XmlPullParserException e) {
+                        e.printStackTrace();
+                    }
+       
+                }
+                else
+                {
+                    Toast.makeText(getBaseContext(),
+                            error,
+                            Toast.LENGTH_LONG).show();
+                }
+            }
 
-	}
+        });
+    }
+
+    private void SavePrefs(String key, String value) {
+        SharedPreferences sp = this.getSharedPreferences("UserInformation",
+                MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString(key, value);
+        edit.commit();
+
+    }
 
 }

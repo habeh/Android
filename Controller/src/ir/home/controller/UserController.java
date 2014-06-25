@@ -8,19 +8,25 @@ import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import ir.home.model.TbUser;
+import ir.home.utility.HabehException;
 import ir.home.webservice.UserService;
 
 public class UserController {
 
 	public void register(String userName, String email, String password)
-			throws IOException, XmlPullParserException {
+			throws IOException, XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 
 		params.put("email", email);
 		params.put("password", password);
 		params.put("userName", userName);
 
-		new UserService().callMethod("Register", params);
+		Object result = new UserService().callMethod("Register", params);
+		if(result  instanceof SoapObject){
+		
+		}
+		else
+			throw new HabehException(result.toString());
 	}
 
 	public void sendForgiveInformation(String email) throws IOException,

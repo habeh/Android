@@ -21,12 +21,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.23"
         android:gravity="right|center_vertical"
-        android:text=""
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/Send"
-        style="@style/baseButton.loginButton"
+        android:id="@+id/uscontact_button_Send"
+        style="@style/ButtonBase.ButtonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

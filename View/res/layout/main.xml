@@ -1,155 +1,143 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/solid_black"
-    android:orientation="vertical"
-    android:weightSum="6"
-    tools:context="ir.home.view.MainActivity"
-    tools:ignore="MergeRootFrame" >
+    android:orientation="vertical" >
 
     <TableRow
-        android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/Profile"
-            style="@style/baseButton.greenButton"
+            android:id="@+id/main_button_Profile"
+            style="@style/ButtonBase.ButtonGreen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:text="دیدن پروفایل" />
+            android:text="@string/profileShow" />
 
         <Button
-            android:id="@+id/Login"
-            style="@style/baseButton.blueLightButton"
+            android:id="@+id/main_button_Login"
+            style="@style/ButtonBase.ButtonBlueLight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@drawable/login_icon"
-            android:text="ورود" />
+            android:text="@string/login" />
 
-        <ImageButton
-            android:id="@+id/imageButton1"
-            style="@style/baseButton.greenButton"
+        <ImageView
+            style="@style/ButtonBase.ButtonGreen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription=""            
-            android:src="@drawable/habbeh_icon" 
-            />
+            android:contentDescription="@string/habbeh"
+            android:src="@drawable/habbeh_icon" />
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/OfflineMessage"
-            style="@style/baseButton.grayButton"
+            android:id="@+id/main_button_OfflineMessage"
+            style="@style/ButtonBase.ButtonGray"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:drawableLeft="@drawable/archive_icon"
-            android:text="ارشیو ذخیره شده " />
+            android:text="@string/archiveSaved" />
 
         <Button
-            android:id="@+id/Register"
-            style="@style/baseButton.violetButton"
+            android:id="@+id/main_button_Register"
+            style="@style/ButtonBase.ButtonViolet"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableTop="@drawable/register_icon"           
-            android:text="ثبت نام" />
+            android:drawableTop="@drawable/register_icon"
+            android:text="@string/registeration" />
 
         <Button
-            android:id="@+id/UsAbout"
-            style="@style/baseButton.blueButton"
+            android:id="@+id/main_button_UsAbout"
+            style="@style/ButtonBase.ButtonBlue"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@drawable/about_icon"
-            android:text="درباره ما" />
+            android:text="@string/aboutUs" />
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/search"
-            style="@style/baseButton.blueButton"
+            android:id="@+id/main_button_searchUsers"
+            style="@style/ButtonBase.ButtonBlue"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableLeft="@drawable/find_gps_icon"
-            android:text="جستجوی کاربران" />
+            android:text="@string/searchUsers" />
 
         <Button
-            android:id="@+id/OnlineMessage"
-            style="@style/baseButton.redButton"
+            android:id="@+id/main_button_OnlineMessage"
+            style="@style/ButtonBase.ButtonRed"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableLeft="@drawable/online_text_message"
-            android:text="جملک های انلاین" />
+            android:text="@string/onLineMessage" />
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow4"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/Findpeople"
-            style="@style/baseButton.violetButton"
+            android:id="@+id/main_button_Findpeople"
+            style="@style/ButtonBase.ButtonViolet"            
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableLeft="@drawable/find_friend_icon"
-            android:text="یافتن دوستان" />
+            android:text="@string/findFriends" />
 
         <Button
-            android:id="@+id/UsContact"
-            style="@style/baseButton.blueLightButton"
+            android:id="@+id/main_button_UsContact"
+            style="@style/ButtonBase.ButtonBlueLight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableLeft="@drawable/contact_icon"
-            android:text="تماس با ما" />
+            android:text="@string/contactUs" />
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow5"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/SendMessage"
-            style="@style/baseButton.blueLightButton"
+            android:id="@+id/main_button_SendMessage"
+            style="@style/ButtonBase.ButtonBlueLight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableLeft="@drawable/send_message_icon"
-            android:text="ارسال جملک" />
+            android:text="@string/sendMessage" />
 
         <Button
-            android:id="@+id/HabbehAbout"
-            style="@style/baseButton.redDarkButton"
+            android:id="@+id/main_button_HabbehAbout"
+            style="@style/ButtonBase.ButtonRedDark"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableLeft="@drawable/setting_icon"
-            android:text="درباره حبه" />
+            android:text="@string/aboutHabbeh" />
     </TableRow>
 
 </TableLayout>
