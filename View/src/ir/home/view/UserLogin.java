@@ -4,6 +4,7 @@ package ir.home.view;
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
+import ir.home.view.utility.ConnectedToInternet;
 
 import java.io.IOException;
 
@@ -90,35 +91,36 @@ public class UserLogin extends Activity {
                 }
 
                 if (error.isEmpty()) {
-                    UserController controller = new UserController();
-                    try {
-                        result = controller.login(userNameText, userPasswordText);
+                    if (ConnectedToInternet.isOnline(getBaseContext())) {
+                        UserController controller = new UserController();
+                        try {
+                            result = controller.login(userNameText, userPasswordText);
 
-                        if (result == null) {
-                            Toast.makeText(getBaseContext(), "Login Failed",
-                                    Toast.LENGTH_LONG).show();
+                            if (result == null) {
+                                Toast.makeText(getBaseContext(), "Login Failed",
+                                        Toast.LENGTH_LONG).show();
 
-                        } else {
+                            } else {
 
-                            SavePrefs("UserName", result.getUserName().toString());
-                            SavePrefs("UserId", Integer.toString(result.getId()));
-                            Toast.makeText(getBaseContext(),
-                                    "You Login Successfully In Habbeh",
-                                    Toast.LENGTH_LONG).show();
+                                SavePrefs("UserName", result.getUserName().toString());
+                                SavePrefs("UserId", Integer.toString(result.getId()));
+                                Toast.makeText(getBaseContext(),
+                                        "You Login Successfully In Habbeh",
+                                        Toast.LENGTH_LONG).show();
 
-                            // Go To Next Page
-                            Intent myIntent = new Intent(getBaseContext(),
-                                    OfflineTextMessage.class);
-                            startActivityForResult(myIntent, 0);
+                                // Go To Next Page
+                                Intent myIntent = new Intent(getBaseContext(),
+                                        OfflineTextMessage.class);
+                                startActivityForResult(myIntent, 0);
 
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (XmlPullParserException e) {
+                            e.printStackTrace();
                         }
-                        
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (XmlPullParserException e) {
-                        e.printStackTrace();
                     }
-       
                 }
                 else
                 {
@@ -139,5 +141,4 @@ public class UserLogin extends Activity {
         edit.commit();
 
     }
-
 }

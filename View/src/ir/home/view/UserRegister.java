@@ -5,17 +5,15 @@ import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
 import ir.home.utility.HabehException;
+import ir.home.view.utility.ConnectedToInternet;
 
 import java.io.IOException;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -65,7 +63,7 @@ public class UserRegister extends Activity {
                 }
 
                 if (error.isEmpty()) {
-                    if (IsConnectedToInternet()) {
+                    if (ConnectedToInternet.isOnline(getBaseContext())){
                         UserController controller = new UserController();
                         try {
                             controller.register(userNameText, userEmailText, userPasswordTExt);
@@ -115,14 +113,6 @@ public class UserRegister extends Activity {
         });
     }
 
-    public boolean IsConnectedToInternet() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        }
-        return false;
-    }
 
     private void SavePrefs(String key, String value) {
         SharedPreferences sp = this.getSharedPreferences("UserInformation",
@@ -139,5 +129,4 @@ public class UserRegister extends Activity {
         startActivityForResult(myIntent, 0);
         super.onBackPressed();
     }
-
 }
