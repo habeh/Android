@@ -3,6 +3,7 @@ package ir.home.view;
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
+import ir.home.view.utility.ConnectedToInternet;
 
 import java.io.IOException;
 
@@ -60,7 +61,7 @@ public class UserRegister extends Activity {
 							.show();
 				} else {
 
-					if (IsConnectedToInternet() == true) {
+					if (ConnectedToInternet.isOnline(getBaseContext()) == true){
 						UserController controller = new UserController();
 						try {
 							controller.register(userName.getText().toString(),
@@ -92,7 +93,7 @@ public class UserRegister extends Activity {
 								.show();
 
 						Intent myIntent = new Intent(arg0.getContext(),
-								UserProfile.class);
+								MainActivity.class);
 						startActivityForResult(myIntent, 0);
 						finish();
 					} else {
@@ -108,14 +109,6 @@ public class UserRegister extends Activity {
 
 	}
 
-	public boolean IsConnectedToInternet() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-			return true;
-		}
-		return false;
-	}
 
 	private void SavePrefs(String key, String value) {
 		SharedPreferences sp = this.getSharedPreferences("UserInformation",

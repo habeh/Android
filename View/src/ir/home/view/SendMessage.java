@@ -2,8 +2,11 @@ package ir.home.view;
 
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
+
 import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;

@@ -57,4 +57,6 @@ public class MessageController {
 		new MessageService().callMethod("LikeMessage", params);
 	}
 
+	
+
 }

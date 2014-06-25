@@ -3,6 +3,7 @@ package ir.home.view;
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
+import ir.home.view.utility.ConnectedToInternet;
 
 import java.io.IOException;
 
@@ -53,38 +54,41 @@ public class UserLogin extends Activity {
 							"You did not enter a Password", Toast.LENGTH_SHORT)
 							.show();
 				} else {
+					if (ConnectedToInternet.isOnline(getBaseContext()) == true) {
 
-					UserController controller = new UserController();
-					try {
-						result = controller.login(
-								UserName.getText().toString(), UserPassword
-										.getText().toString());
+						UserController controller = new UserController();
+						try {
+							result = controller.login(UserName.getText()
+									.toString(), UserPassword.getText()
+									.toString());
 
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (XmlPullParserException e) {
-						e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (XmlPullParserException e) {
+							e.printStackTrace();
+						}
+
+						if (result == null) {
+							Toast.makeText(getBaseContext(), "Login Failed",
+									Toast.LENGTH_LONG).show();
+
+						} else {
+
+							SavePrefs("UserName", result.getUserName()
+									.toString());
+							SavePrefs("UserId",
+									Integer.toString(result.getId()));
+							Toast.makeText(getBaseContext(),
+									"You Login Successfully In Habbeh",
+									Toast.LENGTH_LONG).show();
+
+							// Go To Next Page
+							Intent myIntent = new Intent(getBaseContext(),
+									OfflineTextMessage.class);
+							startActivityForResult(myIntent, 0);
+
+						}
 					}
-
-					if (result == null) {
-						Toast.makeText(getBaseContext(), "Login Failed",
-								Toast.LENGTH_LONG).show();
-
-					} else {
-
-						SavePrefs("UserName", result.getUserName().toString());
-						SavePrefs("UserId", Integer.toString(result.getId()));
-						Toast.makeText(getBaseContext(),
-								"You Login Successfully In Habbeh",
-								Toast.LENGTH_LONG).show();
-
-						// Go To Next Page
-						Intent myIntent = new Intent(getBaseContext(),
-								OfflineTextMessage.class);
-						startActivityForResult(myIntent, 0);
-
-					}
-
 				}
 
 			}

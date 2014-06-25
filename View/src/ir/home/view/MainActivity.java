@@ -2,17 +2,12 @@ package ir.home.view;
 
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
-
+import ir.home.view.utility.ConnectedToInternet;
 import java.io.IOException;
-
 import org.xmlpull.v1.XmlPullParserException;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +28,7 @@ public class MainActivity extends Activity {
 	private Button search;
 	private Button SendMessage;
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,11 +38,10 @@ public class MainActivity extends Activity {
 				"UserInformation", MODE_PRIVATE);
 		// sp.edit().clear().commit();
 		if (sp.getString("UserId", "0") == "0") {
-			Intent myIntent = new Intent(MainActivity.this,
-					UserLogin.class);
+			Intent myIntent = new Intent(MainActivity.this, UserLogin.class);
 			startActivityForResult(myIntent, 0);
 
-		} 
+		}
 
 		Login = (Button) findViewById(R.id.Login);
 		Login.setOnClickListener(new OnClickListener() {
@@ -181,7 +176,8 @@ public class MainActivity extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		if (IsConnectedToInternet() == true) {
+
+		if (ConnectedToInternet.isOnline(getBaseContext()) == true) {
 			MessageController controller = new MessageController();
 			int count = 0;
 			try {
@@ -199,12 +195,4 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public boolean IsConnectedToInternet() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-			return true;
-		}
-		return false;
-	}
 }
