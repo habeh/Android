@@ -2,8 +2,6 @@ package ir.home.test.controller;
 
 import static org.junit.Assert.*;
 import ir.home.controller.MessageController;
-import ir.home.controller.UserController;
-
 import java.io.IOException;
 
 import org.junit.Test;

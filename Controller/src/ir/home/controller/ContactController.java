@@ -1,12 +1,8 @@
 package ir.home.controller;
 
-import ir.home.model.TbMessage;
 import ir.home.webservice.ContactService;
-import ir.home.webservice.MessageService;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
-import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 public class ContactController {

@@ -52,7 +52,10 @@ public class MessageAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return data.get(position).getId();
+		if (data.size() > 0) {
+			return data.get(position).getId();
+		}
+		return 0;
 	}
 
 	@Override

@@ -12,6 +12,6 @@
     <drawable name="solid_blue_dark">#0000ff</drawable>
     <drawable name="solid_gray">#808080ff</drawable>
     <drawable name="solid_magenta">#ff00ffff</drawable>
-    <drawable name="solid_cyan">#00ffffff</drawable>
+    <drawable name="solid_cyan">#00ffffff</drawable>    
 
 </resources>
