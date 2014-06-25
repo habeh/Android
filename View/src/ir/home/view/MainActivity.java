@@ -41,6 +41,12 @@ public class MainActivity extends Activity {
 		final SharedPreferences sp = this.getSharedPreferences(
 				"UserInformation", MODE_PRIVATE);
 		// sp.edit().clear().commit();
+		if (sp.getString("UserId", "0") == "0") {
+			Intent myIntent = new Intent(MainActivity.this,
+					UserLogin.class);
+			startActivityForResult(myIntent, 0);
+
+		} 
 
 		Login = (Button) findViewById(R.id.Login);
 		Login.setOnClickListener(new OnClickListener() {

@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:text="نامی که دیگران می بینند"
+            android:text="نام کاربری"
             android:textSize="14sp" >
 
             <requestFocus />
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:text="نام کاربری"
+            android:text="پست الکترونیک"
             android:textSize="14sp" />
 
         <EditText
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="قوانین حبه را مطالعه و قبول دارم"
-            android:textSize="10sp" />
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,14 +74,14 @@
                 android:gravity="right"
                 android:text="وارد شو"
                 android:textColor="@android:color/holo_blue_light"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="حساب حبه داری؟"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 
