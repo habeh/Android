@@ -4,13 +4,10 @@ import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
 import ir.home.view.adapter.UserAdapter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.xmlpull.v1.XmlPullParserException;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,15 +28,17 @@ public class UserSearch extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usersearch);
 
-		userSearch = (EditText) findViewById(R.id.Usersearch);
-		search = (Button) findViewById(R.id.search);
-
-		userListView = (ListView) findViewById(R.id.userlistView);
-
+		userSearch = (EditText) findViewById(R.id.usersearch_edittext_userName);
+		userListView = (ListView) findViewById(R.id.usersearch_list_userlistView);
 		adapter = new UserAdapter(this, new ArrayList<TbUser>());
-
 		userListView.setAdapter(adapter);
 
+		initUserSearch();
+
+	}
+
+	private void initUserSearch() {
+		search = (Button) findViewById(R.id.usersearch_button_userSearch);
 		search.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
@@ -61,5 +60,4 @@ public class UserSearch extends Activity {
 		});
 
 	}
-
 }

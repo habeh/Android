@@ -17,6 +17,8 @@
     <string name="aboutHabbeh">درباره حبه</string>
     <string name="userName">نام کاربری</string>
     <string name="password">رمز عبور</string>
+    <string name="renewPassword">تکرار رمز عبور جدید</string>
+    <string name="newPassword">رمز عبور جدید</string>
     <string name="forgiveMyPassword">رمز خود را فراموش کردم</string>
     <string name="registeration">ثبت نام</string>
     <string name="dontHaveHabbehAccount">حساب حبه نداری؟</string>
@@ -24,5 +26,8 @@
     <string name="agreeWithHabbehRules">قوانین حبه را مطالعه و قبول دارم</string>
     <string name="loginTo">وارد شو</string>
     <string name="haveHabbehAccount">حساب حبه داری؟</string>
+    <string name="forgivinformationEmail">پست الکترونیک خود جهت بازیابی رمز عبور</string>
+    <string name="sendEmail">بازیابی رمز</string>
+    <string name="userSearch">جستجوی کاربر</string>
 
 </resources>
