@@ -1,5 +1,6 @@
 package ir.home.controller;
 
+import ir.home.model.TbCategory;
 import ir.home.model.TbMessage;
 import ir.home.webservice.MessageService;
 import java.io.IOException;
@@ -57,6 +58,10 @@ public class MessageController {
 		new MessageService().callMethod("LikeMessage", params);
 	}
 
-	
+	public List<TbCategory> retrieveCategoryList() throws IOException, XmlPullParserException{	       	        
+	        SoapObject result = (SoapObject) new MessageService().callMethod(
+	                "RetrieveCategoryList", null);
+	        return TbCategory.ToList(result);
+	}
 
 }
