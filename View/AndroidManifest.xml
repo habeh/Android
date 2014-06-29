@@ -45,6 +45,8 @@
         </activity>
          <activity android:name="ir.home.view.SendMessage" >
         </activity>
+        <activity android:name="ir.home.view.ChangePassword" >
+        </activity>
     </application>
 
 </manifest>

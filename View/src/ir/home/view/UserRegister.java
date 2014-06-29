@@ -37,6 +37,7 @@ public class UserRegister extends Activity {
         userName = (EditText) findViewById(R.id.userregister_edittext_userName);
         userEmail = (EditText) findViewById(R.id.userregister_edittext_userEmail);
         userPassword = (EditText) findViewById(R.id.userregister_edittext_userPassword);
+       
         initRegister();
 
     }

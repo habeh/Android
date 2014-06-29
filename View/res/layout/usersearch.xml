@@ -4,26 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/User"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+    
 
     <EditText
-        android:id="@+id/Usersearch"
+        android:id="@+id/usersearch_edittext_userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
 
     <Button
-        android:id="@+id/search"
+        android:id="@+id/usersearch_button_userSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search UserName" />
+        android:text="@string/userSearch" />
 
     <ListView
-        android:id="@+id/userlistView"
+        android:id="@+id/usersearch_list_userlistView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
