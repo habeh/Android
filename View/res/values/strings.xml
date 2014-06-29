@@ -29,5 +29,6 @@
     <string name="forgivinformationEmail">پست الکترونیک خود جهت بازیابی رمز عبور</string>
     <string name="sendEmail">بازیابی رمز</string>
     <string name="userSearch">جستجوی کاربر</string>
+     <string name="sendComment">ارسال نظر</string>
 
 </resources>

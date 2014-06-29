@@ -42,13 +42,24 @@
             android:text="ShowLike"
             android:textSize="14dip"
              />
-          
-          <Button
-        android:id="@+id/Like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Like This Message" />
-        
-    </LinearLayout>
+ </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/Like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.70"
+                android:text="Like This Message" />
+
+            <Button
+                android:id="@+id/message_item_button_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comment This Message" />
+        </LinearLayout>
     
 </LinearLayout>

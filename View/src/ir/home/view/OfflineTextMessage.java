@@ -29,6 +29,7 @@ public class OfflineTextMessage extends Activity {
 	private ListView messageListView;
 	private MessageAdapter adapter;
 	private String convertedDate;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,11 @@ public class OfflineTextMessage extends Activity {
 		messageListView = (ListView) findViewById(R.id.messagelistView);
 		adapter = new MessageAdapter(this, new ArrayList<TbMessage>());
 		messageListView.setAdapter(adapter);
+		
 
+           
+		
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		try {
 			Date d = sdf.parse("2014/06/20 14:50:42");
@@ -72,12 +77,6 @@ public class OfflineTextMessage extends Activity {
 
 	}
 
-	@Override
-	public void onBackPressed() {
-		Intent myIntent = new Intent(OfflineTextMessage.this,
-				MainActivity.class);
-		startActivityForResult(myIntent, 0);
-		super.onBackPressed();
-	}
+	
 
 }
