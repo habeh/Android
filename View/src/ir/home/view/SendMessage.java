@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class SendMessage extends Activity {
 
@@ -64,8 +65,9 @@ public class SendMessage extends Activity {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (HabehException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -90,8 +92,9 @@ public class SendMessage extends Activity {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (HabehException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Toast.makeText(getBaseContext(),
+                    e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
 
         categoryTitle.setOnItemSelectedListener(new OnItemSelectedListener() {

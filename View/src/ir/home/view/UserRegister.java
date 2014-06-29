@@ -91,7 +91,6 @@ public class UserRegister extends Activity {
                             Toast.makeText(getBaseContext(),
                                     e.getMessage(),
                                     Toast.LENGTH_LONG).show();
-                            
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (XmlPullParserException e) {

@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class UserSearch extends Activity {
 
@@ -57,8 +58,9 @@ public class UserSearch extends Activity {
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
 				} catch (HabehException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
                 }
 			}
 		});

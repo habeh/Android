@@ -3,6 +3,7 @@ package ir.home.view;
 import ir.home.controller.CommentController;
 import ir.home.habbeh.R;
 import ir.home.model.TbComment;
+import ir.home.utility.HabehException;
 import ir.home.view.adapter.CommentAdapter;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserComment extends Activity {
 	private ListView commentListView;
@@ -64,7 +66,11 @@ public class UserComment extends Activity {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
-				}
+				} catch (HabehException e) {
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
 
 			}
 		});
@@ -84,7 +90,11 @@ public class UserComment extends Activity {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
-		}
+		} catch (HabehException e) {
+            Toast.makeText(getBaseContext(),
+                    e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
 	}
 
 	private void initGetData() {

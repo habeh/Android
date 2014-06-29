@@ -78,8 +78,9 @@ public class UserProfile extends Activity {
 			} catch (XmlPullParserException e) {
 				e.printStackTrace();
 			} catch (HabehException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                Toast.makeText(getBaseContext(),
+                        e.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
 
 			UserName.setText(Result.getUserName().toString());
@@ -107,8 +108,9 @@ public class UserProfile extends Activity {
 					} catch (XmlPullParserException e) {
 						e.printStackTrace();
 					} catch (HabehException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        Toast.makeText(getBaseContext(),
+                                e.getMessage(),
+                                Toast.LENGTH_LONG).show();
                     }
 					Toast.makeText(getBaseContext(),
 							"Update Your Profile Succesfully", Toast.LENGTH_LONG)

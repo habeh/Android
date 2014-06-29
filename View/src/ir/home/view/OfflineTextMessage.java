@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class OfflineTextMessage extends Activity {
 
@@ -67,7 +68,9 @@ public class OfflineTextMessage extends Activity {
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
 				} catch (HabehException e) {
-                    e.printStackTrace();
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
                 }
 			}
 		});

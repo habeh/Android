@@ -76,8 +76,9 @@ public class MainActivity extends Activity {
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
             } catch (HabehException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                Toast.makeText(getBaseContext(),
+                        e.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
             onlineMessage.setText("You Have  " + count + "  New Message");
         } else {
