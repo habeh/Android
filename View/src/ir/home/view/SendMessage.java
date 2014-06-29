@@ -7,7 +7,6 @@ import ir.home.model.TbCategory;
 import ir.home.utility.HabehException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;

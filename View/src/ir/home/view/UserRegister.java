@@ -9,14 +9,12 @@ import ir.home.view.utility.ConnectedToInternet;
 
 import java.io.IOException;
 
-import org.ksoap2.SoapFault;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

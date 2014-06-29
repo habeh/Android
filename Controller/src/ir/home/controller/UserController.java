@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -23,7 +22,7 @@ public class UserController {
         params.put("password", password);
         params.put("userName", userName);
 
-       new UserService().callMethod("Register", params);
+        new UserService().callMethod("Register", params);
     }
 
     public void sendForgiveInformation(String email) throws IOException,
