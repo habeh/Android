@@ -4,7 +4,7 @@
     <drawable name="solid_gray_dark">#404040ff</drawable>
     <drawable name="solid_black">#000000</drawable>
     <drawable name="solid_red">#ff00ff</drawable>
-    <drawable name="solid_green">#0ff0ff</drawable>
+    <drawable name="solid_green">#0fff0f</drawable>
     <drawable name="solid_gray_light">#c0c0c0ff</drawable>
     <drawable name="solid_white">#ffffffff</drawable>
     <drawable name="solid_yellow">#ffff00ff</drawable>

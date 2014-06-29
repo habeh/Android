@@ -1,62 +1,115 @@
+
 package ir.home.view;
 
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
+import ir.home.model.TbCategory;
+import ir.home.utility.HabehException;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.xmlpull.v1.XmlPullParserException;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class SendMessage extends Activity {
 
-	private EditText CategoryId;
-	private EditText UserId;
-	private EditText Description;
-	private Button Send;
+    private Spinner categoryTitle;
+    private EditText description;
+    private Button send;
+    private List<TbCategory> list;
+    private int categoryId;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sendmessage);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.sendmessage);
 
-		// Load Data From Shared
-		final SharedPreferences sp = this.getSharedPreferences(
-				"UserInformation", MODE_PRIVATE);
-		final String UserIdP = sp.getString("UserId", "");
+        // Load Data From Shared
+        final SharedPreferences sp = this.getSharedPreferences(
+                "UserInformation", MODE_PRIVATE);
 
-		CategoryId = (EditText) findViewById(R.id.CategoryId);
-		UserId = (EditText) findViewById(R.id.UserId);
-		Description = (EditText) findViewById(R.id.Description);
-		Send = (Button) findViewById(R.id.Send);
+        initSendMessage(sp);
 
-		UserId.setText(UserIdP.toString());
-		UserId.setEnabled(false);
-		Send.setOnClickListener(new OnClickListener() {
+        initBindCategorySpinner();
 
-			public void onClick(View arg0) {
+    }
 
-				MessageController controller = new MessageController();
-				try {
-					controller.InsertMessage(
-							Integer.parseInt(CategoryId.getText().toString()),
-							Integer.parseInt(UserId.getText().toString()),
-							Description.getText().toString());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
-				}
-			}
-		});
+    private void initSendMessage(final SharedPreferences sp) {
+        description = (EditText) findViewById(R.id.sendmessage_edittext_Description);
+        send = (Button) findViewById(R.id.sendmessage_button_Send);
+        send.setOnClickListener(new OnClickListener() {
 
-	}
+            public void onClick(View view) {
 
+                MessageController controller = new MessageController();
+                try {
+                    controller.InsertMessage(categoryId,
+                            Integer.parseInt(sp.getString("UserId", "0")),
+                            description.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (XmlPullParserException e) {
+                    e.printStackTrace();
+                } catch (NumberFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (HabehException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void initBindCategorySpinner() {
+        categoryTitle = (Spinner) findViewById(R.id.sendmessage_spinner_categoryTitle);
+        // load category item
+        MessageController controller = new MessageController();
+
+        try {
+            list = controller.retrieveCategoryList();
+
+            ArrayAdapter<TbCategory> dataAdapter = new ArrayAdapter<TbCategory>(
+                    this, android.R.layout.simple_spinner_item, list);
+            dataAdapter
+                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            categoryTitle.setAdapter(dataAdapter);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (HabehException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        categoryTitle.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parant, View v, int pos, long id) {
+                
+                TbCategory temptitleWithid = (TbCategory) parant.getItemAtPosition(pos);
+                categoryId = temptitleWithid.getId();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+
+        });
+
+    }
 }

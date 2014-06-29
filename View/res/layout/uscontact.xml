@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/UserName"
+        android:id="@+id/uscontact_edittext_userName"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:gravity="right|center_vertical"
@@ -16,7 +16,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/UserDescription"
+        android:id="@+id/uscontact_edittext_userDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.23"

@@ -4,6 +4,7 @@ package ir.home.view;
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
+import ir.home.utility.HabehException;
 import ir.home.view.utility.ConnectedToInternet;
 
 import java.io.IOException;
@@ -119,6 +120,10 @@ public class UserLogin extends Activity {
                             e.printStackTrace();
                         } catch (XmlPullParserException e) {
                             e.printStackTrace();
+                        } catch (HabehException e) {
+                            Toast.makeText(getBaseContext(),
+                                    e.getMessage(),
+                                    Toast.LENGTH_LONG).show();     
                         }
                     }
                 }

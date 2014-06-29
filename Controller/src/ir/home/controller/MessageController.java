@@ -2,6 +2,7 @@ package ir.home.controller;
 
 import ir.home.model.TbCategory;
 import ir.home.model.TbMessage;
+import ir.home.utility.HabehException;
 import ir.home.webservice.MessageService;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import org.xmlpull.v1.XmlPullParserException;
 public class MessageController {
 
 	public void InsertMessage(int categoryid, int userId, String description)
-			throws IOException, XmlPullParserException {
+			throws IOException, XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 
 		params.put("categoryId", categoryid);
@@ -23,7 +24,7 @@ public class MessageController {
 	}
 
 	public int CountNewMessage(String date) throws IOException,
-			XmlPullParserException {
+			XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("LastReadMessage", date);
 		Object result = new MessageService().callMethod("CountNewMessage",
@@ -32,7 +33,7 @@ public class MessageController {
 	}
 
 	public List<TbMessage> ShowOnlineMessage(String date) throws IOException,
-			XmlPullParserException {
+			XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lastUpdateMessage", date);
 		SoapObject result = (SoapObject) new MessageService().callMethod(
@@ -41,7 +42,7 @@ public class MessageController {
 	}
 
 	public int CountLike(int messageid) throws IOException,
-			XmlPullParserException {
+			XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("messageid", messageid);
 		Object result = new MessageService().callMethod("CountLike", params);
@@ -49,7 +50,7 @@ public class MessageController {
 	}
 
 	public void LikeMessage(int userid, int messageid) throws IOException,
-			XmlPullParserException {
+			XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 
 		params.put("userId", userid);
@@ -58,7 +59,7 @@ public class MessageController {
 		new MessageService().callMethod("LikeMessage", params);
 	}
 
-	public List<TbCategory> retrieveCategoryList() throws IOException, XmlPullParserException{	       	        
+	public List<TbCategory> retrieveCategoryList() throws IOException, XmlPullParserException, HabehException{	       	        
 	        SoapObject result = (SoapObject) new MessageService().callMethod(
 	                "RetrieveCategoryList", null);
 	        return TbCategory.ToList(result);

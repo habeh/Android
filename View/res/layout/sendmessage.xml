@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/sendmessage"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/UserName"
@@ -13,7 +13,6 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/panel2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="2dip"
@@ -21,48 +20,23 @@
             android:paddingRight="10dip"
             android:paddingTop="2dip" >
 
-            <EditText
-                android:id="@+id/CategoryId"
+            <Spinner
+                android:id="@+id/sendmessage_spinner_categoryTitle"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7" />
-
-          
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text=": ایدی گروه   "
-                android:textColor="#ffffff"
-                android:textSize="15dip" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/panel3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="2dip"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
-            android:paddingTop="2dip" >
-
-            <EditText
-                android:id="@+id/UserId"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7" />
+                android:layout_weight="0.7"
+                android:textSize="8sp" />
 
             <TextView
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text=": ایدی کاربر"
+                android:text=": گـــروه "
                 android:textColor="#ffffff"
                 android:textSize="15dip" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/panel4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="2dip"
@@ -71,7 +45,7 @@
             android:paddingTop="2dip" >
 
             <EditText
-                android:id="@+id/Description"
+                android:id="@+id/sendmessage_edittext_Description"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7" />
@@ -95,7 +69,7 @@
             android:paddingTop="2dip" >
 
             <Button
-                android:id="@+id/Send"
+                android:id="@+id/sendmessage_button_Send"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"

@@ -21,21 +21,14 @@ android:paddingLeft="10dip"
 android:paddingRight="10dip"
 android:paddingTop="2dip" >
  
-<TextView
-    android:layout_width="0dip"
-    android:layout_height="wrap_content"
-    android:layout_weight="0.20"
-    android:text="Email : "
-    android:textColor="#ffffff"
-    android:textSize="15dip" />
 
 <EditText
-android:id="@+id/UserEmail"
+android:id="@+id/forgivinformation_edittext_userEmail"
 android:layout_width="0dip"
 android:layout_height="wrap_content"
 android:layout_weight="0.7"
 android:textSize="15dip"
-/>
+android:hint="@string/forgivinformationEmail"/>
     
     
 
@@ -52,11 +45,11 @@ android:paddingRight="10dip"
 android:paddingTop="2dip" >
  
 <Button
-android:id="@+id/Send"
+android:id="@+id/forgivinformation_button_send"
 android:layout_width="0dip"
 android:layout_height="wrap_content"
-android:layout_weight="0.5"
-android:text="Send Email" />
+android:layout_weight="0.5" 
+android:text="@string/sendEmail"/>
 </LinearLayout>
 </LinearLayout>
 </RelativeLayout>

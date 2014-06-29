@@ -1,5 +1,6 @@
 package ir.home.controller;
 
+import ir.home.utility.HabehException;
 import ir.home.webservice.ContactService;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import org.xmlpull.v1.XmlPullParserException;
 public class ContactController {
 
 	public void Create( int userId, String description)
-			throws IOException, XmlPullParserException {
+			throws IOException, XmlPullParserException, HabehException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 
 		

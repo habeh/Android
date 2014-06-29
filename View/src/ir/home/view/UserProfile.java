@@ -3,6 +3,7 @@ package ir.home.view;
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
+import ir.home.utility.HabehException;
 
 import java.io.IOException;
 
@@ -25,8 +26,8 @@ public class UserProfile extends Activity {
 	private EditText FirstName;
 	private EditText LastName;
 	private EditText Email;
-	private EditText Password;
 	private EditText Status;
+	private Button changePassword;
 	private Button Update;
 	private TextView UserName;
 
@@ -40,60 +41,91 @@ public class UserProfile extends Activity {
 		LastName = (EditText) findViewById(R.id.UserLastName);
 		Email = (EditText) findViewById(R.id.UserEmail);
 		Status = (EditText) findViewById(R.id.UserStatus);
-		Password = (EditText) findViewById(R.id.UserPassword);
+		
 
 		final SharedPreferences sp = this.getSharedPreferences(
 				"UserInformation", MODE_PRIVATE);
-		final int UserIdP = Integer.parseInt(sp.getString("UserId", "0"));
-		UserController controller = new UserController();
-		try {
-			Result = controller.getProfile(UserIdP);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		}
+		
+		initGetUserInformation(sp);
+		
+		initChangePassword();
+		
+		initUpdateUserInformation();
+		
 
-		UserName.setText(Result.getUserName().toString());
-		FirstName.setText(Result.getFirstName().toString());
-		LastName.setText(Result.getLastName().toString());
-		Status.setText(Result.getStatus().toString());
-		Email.setText(Result.getEmail().toString());
-		Update = (Button) findViewById(R.id.Update);
+	}
 
-		Update.setOnClickListener(new OnClickListener() {
-			public void onClick(View arg0) {
-				UserController controller1 = new UserController();
-				try {
-					controller1.SaveProfile(UserName.getText().toString(),
-							FirstName.getText().toString(), LastName.getText()
-									.toString(), Email.getText().toString(),
-							Status.getText().toString(), Password.getText()
-									.toString());
+	
+	private void initChangePassword() {
+		changePassword = (Button) findViewById(R.id.userprofile_button_changePassword);
+		changePassword.setOnClickListener(new OnClickListener() {
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), ChangePassword.class);
+                startActivityForResult(myIntent, 0);
+                finish();
+            }
+        });
+	}
+		
+		private void initGetUserInformation(final SharedPreferences sp) {
+			final int UserIdP = Integer.parseInt(sp.getString("UserId", "0"));
+			UserController controller = new UserController();
+			try {
+				Result = controller.getProfile(UserIdP);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			} catch (HabehException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+			UserName.setText(Result.getUserName().toString());
+			FirstName.setText(Result.getFirstName().toString());
+			LastName.setText(Result.getLastName().toString());
+			Status.setText(Result.getStatus().toString());
+			Email.setText(Result.getEmail().toString());
+}
+		
+		private void initUpdateUserInformation() {
+
+			Update = (Button) findViewById(R.id.userprofile_button_update);
+
+			Update.setOnClickListener(new OnClickListener() {
+				public void onClick(View arg0) {
+					UserController controller1 = new UserController();
+					try {
+						controller1.SaveProfile(UserName.getText().toString(),
+								FirstName.getText().toString(), LastName.getText()
+										.toString(), Email.getText().toString(),
+								Status.getText().toString());
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (XmlPullParserException e) {
+						e.printStackTrace();
+					} catch (HabehException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+					Toast.makeText(getBaseContext(),
+							"Update Your Profile Succesfully", Toast.LENGTH_LONG)
+							.show();
+					Intent myIntent = new Intent(arg0.getContext(),
+							MainActivity.class);
+					startActivityForResult(myIntent, 0);
+					finish();
+
 				}
-				Toast.makeText(getBaseContext(),
-						"Update Your Profile Succesfully", Toast.LENGTH_LONG)
-						.show();
-				Intent myIntent = new Intent(arg0.getContext(),
-						MainActivity.class);
-				startActivityForResult(myIntent, 0);
-				finish();
-
-			}
-		});
-
-	}
-
-	@Override
-	public void onBackPressed() {
-		Intent myIntent = new Intent(UserProfile.this, MainActivity.class);
-		startActivityForResult(myIntent, 0);
-		super.onBackPressed();
-	}
-
+			});
+		}
+		
+		@Override
+		public void onBackPressed() {
+			Intent myIntent = new Intent(UserProfile.this, MainActivity.class);
+			startActivityForResult(myIntent, 0);
+			super.onBackPressed();
+		}
 }

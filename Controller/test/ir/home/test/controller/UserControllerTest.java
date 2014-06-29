@@ -14,15 +14,7 @@ public class UserControllerTest {
     
 	@Test
 	public void testRegister() {
-		try {
-			new UserController().register("karim", "karim@yahoo.com", "123");
-		} catch (IOException e) {
-			fail(e.toString());
-		} catch (XmlPullParserException e) {
-			fail(e.toString());
-		} catch (HabehException e) {
-           fail(e.toString());
-        }
+	    fail("Not Impelemented");
 	}
 
 	public void testSendForgiveInformation() {

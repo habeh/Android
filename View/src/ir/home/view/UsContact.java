@@ -2,17 +2,13 @@ package ir.home.view;
 
 import ir.home.controller.ContactController;
 import ir.home.habbeh.R;
-
+import ir.home.utility.HabehException;
+import ir.home.view.utility.ConnectedToInternet;
 import java.io.IOException;
-
 import org.xmlpull.v1.XmlPullParserException;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,8 +18,8 @@ import android.widget.Toast;
 
 public class UsContact extends Activity {
 
-	private EditText UserName;
-	private EditText UserDescription;
+	private EditText userName;
+	private EditText userDescription;
 	private Button Send;
 
 	@Override
@@ -31,39 +27,47 @@ public class UsContact extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.uscontact);
 
-		UserName = (EditText) findViewById(R.id.UserName);
-		UserDescription = (EditText) findViewById(R.id.UserDescription);
+		userName = (EditText) findViewById(R.id.uscontact_edittext_userName);
+		userDescription = (EditText) findViewById(R.id.uscontact_edittext_userDescription);
+		initUserDescription();
 
+	}
+	
+
+	private void initUserDescription() {
 		final SharedPreferences sp = this.getSharedPreferences(
 				"UserInformation", MODE_PRIVATE);
-		UserName.setText(sp.getString("UserName", "0"));
-		UserName.setEnabled(false);
-		
-		Send = (Button) findViewById(R.id.Send);
+		userName.setText(sp.getString("UserName", "0"));
+		userName.setEnabled(false);
+		Send = (Button) findViewById(R.id.uscontact_button_Send);
 		Send.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				String UserDescriptionCheck = UserDescription.getText()
-						.toString();
-				if (UserDescriptionCheck.matches("")) {
-					Toast.makeText(getBaseContext(),
-							"You did not enter a Description",
-							Toast.LENGTH_SHORT).show();
-				} else {
+				
+				String userDescriptionText = userDescription.getText().toString();
+				int UserId = Integer.parseInt(sp.getString("UserId", "0"));
+				String error = "";
+				
+				if (userDescriptionText.isEmpty()) {
+					error = "You did not enter a Description";
+				}
 
-					if (IsConnectedToInternet() == true) {
+				if (error.isEmpty()) {
+					if (ConnectedToInternet.isOnline(getBaseContext())) {
 						ContactController controller = new ContactController();
 						try {
-							controller.Create(Integer.parseInt(sp.getString(
-									"UserId", "0")), UserDescription.getText()
-									.toString());
+							controller.Create(UserId, userDescriptionText);
 						} catch (IOException e) {
 							e.printStackTrace();
 						} catch (XmlPullParserException e) {
 							e.printStackTrace();
-						}
+						} catch (HabehException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
 
 						Toast.makeText(getBaseContext(), "Send Successfully",
 								Toast.LENGTH_LONG).show();
+						userDescription.setText("");
 
 					} else {
 						Toast.makeText(
@@ -72,21 +76,14 @@ public class UsContact extends Activity {
 								Toast.LENGTH_LONG).show();
 					}
 
+				} else {
+					Toast.makeText(getBaseContext(), error, Toast.LENGTH_LONG)
+							.show();
 				}
-
 			}
 		});
-
 	}
 
-	public boolean IsConnectedToInternet() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-			return true;
-		}
-		return false;
-	}
 
 	@Override
 	public void onBackPressed() {

@@ -2,8 +2,13 @@ package ir.home.view;
 
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
+import ir.home.utility.HabehException;
+import ir.home.view.utility.ConnectedToInternet;
+
 import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,39 +19,62 @@ import android.widget.Toast;
 
 public class UserForgiveInformation extends Activity {
 
-	private EditText Email;
-	private Button Send;
+	private EditText userEmail;
+	private Button sendEmail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.forgivinformation);
 
-		Email = (EditText) findViewById(R.id.UserEmail);
-		Send = (Button) findViewById(R.id.Send);
-		Send.setOnClickListener(new OnClickListener() {
+		userEmail = (EditText) findViewById(R.id.forgivinformation_edittext_userEmail);
+		initUsContact();
+	}
+
+	private void initUsContact() {
+
+		sendEmail = (Button) findViewById(R.id.forgivinformation_button_send);
+		sendEmail.setOnClickListener(new OnClickListener() {
+
 			public void onClick(View arg0) {
 
-				String EmailCheck = Email.getText().toString();
-				if (EmailCheck.matches("")) {
-					Toast.makeText(getBaseContext(),
-							"You did not enter a Email", Toast.LENGTH_SHORT)
-							.show();
-				} else {
-					UserController controller = new UserController();
+				String useremailText = userEmail.getText().toString();
+				String error = "";
 
-					try {
-						controller.sendForgiveInformation(Email.getText()
-								.toString());
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (XmlPullParserException e) {
-						e.printStackTrace();
+				if (useremailText.isEmpty()) {
+					error = "You did not enter a Email";
+				}
+
+				if (error.isEmpty()) {
+					if (ConnectedToInternet.isOnline(getBaseContext())) {
+						UserController controller = new UserController();
+
+						try {
+							controller.sendForgiveInformation(useremailText);
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (XmlPullParserException e) {
+							e.printStackTrace();
+						} catch (HabehException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+						Toast.makeText(
+								getBaseContext(),
+								"Send Email Successfuly , Please Check Your MailBox",
+								Toast.LENGTH_LONG).show();
+						userEmail.setText("");
+
+					} else {
+						Toast.makeText(
+								getBaseContext(),
+								"For Send Description Please Connect To Internet",
+								Toast.LENGTH_LONG).show();
 					}
-					Toast.makeText(
-							getBaseContext(),
-							"Send Email Successfuly , Please Check Your MailBox",
-							Toast.LENGTH_LONG).show();
+
+				} else {
+					Toast.makeText(getBaseContext(), error, Toast.LENGTH_LONG)
+							.show();
 				}
 			}
 

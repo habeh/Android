@@ -3,6 +3,7 @@ package ir.home.view;
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
+import ir.home.utility.HabehException;
 import ir.home.view.adapter.MessageAdapter;
 
 import java.io.IOException;
@@ -66,7 +67,10 @@ public class OfflineTextMessage extends Activity {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
-				}
+				} catch (HabehException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 			}
 		});
 

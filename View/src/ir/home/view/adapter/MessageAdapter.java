@@ -5,6 +5,7 @@ import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.model.TbUser;
+import ir.home.utility.HabehException;
 
 import java.io.IOException;
 import java.util.List;
@@ -91,7 +92,10 @@ public class MessageAdapter extends BaseAdapter {
 				e.printStackTrace();
 			} catch (XmlPullParserException e) {
 				e.printStackTrace();
-			}
+			} catch (HabehException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 			UserName.setText("Send By :" + Result.getUserName().toString());
 
 			// Setlike for this message
@@ -106,7 +110,10 @@ public class MessageAdapter extends BaseAdapter {
 						e.printStackTrace();
 					} catch (XmlPullParserException e) {
 						e.printStackTrace();
-					}
+					} catch (HabehException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
 				}
 			});
 
@@ -119,7 +126,10 @@ public class MessageAdapter extends BaseAdapter {
 				e.printStackTrace();
 			} catch (XmlPullParserException e) {
 				e.printStackTrace();
-			}
+			} catch (HabehException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 			ShowLike.setText("Liked : " + Integer.toString(count));
 
 		}
