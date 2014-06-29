@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/sendmessage"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/UserName"
@@ -13,7 +13,6 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/panel2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="2dip"
@@ -23,8 +22,9 @@
 
             <Spinner
                 android:id="@+id/sendmessage_spinner_categoryTitle"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.7"
                 android:textSize="8sp" />
 
             <TextView
@@ -36,10 +36,7 @@
                 android:textSize="15dip" />
         </LinearLayout>
 
-        
-
         <LinearLayout
-            android:id="@+id/panel4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="2dip"

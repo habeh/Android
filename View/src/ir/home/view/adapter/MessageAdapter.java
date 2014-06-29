@@ -5,6 +5,7 @@ import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.model.TbUser;
+import ir.home.utility.HabehException;
 import ir.home.view.UserComment;
 
 import java.io.IOException;
@@ -92,6 +93,7 @@ public class MessageAdapter extends BaseAdapter {
 			showlikeMessage.setText("No Data");
 		} else {
 			final TbMessage temp = (TbMessage) data.get(position);
+
 			message.setText(temp.getDescription());
 			categoryTitle.setText("Category :" + temp.getCategoryTitle());
 
@@ -125,7 +127,9 @@ public class MessageAdapter extends BaseAdapter {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
-				}
+				} catch (HabehException e) {
+                    e.printStackTrace();
+                }
 
 			}
 		});
@@ -139,7 +143,9 @@ public class MessageAdapter extends BaseAdapter {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
-		}
+		} catch (HabehException e) {
+            e.printStackTrace();
+        }
 		userName.setText("Send By :" + Result.getUserName().toString());
 		userNameText = Result.getUserName().toString();
 	}
@@ -173,7 +179,9 @@ public class MessageAdapter extends BaseAdapter {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
-		}
+		} catch (HabehException e) {
+            e.printStackTrace();
+        }
 		showlikeMessage.setText("Liked : " + Integer.toString(count));
 		likeMessageText = Integer.toString(count);
 	}

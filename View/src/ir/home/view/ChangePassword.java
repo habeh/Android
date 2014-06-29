@@ -2,6 +2,7 @@ package ir.home.view;
 
 import ir.home.controller.UserController;
 import ir.home.habbeh.R;
+import ir.home.utility.HabehException;
 
 import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;
@@ -74,7 +75,11 @@ public class ChangePassword extends Activity {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
-				}
+				} catch (HabehException e) {
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
 				Toast.makeText(getBaseContext(),
                         "Password Changed",
                         Toast.LENGTH_LONG).show();

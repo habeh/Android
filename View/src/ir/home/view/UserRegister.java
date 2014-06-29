@@ -37,7 +37,7 @@ public class UserRegister extends Activity {
         userName = (EditText) findViewById(R.id.userregister_edittext_userName);
         userEmail = (EditText) findViewById(R.id.userregister_edittext_userEmail);
         userPassword = (EditText) findViewById(R.id.userregister_edittext_userPassword);
-       
+
         initRegister();
 
     }
@@ -64,7 +64,7 @@ public class UserRegister extends Activity {
                 }
 
                 if (error.isEmpty()) {
-                    if (ConnectedToInternet.isOnline(getBaseContext())){
+                    if (ConnectedToInternet.isOnline(getBaseContext())) {
                         UserController controller = new UserController();
                         try {
                             controller.register(userNameText, userEmailText, userPasswordTExt);
@@ -87,12 +87,13 @@ public class UserRegister extends Activity {
                             startActivityForResult(myIntent, 0);
                             finish();
 
+                        }catch(HabehException e){
+                            Toast.makeText(getBaseContext(),
+                                    e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (XmlPullParserException e) {
-                            e.printStackTrace();
-                        } catch (HabehException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -113,7 +114,6 @@ public class UserRegister extends Activity {
             }
         });
     }
-
 
     private void SavePrefs(String key, String value) {
         SharedPreferences sp = this.getSharedPreferences("UserInformation",

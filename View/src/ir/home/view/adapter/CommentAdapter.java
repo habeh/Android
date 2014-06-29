@@ -4,6 +4,7 @@ import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbComment;
 import ir.home.model.TbUser;
+import ir.home.utility.HabehException;
 
 import java.io.IOException;
 import java.util.List;
@@ -95,7 +96,9 @@ public class CommentAdapter extends BaseAdapter {
 			e.printStackTrace();
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
-		}
+		} catch (HabehException e) {
+            e.printStackTrace();
+        }
 		userName.setText("Send Comment By :" + Result.getUserName().toString());
 
 	}

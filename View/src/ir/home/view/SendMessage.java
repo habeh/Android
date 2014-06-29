@@ -1,10 +1,12 @@
+
 package ir.home.view;
 
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
 import ir.home.model.TbCategory;
+import ir.home.utility.HabehException;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
@@ -18,113 +20,98 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class SendMessage extends Activity {
 
-	private Spinner CategoryTitle;
-	private EditText Description;
-	private Button Send;
-	private ArrayList<TbCategory> List;
-	private int CategoryId;
+    private Spinner categoryTitle;
+    private EditText description;
+    private Button send;
+    private List<TbCategory> list;
+    private int categoryId;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sendmessage);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.sendmessage);
 
-		// Load Data From Shared
-		final SharedPreferences sp = this.getSharedPreferences(
-				"UserInformation", MODE_PRIVATE);
+        // Load Data From Shared
+        final SharedPreferences sp = this.getSharedPreferences(
+                "UserInformation", MODE_PRIVATE);
 
-		initSendMessage(sp);
-		
-		initBindCategorySpinner();
+        initSendMessage(sp);
 
-	}
-	
+        initBindCategorySpinner();
 
-	private void initSendMessage(final SharedPreferences sp) {
-		Description = (EditText) findViewById(R.id.sendmessage_edittext_Description);
-		Send = (Button) findViewById(R.id.sendmessage_button_Send);
-		Send.setOnClickListener(new OnClickListener() {
+    }
 
-			public void onClick(View view) {
+    private void initSendMessage(final SharedPreferences sp) {
+        description = (EditText) findViewById(R.id.sendmessage_edittext_Description);
+        send = (Button) findViewById(R.id.sendmessage_button_Send);
+        send.setOnClickListener(new OnClickListener() {
 
-				MessageController controller = new MessageController();
-				try {
-					controller.InsertMessage(CategoryId,
-							Integer.parseInt(sp.getString("UserId", "")),
-							Description.getText().toString());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+            public void onClick(View view) {
 
-	
-	private void initBindCategorySpinner() {
-		CategoryTitle = (Spinner) findViewById(R.id.sendmessage_spinner_categoryTitle);
-		// load category item
-		MessageController controller = new MessageController();
+                MessageController controller = new MessageController();
+                try {
+                    controller.InsertMessage(categoryId,
+                            Integer.parseInt(sp.getString("UserId", "0")),
+                            description.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (XmlPullParserException e) {
+                    e.printStackTrace();
+                } catch (NumberFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (HabehException e) {
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
 
-		try {
-			List = (ArrayList<TbCategory>) controller.RetrieveCategoryList();
-			List<TitleWithId> list = new ArrayList<TitleWithId>();
-			for (int i = 0; i < List.size(); i++) {
-				TbCategory temptbCategory = (TbCategory) List.get(i);
-				
-				list.add(new TitleWithId(temptbCategory.getTitle(),
-						temptbCategory.getId()));
-			}
+    private void initBindCategorySpinner() {
+        categoryTitle = (Spinner) findViewById(R.id.sendmessage_spinner_categoryTitle);
+        // load category item
+        MessageController controller = new MessageController();
 
-			ArrayAdapter<TitleWithId> dataAdapter = new ArrayAdapter<TitleWithId>(
-					this, android.R.layout.simple_spinner_item, list);
-			dataAdapter
-					.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			CategoryTitle.setAdapter(dataAdapter);
+        try {
+            list = controller.retrieveCategoryList();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		}
+            ArrayAdapter<TbCategory> dataAdapter = new ArrayAdapter<TbCategory>(
+                    this, android.R.layout.simple_spinner_item, list);
+            dataAdapter
+                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            categoryTitle.setAdapter(dataAdapter);
 
-		CategoryTitle.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> parant, View v, int pos,
-					long id) {
-				final TitleWithId temptitleWithid = (TitleWithId) parant
-						.getItemAtPosition(pos);
-				CategoryId = temptitleWithid.id;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (HabehException e) {
+            Toast.makeText(getBaseContext(),
+                    e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
 
-			}
+        categoryTitle.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parant, View v, int pos, long id) {
+                
+                TbCategory temptitleWithid = (TbCategory) parant.getItemAtPosition(pos);
+                categoryId = temptitleWithid.getId();
 
-			@Override
-			public void onNothingSelected(AdapterView<?> parentView) {
-				
-			}
+            }
 
-		});
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
 
-	}
+            }
 
-	
-	public class TitleWithId {
-		public String title;
-		public int id;
+        });
 
-		public TitleWithId(String CategoryTitle, int CategoryId) {
-			title = CategoryTitle;
-			id = CategoryId;
-		}
-
-		@Override
-		public String toString() {
-			return title;
-		}
-	}
-
+    }
 }

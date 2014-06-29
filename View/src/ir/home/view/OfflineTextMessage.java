@@ -3,6 +3,7 @@ package ir.home.view;
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
+import ir.home.utility.HabehException;
 import ir.home.view.adapter.MessageAdapter;
 
 import java.io.IOException;
@@ -14,13 +15,13 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class OfflineTextMessage extends Activity {
 
@@ -30,7 +31,6 @@ public class OfflineTextMessage extends Activity {
 	private MessageAdapter adapter;
 	private String convertedDate;
 	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,10 +41,6 @@ public class OfflineTextMessage extends Activity {
 		messageListView = (ListView) findViewById(R.id.messagelistView);
 		adapter = new MessageAdapter(this, new ArrayList<TbMessage>());
 		messageListView.setAdapter(adapter);
-		
-
-           
-		
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		try {
@@ -71,12 +67,12 @@ public class OfflineTextMessage extends Activity {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
-				}
+				} catch (HabehException e) {
+                    Toast.makeText(getBaseContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
 			}
 		});
-
 	}
-
-	
-
 }

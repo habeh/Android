@@ -3,6 +3,7 @@ package ir.home.view;
 
 import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
+import ir.home.utility.HabehException;
 import ir.home.view.utility.ConnectedToInternet;
 import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;
@@ -74,6 +75,10 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
+            } catch (HabehException e) {
+                Toast.makeText(getBaseContext(),
+                        e.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
             onlineMessage.setText("You Have  " + count + "  New Message");
         } else {
