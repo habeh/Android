@@ -5,6 +5,7 @@ import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.model.TbUser;
+import ir.home.view.UserComment;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +14,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +29,14 @@ public class MessageAdapter extends BaseAdapter {
 	private Activity activity;
 	private List<TbMessage> data;
 	private static LayoutInflater inflater = null;
+	private Button setlikeMessage;
+	private Button commentMessage;
+	private TextView showlikeMessage;
+	private TextView userName;
+	private String userNameText;
+	private String likeMessageText;
+	private TextView message;
+	private TextView categoryTitle;
 
 	public MessageAdapter(Activity a, List<TbMessage> students) {
 
@@ -66,67 +77,113 @@ public class MessageAdapter extends BaseAdapter {
 		if (convertView == null)
 			vi = inflater.inflate(R.layout.message_item, null);
 
-		TextView Message = (TextView) vi.findViewById(R.id.Message);
-		TextView UserName = (TextView) vi.findViewById(R.id.Username);
-		TextView Category = (TextView) vi.findViewById(R.id.Category);
-		TextView ShowLike = (TextView) vi.findViewById(R.id.ShowLike);
-		Button Like = (Button) vi.findViewById(R.id.Like);
+		message = (TextView) vi.findViewById(R.id.Message);
+		userName = (TextView) vi.findViewById(R.id.Username);
+		categoryTitle = (TextView) vi.findViewById(R.id.Category);
+		showlikeMessage = (TextView) vi.findViewById(R.id.ShowLike);
+		setlikeMessage = (Button) vi.findViewById(R.id.Like);
+		commentMessage = (Button) vi
+				.findViewById(R.id.message_item_button_comment);
 
 		if (data.size() <= 0) {
-			Message.setText("No Data");
-			UserName.setText("No Data");
-			Category.setText("No Data");
-			ShowLike.setText("No Data");
+			message.setText("No Data");
+			userName.setText("No Data");
+			categoryTitle.setText("No Data");
+			showlikeMessage.setText("No Data");
 		} else {
 			final TbMessage temp = (TbMessage) data.get(position);
-			Message.setText(temp.getDescription());
-			Category.setText("Category :" + temp.getCategoryTitle());
+			message.setText(temp.getDescription());
+			categoryTitle.setText("Category :" + temp.getCategoryTitle());
 
-			// get UseName By Pass UserId To WebService
+			initLikeMessage(temp);
 
-			UserController controller = new UserController();
-			try {
-				Result = controller.getProfile(temp.getUserId());
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (XmlPullParserException e) {
-				e.printStackTrace();
-			}
-			UserName.setText("Send By :" + Result.getUserName().toString());
+			initGetUserInformation(temp);
 
-			// Setlike for this message
-			Like.setOnClickListener(new OnClickListener() {
+			initUserComment(temp);
 
-				public void onClick(View arg0) {
-
-					MessageController controller = new MessageController();
-					try {
-						controller.LikeMessage(temp.getUserId(), temp.getId());
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (XmlPullParserException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-
-			// ShowLike Count For This Message
-			MessageController controllerlike = new MessageController();
-			int count = 0;
-			try {
-				count = controllerlike.CountLike(temp.getId());
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (XmlPullParserException e) {
-				e.printStackTrace();
-			}
-			ShowLike.setText("Liked : " + Integer.toString(count));
+			initGetLikeCount(temp);
 
 		}
+
 		return vi;
 	}
 
 	public void setData(List<TbMessage> data) {
 		this.data = data;
 	}
+
+	private void initLikeMessage(final TbMessage temp) {
+		final int userId = GetSharedPreferences(activity);
+		setlikeMessage.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+
+				MessageController controller = new MessageController();
+				try {
+					controller.LikeMessage(userId, temp.getId());
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (XmlPullParserException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+	}
+
+	private void initGetUserInformation(final TbMessage temp) {
+		UserController controller = new UserController();
+		try {
+			Result = controller.getProfile(temp.getUserId());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		userName.setText("Send By :" + Result.getUserName().toString());
+		userNameText = Result.getUserName().toString();
+	}
+
+	private void initUserComment(final TbMessage temp) {
+		commentMessage.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+
+				Intent myIntent = new Intent(arg0.getContext(),
+						UserComment.class);
+				myIntent.putExtra("messageId", Integer.toString(temp.getId()));
+				myIntent.putExtra("userId", Integer.toString(temp.getUserId()));
+				myIntent.putExtra("userName", userNameText);
+				myIntent.putExtra("Description", temp.getDescription());
+				myIntent.putExtra("categoryTitle", temp.getCategoryTitle());
+				myIntent.putExtra("likeMessage", likeMessageText);
+				arg0.getContext().startActivity(myIntent);
+
+			}
+		});
+	}
+
+	private void initGetLikeCount(final TbMessage temp) {
+
+		MessageController controllerlike = new MessageController();
+		int count = 0;
+		try {
+			count = controllerlike.CountLike(temp.getId());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		showlikeMessage.setText("Liked : " + Integer.toString(count));
+		likeMessageText = Integer.toString(count);
+	}
+
+	public int GetSharedPreferences(Context context) {
+		SharedPreferences sp = context.getSharedPreferences("UserInformation",
+				Context.MODE_PRIVATE);
+		int userId = Integer.parseInt(sp.getString("UserId", "0"));
+		return userId;
+
+	}
+
 }
