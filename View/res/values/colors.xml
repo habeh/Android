@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <drawable name="solid_gray_dark">#404040ff</drawable>
-    <drawable name="solid_black">#000000</drawable>
-    <drawable name="solid_red">#ff00ff</drawable>
-    <drawable name="solid_green">#0fff0f</drawable>
-    <drawable name="solid_gray_light">#c0c0c0ff</drawable>
-    <drawable name="solid_white">#ffffffff</drawable>
-    <drawable name="solid_yellow">#ffff00ff</drawable>
-    <drawable name="solid_blue_light">#00ffff</drawable>
-    <drawable name="solid_blue_dark">#0000ff</drawable>
-    <drawable name="solid_gray">#808080ff</drawable>
-    <drawable name="solid_magenta">#ff00ffff</drawable>
-    <drawable name="solid_cyan">#00ffffff</drawable>    
+    <color name="solid_blue_light">#5f60fd</color>
+    <color name="solid_blue">#0000ff</color>
+    <color name="solid_blue_dark">#3c3dfd</color>
+    <color name="solid_blue_darker">#1a3878</color>
+    
+    <color name="solid_red_light">#c45182</color>
+    <color name="solid_red">#ff0000</color>
+    <color name="solid_red_dark">#ef4444</color>
+    <color name="solid_red_darker">#ad0047</color>
+        
+    <color name="solid_green_light">#53933f</color>
+    <color name="solid_green">#00ff00</color>
+    <color name="solid_green_dark">#70c656</color>
+    
+    <color name="solid_gray_light">#919191</color>
+    <color name="solid_gray">#ABABAB</color>
+    <color name="solid_gray_dark">#898989</color>
+    
+    <color name="solid_magenta_light">#FFCCFF</color>
+    <color name="solid_magenta">#ff00ff</color>
+    <color name="solid_magenta_dark">#990099</color>
+    
+	<color name="solid_yellow_light">#FFFFCC</color>
+	<color name="solid_yellow">#ffff00</color>
+	<color name="solid_yellow_dark">#CCCC00</color>
 
+	<color name="solid_cyan_light">#5dcbff</color>
+	<color name="solid_cyan">#00ffff</color>
+	<color name="solid_cyan_dark">#46c1ff</color>
+
+	<color name="solid_violet_light">#9833fe</color>
+	<color name="solid_violet">#D400FF</color>
+	<color name="solid_violet_dark">#7415fe</color>
+	
+    <color name="solid_black">#000000</color>
+    <color name="solid_white">#ffffff</color>
+
+    
 </resources>

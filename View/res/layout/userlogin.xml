@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background_blue_radial"
+    android:background="@drawable/background_shape_blue_radial"
     android:orientation="vertical" >
 
     <ImageView
@@ -37,7 +37,7 @@
 
         <Button
             android:id="@+id/userlogin_button_Login"
-            style="@style/ButtonBase.ButtonLogin"
+            android:background="@drawable/background_selector_blue_darker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
