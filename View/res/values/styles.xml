@@ -8,35 +8,31 @@
     </style>
 
     <style name="ButtonBase.ButtonRed">
-        <item name="android:background">@drawable/red</item>
+        <item name="android:background">@drawable/background_selector_red</item>
     </style>
 
     <style name="ButtonBase.ButtonBlue">
-        <item name="android:background">@drawable/blue</item>
+        <item name="android:background">@drawable/background_selector_blue</item>
     </style>
 
     <style name="ButtonBase.ButtonBlueLight">
-        <item name="android:background">@drawable/blue_light</item>
+        <item name="android:background">@drawable/background_selector_cyan</item>
     </style>
 
     <style name="ButtonBase.ButtonGreen">
-        <item name="android:background">@drawable/green</item>
+        <item name="android:background">@drawable/background_selector_green</item>
     </style>
 
     <style name="ButtonBase.ButtonViolet">
-        <item name="android:background">@drawable/violet</item>
+        <item name="android:background">@drawable/background_selector_violet</item>
     </style>
 
     <style name="ButtonBase.ButtonRedDark">
-        <item name="android:background">@drawable/red_dark</item>
+        <item name="android:background">@drawable/background_selector_red_darker</item>
     </style>
 
     <style name="ButtonBase.ButtonGray">
-        <item name="android:background">@drawable/gray</item>
-    </style>
-
-    <style name="ButtonBase.ButtonLogin">
-        <item name="android:background">@drawable/blue_solid</item>
+        <item name="android:background">@drawable/background_selector_gray</item>
     </style>
 
 </resources>
