@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="solid_blue_lighter">#99B5FF</color>
     <color name="solid_blue_light">#5f60fd</color>
     <color name="solid_blue">#0000ff</color>
     <color name="solid_blue_dark">#3c3dfd</color>
@@ -37,6 +38,7 @@
 	
     <color name="solid_black">#000000</color>
     <color name="solid_white">#ffffff</color>
-
+ 	<color name="solid_snow">#fffafa</color>
+    
     
 </resources>

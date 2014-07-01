@@ -61,7 +61,7 @@ public class UserController {
     }
 
     public void SaveProfile(String username, String firstName, String lastName,
-            String email, String Status) throws IOException,
+            String email, String Status,String picture) throws IOException,
             XmlPullParserException, HabehException {
         HashMap<String, Object> params = new HashMap<String, Object>();
 
@@ -70,6 +70,7 @@ public class UserController {
         params.put("lastname", lastName);
         params.put("email", email);
         params.put("status", Status);
+        params.put("picture", picture);
 
         new UserService().callMethod("SaveProfile", params);
     }
