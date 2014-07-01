@@ -5,7 +5,9 @@ import ir.home.habbeh.R;
 import ir.home.utility.HabehException;
 
 import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,50 +46,46 @@ public class ChangePassword extends Activity {
 
 			public void onClick(View view) {
 				String oldPassText = oldPass.getText().toString();
-                String newPassText = newPass.getText().toString();
-                String renewPassText = renewPass.getText().toString();
-                String error = "";
-				
-                if (oldPassText.isEmpty()) {
-                    error = "You did not enter a oldPassword";
-                }
+				String newPassText = newPass.getText().toString();
+				String renewPassText = renewPass.getText().toString();
+				String error = "";
 
-                if (newPassText.isEmpty()) {
-                    error = "Please Type New Password";
-                }
+				if (oldPassText.isEmpty()) {
+					error = "You did not enter a oldPassword";
+				}
 
-                if (renewPassText.isEmpty()) {
-                    error = "Please Re-Type New Password";
-                }
-                
-                
+				if (newPassText.isEmpty()) {
+					error = "Please Type New Password";
+				}
+
+				if (renewPassText.isEmpty()) {
+					error = "Please Re-Type New Password";
+				}
+
 				if (!newPassText.equals(renewPassText)) {
-                    error = "Please Match Password";
-                }
+					error = "Please Match Password";
+				}
 				if (error.isEmpty()) {
-				UserController controller = new UserController();
-				
-				try {
-					controller.ChangePassword(sp.getString("UserName", "0"),
-							oldPass.getText().toString(), newPass.getText()
-									.toString());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
-				} catch (HabehException e) {
-                    Toast.makeText(getBaseContext(),
-                            e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
-				Toast.makeText(getBaseContext(),
-                        "Password Changed",
-                        Toast.LENGTH_LONG).show();
-				 } else {
-                     Toast.makeText(getBaseContext(),
-                             error,
-                             Toast.LENGTH_LONG).show();
-                 }
+					UserController controller = new UserController();
+
+					try {
+						controller.ChangePassword(
+								sp.getString("UserName", "0"), oldPass
+										.getText().toString(), newPass
+										.getText().toString());
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (XmlPullParserException e) {
+						e.printStackTrace();
+					} catch (HabehException e) {
+						Toast.makeText(getBaseContext(), e.getMessage(),
+								Toast.LENGTH_LONG).show();
+					}
+
+				} else {
+					Toast.makeText(getBaseContext(), error, Toast.LENGTH_LONG)
+							.show();
+				}
 			}
 		});
 	}
