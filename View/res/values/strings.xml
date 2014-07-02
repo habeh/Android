@@ -29,13 +29,13 @@
     <string name="forgivinformationEmail">پست الکترونیک خود جهت بازیابی رمز عبور</string>
     <string name="sendEmail">بازیابی رمز</string>
     <string name="userSearch">جستجوی کاربر</string>
-     <string name="sendComment">ارسال نظر</string>
-     <string name="save">ذخیره</string>
-     <string name="changingPassword">تغییر رمز عبور</string>
-     <string name="emailLabel">ایمیل :</string>
-     <string name="statusLabel">حالت :</string>
-     <string name="nameLabel">نام :</string>
-     <string name="lastName">نام خانوادگی</string>
-     <string name="firstName">نام</string>
+    <string name="sendComment">ارسال نظر</string>
+    <string name="save">ذخیره</string>
+    <string name="changingPassword">تغییر رمز عبور</string>
+    <string name="emailLabel">ایمیل :</string>
+    <string name="statusLabel">حالت :</string>
+    <string name="nameLabel">نام :</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="firstName">نام</string>
 
 </resources>
