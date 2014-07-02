@@ -1,10 +1,8 @@
 package ir.home.view.adapter;
 
 import ir.home.controller.MessageController;
-import ir.home.controller.UserController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
-import ir.home.model.TbUser;
 import ir.home.utility.HabehException;
 import ir.home.view.UserComment;
 
@@ -26,7 +24,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MessageAdapter extends BaseAdapter {
-	private TbUser Result;
+
 	private Activity activity;
 	private List<TbMessage> data;
 	private static LayoutInflater inflater = null;
@@ -96,10 +94,9 @@ public class MessageAdapter extends BaseAdapter {
 
 			message.setText(temp.getDescription());
 			categoryTitle.setText("Category :" + temp.getCategoryTitle());
+			userName.setText("Send By :" + temp.getUserName().toString());
 
 			initLikeMessage(temp);
-
-			initGetUserInformation(temp);
 
 			initUserComment(temp);
 
@@ -128,26 +125,11 @@ public class MessageAdapter extends BaseAdapter {
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
 				} catch (HabehException e) {
-                    e.printStackTrace();
-                }
+					e.printStackTrace();
+				}
 
 			}
 		});
-	}
-
-	private void initGetUserInformation(final TbMessage temp) {
-		UserController controller = new UserController();
-		try {
-			Result = controller.getProfile(temp.getUserId());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		} catch (HabehException e) {
-            e.printStackTrace();
-        }
-		userName.setText("Send By :" + Result.getUserName().toString());
-		userNameText = Result.getUserName().toString();
 	}
 
 	private void initUserComment(final TbMessage temp) {
@@ -180,8 +162,8 @@ public class MessageAdapter extends BaseAdapter {
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		} catch (HabehException e) {
-            e.printStackTrace();
-        }
+			e.printStackTrace();
+		}
 		showlikeMessage.setText("Liked : " + Integer.toString(count));
 		likeMessageText = Integer.toString(count);
 	}

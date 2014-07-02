@@ -12,6 +12,12 @@ public class TbMessage {
 	private int id;
 	private int categoryId;
 	private String categoryTitle;
+	private int userId;
+	private String userName;
+	private String description;
+	private Date registerDate;
+	private Date sendDate;
+	private int share;
 
 	public int getId() {
 		return id;
@@ -44,6 +50,14 @@ public class TbMessage {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public String getDescription() {
 		return description;
@@ -68,11 +82,14 @@ public class TbMessage {
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
 	}
+	public int getShare() {
+		return share;
+	}
 
-	private int userId;
-	private String description;
-	private Date registerDate;
-	private Date sendDate;
+	public void setShare(int share) {
+		this.share = share;
+	}
+	
 
 	private static TbMessage parseSOAPObject(SoapObject obj) {
 		TbMessage result = null;
@@ -92,6 +109,8 @@ public class TbMessage {
 					.getPrimitivePropertySafelyAsString("RegisterDate");
 			String senddate = obj
 					.getPrimitivePropertySafelyAsString("SendDate");
+			result.setShare(Integer.parseInt(obj
+					.getPrimitivePropertySafelyAsString("Share")));
 			try {
 				Date regDate = DateFormat.getInstance().parse(regdate);
 				result.setRegisterDate(regDate);

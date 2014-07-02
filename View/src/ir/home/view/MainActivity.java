@@ -91,10 +91,6 @@ public class MainActivity extends Activity {
 
     private void initSendMessage(final SharedPreferences sp) {
         sendMessage = (Button) findViewById(R.id.main_button_SendMessage);
-        if (sp.getString("UserId", "0") == "0") {
-            sendMessage.setVisibility(View.GONE);
-
-        }
         sendMessage.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
@@ -142,10 +138,7 @@ public class MainActivity extends Activity {
 
     private void initFindpeople(final SharedPreferences sp) {
         findpeople = (Button) findViewById(R.id.main_button_Findpeople);
-        if (sp.getString("UserId", "0") == "0") {
-            findpeople.setVisibility(View.GONE);
-
-        }
+        
         findpeople.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
@@ -182,10 +175,6 @@ public class MainActivity extends Activity {
 
     private void initSearchUsers(final SharedPreferences sp) {
         searchUsers = (Button) findViewById(R.id.main_button_searchUsers);
-        if (sp.getString("UserId", "0") == "0") {
-            searchUsers.setVisibility(View.GONE);
-
-        }
         searchUsers.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
@@ -198,10 +187,6 @@ public class MainActivity extends Activity {
 
     private void initProfile(final SharedPreferences sp) {
         profile = (Button) findViewById(R.id.main_button_Profile);
-        if (sp.getString("UserId", "0") == "0") {
-            profile.setVisibility(View.GONE);
-
-        }
         profile.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
