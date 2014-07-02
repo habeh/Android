@@ -1,3 +1,4 @@
+
 package ir.home.model;
 
 import java.text.DateFormat;
@@ -9,140 +10,146 @@ import java.util.List;
 import org.ksoap2.serialization.SoapObject;
 
 public class TbMessage {
-	private int id;
-	private int categoryId;
-	private String categoryTitle;
-	private int userId;
-	private String userName;
-	private String description;
-	private Date registerDate;
-	private Date sendDate;
-	private int share;
+    private int id;
+    private int categoryId;
+    private String categoryTitle;
+    private int userId;
+    private String userName;
+    private String description;
+    private Date registerDate;
+    private Date sendDate;
+    private int share;
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getCategoryId() {
-		return categoryId;
-	}
+    public int getCategoryId() {
+        return categoryId;
+    }
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
 
-	public String getCategoryTitle() {
-		return categoryTitle;
-	}
+    public String getCategoryTitle() {
+        return categoryTitle;
+    }
 
-	public void setCategoryTitle(String categoryTitle) {
-		this.categoryTitle = categoryTitle;
-	}
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
+    }
 
-	public int getUserId() {
-		return userId;
-	}
+    public int getUserId() {
+        return userId;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	
-	public String getUserName() {
-		return userName;
-	}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getRegisterDate() {
-		return registerDate;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
-	}
+    public Date getRegisterDate() {
+        return registerDate;
+    }
 
-	public Date getSendDate() {
-		return sendDate;
-	}
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
 
-	public void setSendDate(Date sendDate) {
-		this.sendDate = sendDate;
-	}
-	public int getShare() {
-		return share;
-	}
+    public String getSendDateAsString() {
+        if (sendDate != null)
+            return DateFormat.getInstance().format(sendDate);
+        return null;
+    }
 
-	public void setShare(int share) {
-		this.share = share;
-	}
-	
+    public Date getSendDate() {
+        return sendDate;
+    }
 
-	private static TbMessage parseSOAPObject(SoapObject obj) {
-		TbMessage result = null;
-		if (obj != null) {
-			result = new TbMessage();
-			result.setId(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("Id")));
-			result.setCategoryId(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("CategoryId")));
-			result.setUserId(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("UserId")));
-			result.setDescription(obj
-					.getPrimitivePropertySafelyAsString("Description"));
-			result.setCategoryTitle(obj
-					.getPrimitivePropertySafelyAsString("CategoryTitle"));
-			String regdate = obj
-					.getPrimitivePropertySafelyAsString("RegisterDate");
-			String senddate = obj
-					.getPrimitivePropertySafelyAsString("SendDate");
-			result.setShare(Integer.parseInt(obj
-					.getPrimitivePropertySafelyAsString("Share")));
-			try {
-				Date regDate = DateFormat.getInstance().parse(regdate);
-				result.setRegisterDate(regDate);
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
+    }
 
-				if (!senddate.isEmpty()) {
-					Date sendDate = DateFormat.getInstance().parse(senddate);
-					result.setSendDate(sendDate);
-				}
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+    public int getShare() {
+        return share;
+    }
 
-		}
-		return result;
-	}
+    public void setShare(int share) {
+        this.share = share;
+    }
 
-	public static TbMessage ToEntity(SoapObject obj) {
-		return parseSOAPObject(obj);
-	}
+    private static TbMessage parseSOAPObject(SoapObject obj) {
+        TbMessage result = null;
+        if (obj != null) {
+            result = new TbMessage();
+            result.setId(Integer.parseInt(obj
+                    .getPrimitivePropertySafelyAsString("Id")));
+            result.setCategoryId(Integer.parseInt(obj
+                    .getPrimitivePropertySafelyAsString("CategoryId")));
+            result.setUserId(Integer.parseInt(obj
+                    .getPrimitivePropertySafelyAsString("UserId")));
+            result.setDescription(obj
+                    .getPrimitivePropertySafelyAsString("Description"));
+            result.setCategoryTitle(obj
+                    .getPrimitivePropertySafelyAsString("CategoryTitle"));
+            String regdate = obj
+                    .getPrimitivePropertySafelyAsString("RegisterDate");
+            String senddate = obj
+                    .getPrimitivePropertySafelyAsString("SendDate");
+            result.setShare(Integer.parseInt(obj
+                    .getPrimitivePropertySafelyAsString("Share")));
+            try {
+                Date regDate = DateFormat.getInstance().parse(regdate);
+                result.setRegisterDate(regDate);
 
-	public static List<TbMessage> ToList(SoapObject obj) {
-		List<TbMessage> result = null;
-		if (obj != null) {
-			result = new ArrayList<TbMessage>();
-			int count = obj.getPropertyCount();
-			for (int i = 0; i < count; i++) {
-				SoapObject messageObj = (SoapObject) obj.getProperty(i);
-				TbMessage newmessage = parseSOAPObject(messageObj);
-				result.add(newmessage);
-			}
-		}
+                if (!senddate.isEmpty()) {
+                    Date sendDate = DateFormat.getInstance().parse(senddate);
+                    result.setSendDate(sendDate);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-		return result;
-	}
+        }
+        return result;
+    }
+
+    public static TbMessage ToEntity(SoapObject obj) {
+        return parseSOAPObject(obj);
+    }
+
+    public static List<TbMessage> ToList(SoapObject obj) {
+        List<TbMessage> result = null;
+        if (obj != null) {
+            result = new ArrayList<TbMessage>();
+            int count = obj.getPropertyCount();
+            for (int i = 0; i < count; i++) {
+                SoapObject messageObj = (SoapObject) obj.getProperty(i);
+                TbMessage newmessage = parseSOAPObject(messageObj);
+                result.add(newmessage);
+            }
+        }
+
+        return result;
+    }
 }

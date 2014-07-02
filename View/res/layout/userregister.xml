@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/userregister_edittext_userName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:gravity="right|center_vertical"
             android:hint="@string/userName"
             android:textSize="14sp" >
@@ -31,7 +31,7 @@
         <EditText
             android:id="@+id/userregister_edittext_userEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:gravity="right|center_vertical"
             android:hint="@string/emailAddress"
             android:inputType="textEmailAddress"
@@ -40,7 +40,7 @@
         <EditText
             android:id="@+id/userregister_edittext_userPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:gravity="right|center_vertical"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -50,7 +50,7 @@
             android:id="@+id/userregister_button_register"
             android:background="@drawable/background_selector_blue_darker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:gravity="center"
             android:padding="10dp"

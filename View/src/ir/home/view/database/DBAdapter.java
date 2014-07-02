@@ -110,7 +110,7 @@ public class DBAdapter {
 	}
 
 	public long insertTbMessage(int messageId, int userId, String userName,
-			String categoryTitle, String description, int totalShare,
+			String categoryTitle, String description, int totalShare,String sendDate,
 			String Table) throws ParseException {
 
 		ContentValues initialValues = new ContentValues();
@@ -119,7 +119,7 @@ public class DBAdapter {
 		initialValues.put(Message_USERNAME, userName);
 		initialValues.put(Message_CATEGORYTITLE, categoryTitle);
 		initialValues.put(Message_DESCRIPTION, description);
-		// initialValues.put(Message_SENDDATE,senddate); please resolve this
+		initialValues.put(Message_SENDDATE,sendDate);
 		initialValues.put(Message_TOTALSHARE, totalShare);
 		
 		return db.insert(Table, null, initialValues);

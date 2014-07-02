@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
         if (sp.getString("UserId", "0") == "0") {
             Intent myIntent = new Intent(MainActivity.this, UserLogin.class);
             startActivityForResult(myIntent, 0);
-
         }
 
         initLogin();

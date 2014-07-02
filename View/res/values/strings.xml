@@ -35,5 +35,7 @@
      <string name="emailLabel">ایمیل :</string>
      <string name="statusLabel">حالت :</string>
      <string name="nameLabel">نام :</string>
+     <string name="lastName">نام خانوادگی</string>
+     <string name="firstName">نام</string>
 
 </resources>

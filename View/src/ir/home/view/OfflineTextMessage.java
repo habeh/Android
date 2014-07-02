@@ -41,7 +41,7 @@ public class OfflineTextMessage extends Activity {
 		db = new DBAdapter(this);
 		db.open();
 		getofflineMessage = db.getAllSaveMessage(DBAdapter.DATABASE_TBMESSAGE);
-		
+		db.close();
 
 		
 		Date = (EditText) findViewById(R.id.Date);

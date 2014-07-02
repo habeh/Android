@@ -84,17 +84,12 @@ public class MessageAdapter extends BaseAdapter {
 		commentMessage = (Button) vi
 				.findViewById(R.id.message_item_button_comment);
 
-		if (data.size() <= 0) {
-			message.setText("No Data");
-			userName.setText("No Data");
-			categoryTitle.setText("No Data");
-			showlikeMessage.setText("No Data");
-		} else {
-			final TbMessage temp = (TbMessage) data.get(position);
+		if (data.size() > 0) {
+			TbMessage temp = (TbMessage) data.get(position);
 
 			message.setText(temp.getDescription());
 			categoryTitle.setText("Category :" + temp.getCategoryTitle());
-			userName.setText("Send By :" + temp.getUserName().toString());
+			userName.setText("Send By :" + temp.getUserName());
 
 			initLikeMessage(temp);
 
@@ -151,7 +146,7 @@ public class MessageAdapter extends BaseAdapter {
 		});
 	}
 
-	private void initGetLikeCount(final TbMessage temp) {
+	private void initGetLikeCount(TbMessage temp) {
 
 		MessageController controllerlike = new MessageController();
 		int count = 0;

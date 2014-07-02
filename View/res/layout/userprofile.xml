@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/background_shape_blue_lighter">
+    android:background="@drawable/background_shape_blue_lighter"
+    android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/userprofile_imageView_UserPicture"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/habbeh"        
-        android:background="@drawable/background_selector_green" />
+        android:background="@drawable/background_selector_green"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/habbeh" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:layout_margin="5dp"
-            android:background="@color/solid_white" >
+            android:layout_marginTop="5dp" >
 
             <EditText
                 android:id="@+id/userprofile_edittext_UserLastName"
@@ -30,9 +30,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:gravity="right"
-                android:inputType="text"/>
+                android:layout_marginLeft="3dp"
+                android:hint="@string/lastName"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/userprofile_edittext_UserFirstName"
@@ -40,21 +41,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:inputType="text"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/nameLabel"
-                android:textSize="15dip" />
+                android:layout_marginRight="3dp"
+                android:gravity="right"
+                android:hint="@string/firstName"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@color/solid_white" >
 
             <EditText
@@ -62,9 +59,9 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:inputType="text"
-                android:background="@android:color/transparent" />
+                android:layout_weight="1"                
+                android:background="@android:color/transparent"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,7 +74,9 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:layout_margin="5dp"            
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:background="@color/solid_white" >
 
             <EditText
@@ -86,8 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:inputType="textEmailAddress"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,29 +96,6 @@
                 android:textSize="15dip" />
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/userprofile_button_changePassword"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/background_selector_blue_darker"
-                android:textColor="@color/solid_white" 
-                android:text="@string/changingPassword" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:contentDescription="@string/habbeh"
-                android:background="@drawable/change_pass_icon" />
-        </FrameLayout>
-
         <Button
             android:id="@+id/userprofile_button_update"
             android:layout_width="match_parent"
@@ -128,6 +104,29 @@
             android:background="@drawable/background_selector_blue_darker"
             android:text="@string/save"
             android:textColor="@color/solid_white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
+
+            <Button
+                android:id="@+id/userprofile_button_changePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_selector_blue_darker"
+                android:text="@string/changingPassword"
+                android:textColor="@color/solid_white" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/change_pass_icon"
+                android:contentDescription="@string/habbeh" />
+        </FrameLayout>
     </LinearLayout>
 
 </LinearLayout>

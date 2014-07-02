@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
+     
         android:layout_weight="1"
         android:contentDescription="@string/habbeh"
         android:src="@drawable/logo" />
@@ -20,7 +20,7 @@
         <EditText
             android:id="@+id/userlogin_edittext_UserName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:gravity="right|center_vertical"
             android:hint="@string/userName"            
             android:textSize="14sp" >
@@ -29,7 +29,7 @@
         <EditText
             android:id="@+id/userlogin_edittext_UserPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:gravity="right|center_vertical"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -39,7 +39,7 @@
             android:id="@+id/userlogin_button_Login"
             android:background="@drawable/background_selector_blue_darker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:gravity="center"
             android:padding="10dp"
