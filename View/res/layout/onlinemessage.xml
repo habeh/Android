@@ -9,4 +9,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="جملک های جدید رو از اینجا دریافت کنید" />
+
+ <Button
+     android:id="@+id/onlinemessage_button_download"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Download New Message" />
+ 
+ 
+  
+
 </LinearLayout>
