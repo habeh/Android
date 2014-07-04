@@ -121,6 +121,9 @@ public class DBAdapter {
 		initialValues.put(Message_DESCRIPTION, description);
 		initialValues.put(Message_SENDDATE,sendDate);
 		initialValues.put(Message_TOTALSHARE, totalShare);
+		//Toast.makeText(context,
+			//	sendDate, Toast.LENGTH_LONG)
+	             //  .show();
 		
 		return db.insert(Table, null, initialValues);
 	}
@@ -159,11 +162,32 @@ public class DBAdapter {
 				temp.setCategoryTitle(cursor.getString(2));
 				temp.setUserName(cursor.getString(3));
 				temp.setDescription(cursor.getString(4));
+				temp.setSendDate(cursor.getString(5));
+				
+				
 				SetallOfflineMessage.add(temp);
 			}
 			
 		}
 		return SetallOfflineMessage;
 	}
+	
+	public String getLastUpdate()
+    {
+        Cursor cursor=null;
+        String temp=null;
+        cursor =  this.db.rawQuery("SELECT * FROM TbMessage order by SendDate desc limit 1" , null);
+         if (cursor != null)
+            {
+             if (cursor.moveToFirst())
+                {
+            temp=cursor.getString(cursor.getColumnIndex(DBAdapter.Message_SENDDATE));
+                }
+             cursor.close();
+            }
+        return temp;
+
+    }
+
 
 }
