@@ -184,6 +184,7 @@ public class UserProfile extends Activity {
     @Override
     public void onBackPressed() {
         Intent myIntent = new Intent(UserProfile.this, MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivityForResult(myIntent, 0);
         super.onBackPressed();
     }

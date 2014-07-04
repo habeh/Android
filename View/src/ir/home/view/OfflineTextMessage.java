@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -36,4 +37,11 @@ public class OfflineTextMessage extends Activity {
 		adapter.notifyDataSetChanged();
 
 	}
+	
+	public void onBackPressed() {
+        Intent myIntent = new Intent(OfflineTextMessage.this, MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivityForResult(myIntent, 0);
+        super.onBackPressed();
+    }
 }

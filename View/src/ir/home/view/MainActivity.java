@@ -111,7 +111,9 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						SendMessage.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
+				finish();
 			}
 		});
 	}
@@ -123,6 +125,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						HabbehAbout.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -134,6 +137,7 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UsAbout.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 
 			}
@@ -146,6 +150,7 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UsContact.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -159,6 +164,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						Findpeople.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -171,6 +177,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						OfflineTextMessage.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -218,6 +225,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						UserSearch.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -250,6 +258,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						UserRegister.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -261,6 +270,7 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UserLogin.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 				finish();
 			}

@@ -86,11 +86,11 @@ public class UsContact extends Activity {
 	}
 
 
-	@Override
 	public void onBackPressed() {
-		Intent myIntent = new Intent(UsContact.this, MainActivity.class);
-		startActivityForResult(myIntent, 0);
-		super.onBackPressed();
-	}
+        Intent myIntent = new Intent(UsContact.this, MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivityForResult(myIntent, 0);
+        super.onBackPressed();
+    }
 
 }
