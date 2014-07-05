@@ -17,7 +17,7 @@ public class TbMessage {
     private String userName;
     private String description;
     private Date registerDate;
-    private Date sendDate;
+    private String sendDate;
     private int share;
 
     public int getId() {
@@ -76,17 +76,11 @@ public class TbMessage {
         this.registerDate = registerDate;
     }
 
-    public String getSendDateAsString() {
-        if (sendDate != null)
-            return DateFormat.getInstance().format(sendDate);
-        return null;
-    }
-
-    public Date getSendDate() {
+    public String getSendDate() {
         return sendDate;
     }
 
-    public void setSendDate(Date sendDate) {
+    public void setSendDate(String sendDate) {
         this.sendDate = sendDate;
     }
 
@@ -114,18 +108,13 @@ public class TbMessage {
                     .getPrimitivePropertySafelyAsString("CategoryTitle"));
             String regdate = obj
                     .getPrimitivePropertySafelyAsString("RegisterDate");
-            String senddate = obj
-                    .getPrimitivePropertySafelyAsString("SendDate");
+            result.setSendDate(obj
+                    .getPrimitivePropertySafelyAsString("SendDate"));
             result.setShare(Integer.parseInt(obj
                     .getPrimitivePropertySafelyAsString("Share")));
             try {
                 Date regDate = DateFormat.getInstance().parse(regdate);
                 result.setRegisterDate(regDate);
-
-                if (!senddate.isEmpty()) {
-                    Date sendDate = DateFormat.getInstance().parse(senddate);
-                    result.setSendDate(sendDate);
-                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,4 +67,11 @@ public class UserSearch extends Activity {
 		});
 
 	}
+	
+	public void onBackPressed() {
+        Intent myIntent = new Intent(UserSearch.this, MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivityForResult(myIntent, 0);
+        super.onBackPressed();
+    }
 }

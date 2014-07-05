@@ -3,23 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <TextView
-        android:id="@+id/DataShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DateMessage" />
-
-    <EditText
-        android:id="@+id/Date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    <Button
-        android:id="@+id/Show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Unread Message" />
 
     <ListView
         android:id="@+id/messagelistView"

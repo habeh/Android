@@ -1,11 +1,17 @@
-
 package ir.home.view;
 
 import ir.home.controller.MessageController;
+import ir.home.controller.UserController;
 import ir.home.habbeh.R;
+import ir.home.model.TbMessage;
+import ir.home.model.TbUser;
 import ir.home.utility.HabehException;
+import ir.home.view.database.DBAdapter;
 import ir.home.view.utility.ConnectedToInternet;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
+
 import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,213 +24,288 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    private Button login;
-    private Button profile;
-    private Button register;
-    private Button onlineMessage;
-    private Button offlineMessage;
-    private Button findpeople;
-    private Button usContact;
-    private Button usAbout;
-    private Button habbehAbout;
-    private Button searchUsers;
-    private Button sendMessage;
+	private Button login;
+	private Button profile;
+	private Button register;
+	private Button onlineMessage;
+	private Button offlineMessage;
+	private Button findpeople;
+	private Button usContact;
+	private Button usAbout;
+	private Button habbehAbout;
+	private Button searchUsers;
+	private Button sendMessage;
+	private List<TbMessage> list;
+	private TbUser Result;
+	DBAdapter db;
+	String userNameText;
+	String lastUpdate;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		db = new DBAdapter(this);
+		db.open();
+		final SharedPreferences sp = this.getSharedPreferences(
+				"UserInformation", MODE_PRIVATE);
+		// sp.edit().clear().commit();
+		if (sp.getString("UserId", "0") == "0") {
+			Intent myIntent = new Intent(MainActivity.this, UserLogin.class);
+			startActivityForResult(myIntent, 0);
+		}
 
-        final SharedPreferences sp = this.getSharedPreferences(
-                "UserInformation", MODE_PRIVATE);
-        // sp.edit().clear().commit();
-        if (sp.getString("UserId", "0") == "0") {
-            Intent myIntent = new Intent(MainActivity.this, UserLogin.class);
-            startActivityForResult(myIntent, 0);
-        }
+		lastUpdate = db.getLastUpdate();
 
-        initLogin();
+		initGetOnlineMessage();
 
-        initRegister();
+		initLogin();
 
-        initProfile(sp);
+		initRegister();
 
-        initSearchUsers(sp);
+		initProfile(sp);
 
-        initOnlineMessage();
+		initSearchUsers(sp);
 
-        initOfflineMessage();
+		initOnlineMessage();
 
-        initFindpeople(sp);
+		initOfflineMessage();
 
-        initUsContact();
+		initFindpeople(sp);
 
-        initUsAbout();
+		initUsContact();
 
-        initHabbehAbout();
+		initUsAbout();
 
-        initSendMessage(sp);
+		initHabbehAbout();
 
-        if (ConnectedToInternet.isOnline(getBaseContext())) {
-            MessageController controller = new MessageController();
-            int count = 0;
-            try {
-                count = controller.CountNewMessage("2014-01-01");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (HabehException e) {
-                Toast.makeText(getBaseContext(),
-                        e.getMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
-            onlineMessage.setText("You Have  " + count + "  New Message");
-        } else {
-            Toast.makeText(getBaseContext(),
-                    "For Receipt New Message Please Connect To Internet",
-                    Toast.LENGTH_LONG).show();
-        }
+		initSendMessage(sp);
 
-    }
+		if (ConnectedToInternet.isOnline(getBaseContext())) {
+			MessageController controller = new MessageController();
+			int count = 0;
+			db.close();
+			try {
+				count = controller.CountNewMessage(lastUpdate);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			} catch (HabehException e) {
+				Toast.makeText(getBaseContext(), e.getMessage(),
+						Toast.LENGTH_LONG).show();
+			}
+			onlineMessage.setText("You Have  " + count + "  New Message");
+		} else {
+			Toast.makeText(getBaseContext(),
+					"For Receipt New Message Please Connect To Internet",
+					Toast.LENGTH_LONG).show();
+		}
 
-    private void initSendMessage(final SharedPreferences sp) {
-        sendMessage = (Button) findViewById(R.id.main_button_SendMessage);
-        sendMessage.setOnClickListener(new OnClickListener() {
+	}
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        SendMessage.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+	private void initSendMessage(final SharedPreferences sp) {
+		sendMessage = (Button) findViewById(R.id.main_button_SendMessage);
+		sendMessage.setOnClickListener(new OnClickListener() {
 
-    private void initHabbehAbout() {
-        habbehAbout = (Button) findViewById(R.id.main_button_HabbehAbout);
-        habbehAbout.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						SendMessage.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+				finish();
+			}
+		});
+	}
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        HabbehAbout.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+	private void initHabbehAbout() {
+		habbehAbout = (Button) findViewById(R.id.main_button_HabbehAbout);
+		habbehAbout.setOnClickListener(new OnClickListener() {
 
-    private void initUsAbout() {
-        usAbout = (Button) findViewById(R.id.main_button_UsAbout);
-        usAbout.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						HabbehAbout.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+	}
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), UsAbout.class);
-                startActivityForResult(myIntent, 0);
+	private void initUsAbout() {
+		usAbout = (Button) findViewById(R.id.main_button_UsAbout);
+		usAbout.setOnClickListener(new OnClickListener() {
 
-            }
-        });
-    }
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(), UsAbout.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
 
-    private void initUsContact() {
-        usContact = (Button) findViewById(R.id.main_button_UsContact);
-        usContact.setOnClickListener(new OnClickListener() {
+			}
+		});
+	}
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), UsContact.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+	private void initUsContact() {
+		usContact = (Button) findViewById(R.id.main_button_UsContact);
+		usContact.setOnClickListener(new OnClickListener() {
 
-    private void initFindpeople(final SharedPreferences sp) {
-        findpeople = (Button) findViewById(R.id.main_button_Findpeople);
-        
-        findpeople.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(), UsContact.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+	}
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        Findpeople.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+	private void initFindpeople(final SharedPreferences sp) {
+		findpeople = (Button) findViewById(R.id.main_button_Findpeople);
 
-    private void initOfflineMessage() {
-        offlineMessage = (Button) findViewById(R.id.main_button_OfflineMessage);
-        offlineMessage.setOnClickListener(new OnClickListener() {
+		findpeople.setOnClickListener(new OnClickListener() {
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        OfflineTextMessage.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						Findpeople.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+	}
 
-    private void initOnlineMessage() {
-        onlineMessage = (Button) findViewById(R.id.main_button_OnlineMessage);
-        onlineMessage.setOnClickListener(new OnClickListener() {
+	private void initOfflineMessage() {
+		offlineMessage = (Button) findViewById(R.id.main_button_OfflineMessage);
+		offlineMessage.setOnClickListener(new OnClickListener() {
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        OnlineTextMessage.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						OfflineTextMessage.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+	}
 
-    private void initSearchUsers(final SharedPreferences sp) {
-        searchUsers = (Button) findViewById(R.id.main_button_searchUsers);
-        searchUsers.setOnClickListener(new OnClickListener() {
+	private void initOnlineMessage() {
+		onlineMessage = (Button) findViewById(R.id.main_button_OnlineMessage);
+		onlineMessage.setOnClickListener(new OnClickListener() {
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        UserSearch.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+			public void onClick(View view) {
+				db.open();
+				int i = 0;
 
-    private void initProfile(final SharedPreferences sp) {
-        profile = (Button) findViewById(R.id.main_button_Profile);
-        profile.setOnClickListener(new OnClickListener() {
+				for (; i < list.size(); i++) {
+					TbMessage temp = list.get(i);
+					initGetUserInformation(temp);
 
-            public void onClick(View view) {
+					try {
+						db.insertTbMessage(temp.getId(),
+								temp.getUserId(),
+								userNameText, 
+								temp.getCategoryTitle(),
+								temp.getDescription(),
+								temp.getShare(),
+								temp.getSendDate(),
+								DBAdapter.DATABASE_TBMESSAGE);
 
-                if (sp.getString("UserId", "0") == "0") {
-                    Toast.makeText(getBaseContext(), "Please First Login",
-                            Toast.LENGTH_LONG).show();
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
 
-                } else {
-                    Intent myIntent = new Intent(view.getContext(),
-                            UserProfile.class);
-                    startActivityForResult(myIntent, 0);
-                }
+				}
+				db.close();
+				Toast.makeText(getBaseContext(), "Download Complete",
+						Toast.LENGTH_LONG).show();
 
-            }
-        });
-    }
+			}
+		});
+	}
 
-    private void initRegister() {
-        register = (Button) findViewById(R.id.main_button_Register);
-        register.setOnClickListener(new OnClickListener() {
+	private void initSearchUsers(final SharedPreferences sp) {
+		searchUsers = (Button) findViewById(R.id.main_button_searchUsers);
+		searchUsers.setOnClickListener(new OnClickListener() {
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),
-                        UserRegister.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-    }
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						UserSearch.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+	}
 
-    private void initLogin() {
-        login = (Button) findViewById(R.id.main_button_Login);
-        login.setOnClickListener(new OnClickListener() {
+	private void initProfile(final SharedPreferences sp) {
+		profile = (Button) findViewById(R.id.main_button_Profile);
+		profile.setOnClickListener(new OnClickListener() {
 
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), UserLogin.class);
-                startActivityForResult(myIntent, 0);
-                finish();
-            }
-        });
-    }
+			public void onClick(View view) {
+
+				if (sp.getString("UserId", "0") == "0") {
+					Toast.makeText(getBaseContext(), "Please First Login",
+							Toast.LENGTH_LONG).show();
+
+				} else {
+					Intent myIntent = new Intent(view.getContext(),
+							UserProfile.class);
+					startActivityForResult(myIntent, 0);
+				}
+
+			}
+		});
+	}
+
+	private void initRegister() {
+		register = (Button) findViewById(R.id.main_button_Register);
+		register.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						UserRegister.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+	}
+
+	private void initLogin() {
+		login = (Button) findViewById(R.id.main_button_Login);
+		login.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(), UserLogin.class);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivityForResult(myIntent, 0);
+				finish();
+			}
+		});
+	}
+
+	private void initGetOnlineMessage() {
+
+		MessageController controller = new MessageController();
+		try {
+			list = controller.ShowOnlineMessage(lastUpdate);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (HabehException e) {
+
+		}
+
+	}
+
+	private void initGetUserInformation(final TbMessage temp) {
+		UserController controller = new UserController();
+		try {
+			Result = controller.getProfile(temp.getUserId());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (HabehException e) {
+			e.printStackTrace();
+		}
+
+		userNameText = Result.getUserName();
+	}
+
 }

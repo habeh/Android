@@ -32,6 +32,7 @@ public class MessageAdapter extends BaseAdapter {
 	private Button commentMessage;
 	private TextView showlikeMessage;
 	private TextView userName;
+	private TextView sendDate;
 	private String userNameText;
 	private String likeMessageText;
 	private TextView message;
@@ -79,6 +80,7 @@ public class MessageAdapter extends BaseAdapter {
 		message = (TextView) vi.findViewById(R.id.Message);
 		userName = (TextView) vi.findViewById(R.id.Username);
 		categoryTitle = (TextView) vi.findViewById(R.id.Category);
+		sendDate = (TextView) vi.findViewById(R.id.sendDate);
 		showlikeMessage = (TextView) vi.findViewById(R.id.ShowLike);
 		setlikeMessage = (Button) vi.findViewById(R.id.Like);
 		commentMessage = (Button) vi
@@ -89,7 +91,8 @@ public class MessageAdapter extends BaseAdapter {
 
 			message.setText(temp.getDescription());
 			categoryTitle.setText("Category :" + temp.getCategoryTitle());
-			userName.setText("Send By :" + temp.getUserName());
+			userName.setText("Send By :" + temp.getUserName() );
+			sendDate.setText("Date : " + temp.getSendDate());
 
 			initLikeMessage(temp);
 

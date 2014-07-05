@@ -9,6 +9,7 @@ import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -89,5 +90,10 @@ public class ChangePassword extends Activity {
 			}
 		});
 	}
-
+	public void onBackPressed() {
+        Intent myIntent = new Intent(ChangePassword.this, UserProfile.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivityForResult(myIntent, 0);
+        super.onBackPressed();
+    }
 }
