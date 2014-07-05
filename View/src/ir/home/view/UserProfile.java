@@ -79,8 +79,9 @@ public class UserProfile extends Activity {
                 Bitmap bitmap;
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                    userPicture.setImageBitmap(bitmap);                    
-                    currentUser.setPicture(Common.bitmapToBase64(bitmap));
+                    userPicture.setImageBitmap(bitmap);
+                    if (currentUser != null)
+                        currentUser.setPicture(Common.bitmapToBase64(bitmap));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

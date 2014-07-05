@@ -1,3 +1,4 @@
+
 package ir.home.view;
 
 import ir.home.habbeh.R;
@@ -15,39 +16,33 @@ import android.widget.ListView;
 
 public class OfflineTextMessage extends Activity {
 
-	private ListView messageListView;
-	private MessageAdapter adapter;
-	DBAdapter db;
-	List<TbMessage> getofflineMessage;
+    private ListView messageListView;
+    private MessageAdapter adapter;
+    DBAdapter db;
+    List<TbMessage> offLineMessages;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.offlinemssage);
-		
-		
-		initBindListMessage();
-		
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.offlinemssage);
 
-	}
-	
-	
-	
-	public void initBindListMessage() {
-		db = new DBAdapter(this);
-		db.open();
-		getofflineMessage = db.getAllSaveMessage(DBAdapter.DATABASE_TBMESSAGE);
-		db.close();
+        initBindListMessage();
 
-		messageListView = (ListView) findViewById(R.id.messagelistView);
-		adapter = new MessageAdapter(this, new ArrayList<TbMessage>());
-		messageListView.setAdapter(adapter);
-		adapter.setData(getofflineMessage);
-		adapter.notifyDataSetChanged();
-	}
-	
-	
-	public void onBackPressed() {
+    }
+
+    public void initBindListMessage() {
+        db = new DBAdapter(this);
+        db.open();
+        offLineMessages = db.getAllSaveMessage(DBAdapter.DATABASE_TBMESSAGE);
+        db.close();
+
+        messageListView = (ListView) findViewById(R.id.messagelistView);
+        adapter = new MessageAdapter(this, offLineMessages);
+        messageListView.setAdapter(adapter);               
+    }
+
+    @Override
+    public void onBackPressed() {
         Intent myIntent = new Intent(OfflineTextMessage.this, MainActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivityForResult(myIntent, 0);
