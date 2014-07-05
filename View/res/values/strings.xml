@@ -37,5 +37,8 @@
     <string name="nameLabel">نام :</string>
     <string name="lastName">نام خانوادگی</string>
     <string name="firstName">نام</string>
+    <string name="reportoffending">گزارش تخلف</string>
+    <string name="friendRequest">دوستم شو</string>
+    <string name="sendmessageinpeopleprofile">ارسال پیام</string>
 
 </resources>

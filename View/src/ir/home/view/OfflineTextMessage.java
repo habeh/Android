@@ -25,6 +25,15 @@ public class OfflineTextMessage extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offlinemssage);
 		
+		
+		initBindListMessage();
+		
+
+	}
+	
+	
+	
+	public void initBindListMessage() {
 		db = new DBAdapter(this);
 		db.open();
 		getofflineMessage = db.getAllSaveMessage(DBAdapter.DATABASE_TBMESSAGE);
@@ -35,8 +44,8 @@ public class OfflineTextMessage extends Activity {
 		messageListView.setAdapter(adapter);
 		adapter.setData(getofflineMessage);
 		adapter.notifyDataSetChanged();
-
 	}
+	
 	
 	public void onBackPressed() {
         Intent myIntent = new Intent(OfflineTextMessage.this, MainActivity.class);

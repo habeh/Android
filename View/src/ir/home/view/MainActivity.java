@@ -57,8 +57,10 @@ public class MainActivity extends Activity {
 
 		lastUpdate = db.getLastUpdate();
 
-		initGetOnlineMessage();
+		
 
+		initGetOnlineMessage();
+		
 		initLogin();
 
 		initRegister();
@@ -80,27 +82,8 @@ public class MainActivity extends Activity {
 		initHabbehAbout();
 
 		initSendMessage(sp);
-
-		if (ConnectedToInternet.isOnline(getBaseContext())) {
-			MessageController controller = new MessageController();
-			int count = 0;
-			db.close();
-			try {
-				count = controller.CountNewMessage(lastUpdate);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (XmlPullParserException e) {
-				e.printStackTrace();
-			} catch (HabehException e) {
-				Toast.makeText(getBaseContext(), e.getMessage(),
-						Toast.LENGTH_LONG).show();
-			}
-			onlineMessage.setText("You Have  " + count + "  New Message");
-		} else {
-			Toast.makeText(getBaseContext(),
-					"For Receipt New Message Please Connect To Internet",
-					Toast.LENGTH_LONG).show();
-		}
+		
+		initCountNewMessage();
 
 	}
 
@@ -111,7 +94,8 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						SendMessage.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 				finish();
 			}
@@ -125,7 +109,8 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						HabbehAbout.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -137,7 +122,8 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UsAbout.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 
 			}
@@ -150,7 +136,8 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UsContact.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -164,7 +151,8 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						Findpeople.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -177,7 +165,8 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						OfflineTextMessage.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -196,12 +185,9 @@ public class MainActivity extends Activity {
 					initGetUserInformation(temp);
 
 					try {
-						db.insertTbMessage(temp.getId(),
-								temp.getUserId(),
-								userNameText, 
-								temp.getCategoryTitle(),
-								temp.getDescription(),
-								temp.getShare(),
+						db.insertTbMessage(temp.getId(), temp.getUserId(),
+								userNameText, temp.getCategoryTitle(),
+								temp.getDescription(), temp.getShare(),
 								temp.getSendDate(),
 								DBAdapter.DATABASE_TBMESSAGE);
 
@@ -210,9 +196,13 @@ public class MainActivity extends Activity {
 					}
 
 				}
+				lastUpdate = db.getLastUpdate();
+				initCountNewMessage();
 				db.close();
 				Toast.makeText(getBaseContext(), "Download Complete",
 						Toast.LENGTH_LONG).show();
+				
+				
 
 			}
 		});
@@ -225,7 +215,8 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						UserSearch.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -258,7 +249,8 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						UserRegister.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -270,7 +262,8 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(), UserLogin.class);
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
 				finish();
 			}
@@ -306,6 +299,33 @@ public class MainActivity extends Activity {
 		}
 
 		userNameText = Result.getUserName();
+	}
+
+	private void initCountNewMessage() {
+		int count = 0;
+		if (ConnectedToInternet.isOnline(getBaseContext())) {
+			MessageController controller = new MessageController();
+			
+			db.close();
+			try {
+				count = controller.CountNewMessage(lastUpdate);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			} catch (HabehException e) {
+				Toast.makeText(getBaseContext(), e.getMessage(),
+						Toast.LENGTH_LONG).show();
+			}
+			onlineMessage.setText("You Have  " + count + "  New Message");
+			
+		} else {
+			Toast.makeText(getBaseContext(),
+					"For Receipt New Message Please Connect To Internet",
+					Toast.LENGTH_LONG).show();
+		}
+		
+		
 	}
 
 }

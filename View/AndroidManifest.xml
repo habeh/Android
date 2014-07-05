@@ -49,6 +49,8 @@
         </activity>
          <activity android:name="ir.home.view.UserComment" >
         </activity>
+        <activity android:name="ir.home.view.ViewPeopleProfile" >
+        </activity>
     </application>
 
 </manifest>

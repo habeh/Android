@@ -64,5 +64,14 @@ public class MessageController {
 	                "RetrieveCategoryList", null);
 	        return TbCategory.ToList(result);
 	}
+	
+	public List<TbMessage> ReadUserMessage(int userId) throws IOException,
+	XmlPullParserException, HabehException {
+HashMap<String, Object> params = new HashMap<String, Object>();
+params.put("userId", userId);
+SoapObject result = (SoapObject) new MessageService().callMethod(
+		"ReadUserMessage", params);
+return TbMessage.ToList(result);
+}
 
 }

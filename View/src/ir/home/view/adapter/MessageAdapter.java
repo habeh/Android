@@ -4,9 +4,14 @@ import ir.home.controller.MessageController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.utility.HabehException;
+import ir.home.view.OfflineTextMessage;
 import ir.home.view.UserComment;
+import ir.home.view.UserRegister;
+import ir.home.view.ViewPeopleProfile;
+import ir.home.view.database.DBAdapter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -37,6 +42,8 @@ public class MessageAdapter extends BaseAdapter {
 	private String likeMessageText;
 	private TextView message;
 	private TextView categoryTitle;
+	private View vi;
+
 
 	public MessageAdapter(Activity a, List<TbMessage> students) {
 
@@ -69,10 +76,11 @@ public class MessageAdapter extends BaseAdapter {
 		return 0;
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		View vi = convertView;
+		 vi = convertView;
 
 		if (convertView == null)
 			vi = inflater.inflate(R.layout.message_item, null);
@@ -91,7 +99,13 @@ public class MessageAdapter extends BaseAdapter {
 
 			message.setText(temp.getDescription());
 			categoryTitle.setText("Category :" + temp.getCategoryTitle());
-			userName.setText("Send By :" + temp.getUserName() );
+			if (temp.getUserName()==null){
+				userName.setVisibility(vi.GONE);
+			}
+			else {
+				userName.setText("Send By :" + temp.getUserName() );	
+			}
+			
 			sendDate.setText("Date : " + temp.getSendDate());
 
 			initLikeMessage(temp);
@@ -99,6 +113,8 @@ public class MessageAdapter extends BaseAdapter {
 			initUserComment(temp);
 
 			initGetLikeCount(temp);
+			
+			inituserNameTextView(temp);
 
 		}
 
@@ -125,7 +141,7 @@ public class MessageAdapter extends BaseAdapter {
 				} catch (HabehException e) {
 					e.printStackTrace();
 				}
-
+				
 			}
 		});
 	}
@@ -166,6 +182,24 @@ public class MessageAdapter extends BaseAdapter {
 		likeMessageText = Integer.toString(count);
 	}
 
+	
+	 private void inituserNameTextView(final TbMessage temp) {
+		
+		 userName.setOnClickListener(new OnClickListener() {
+
+	            public void onClick(View arg0) {
+
+	            	Intent myIntent = new Intent(arg0.getContext(),
+	            			ViewPeopleProfile.class);
+					
+					myIntent.putExtra("userId", Integer.toString(temp.getUserId()));
+					
+					arg0.getContext().startActivity(myIntent);
+	            }
+	        });
+	    }
+	
+	
 	public int GetSharedPreferences(Context context) {
 		SharedPreferences sp = context.getSharedPreferences("UserInformation",
 				Context.MODE_PRIVATE);
