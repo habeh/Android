@@ -2,72 +2,97 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/solid_white"
     android:orientation="vertical" >
-    
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        
-        <TextView
-        android:id="@+id/Message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message" 
-        android:textColor="#ffff00"
-        android:textSize="20dip" />
+        android:layout_margin="10dp"
+        android:background="@drawable/background_shape_round_blue_lighter"
+        android:orientation="vertical"
+        android:padding="5dp" >
 
-        <TextView
-            android:id="@+id/Username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UserName"
-            android:textSize="14dip"
-             />
-        
-          <TextView
-            android:id="@+id/Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category"
-            android:textSize="14dip"
-             />
-          
-          <TextView
-            android:id="@+id/ShowLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ShowLike"
-            android:textSize="14dip"
-             />
-          
-           <TextView
-            android:id="@+id/sendDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="sendDate"
-            android:textSize="14dip"
-             />
- </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="right" >
 
-            <Button
-                android:id="@+id/Like"
+            <TextView
+                android:id="@+id/message_item_textview_senderFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.70"
-                android:text="Like This Message" />
+                android:text="کریم مدوسا"
+                android:textColor="@color/solid_blue" />
 
-            <Button
-                android:id="@+id/message_item_button_comment"
+            <TextView
+                android:id="@+id/message_item_textview_senderLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Comment This Message" />
+                android:text="ارسال شده توسط :"
+                android:textColor="@color/solid_green" />
         </LinearLayout>
-    
+
+        <TextView
+            android:id="@+id/message_item_textview_sendDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="1392/02/02 12:25:02"
+            android:textColor="@color/solid_red" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/message_item_textview_Message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="right"
+        android:text="سیلنمتانلتساینباسنتانیباسنیباسخهعقشغنستیبلشنمصعثقفنتسیالبنتسیلارئوطظزذدرنتسلبخشعفلخشصثهعبلنستلبمشسنیتبذوطئذرنتسیلبشمثلبخصهشعثبلنیتسلبمشسنتیلبشنستیابئدیبذرنشستیعبلفخصشهعثقلمنتابمسینتبا نتیب لسین تنل لنتیابلهع لعهغلفنتالسی لنتا یلبعغث عفغ  "
+        android:textColor="@color/solid_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/solid_gray_light" >
+
+        <Button
+            android:id="@+id/message_item_button_share"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@color/solid_white"
+            android:drawableLeft="@drawable/archive_share_icon"
+            android:text="0"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="48dp" />
+        
+        <Button
+            android:id="@+id/message_item_button_comment"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@color/solid_white"
+            android:drawableLeft="@drawable/archive_comment_icon"
+            android:paddingLeft="5dp"
+            android:text="0" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="48dp" />
+
+        <Button
+            android:id="@+id/message_item_button_Like"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@color/solid_white"
+            android:drawableLeft="@drawable/archive_like_icon"
+            android:text="0" 
+            android:paddingLeft="5dp"/>
+    </LinearLayout>
+
 </LinearLayout>
