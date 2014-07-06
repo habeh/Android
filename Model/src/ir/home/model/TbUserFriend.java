@@ -11,6 +11,11 @@ public class TbUserFriend{
     private String accept;
     private String userName;
     private String frienduserName;
+    private String status;
+    private String picture;
+    private String firstname;
+    private String lastname;
+    private String location;
     
     public int getId() {
         return id;
@@ -54,6 +59,43 @@ public class TbUserFriend{
         this.frienduserName = frienduserName;
     }
     
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public String getPicture() {
+        return picture;
+    }
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    
+    public String getFirstName() {
+        return firstname;
+    }
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
+    }
+    
+    public String getLastName() {
+        return lastname;
+    }
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
+    }
+    
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
+    
+    
     
     
     private static TbUserFriend parseSOAPObject(SoapObject obj) {
@@ -72,6 +114,16 @@ public class TbUserFriend{
                     .getPrimitivePropertySafelyAsString("UserName"));
             result.setFriendUserName(obj
                     .getPrimitivePropertySafelyAsString("FriendUserName"));
+            result.setStatus(obj
+                    .getPrimitivePropertySafelyAsString("Status"));
+            result.setPicture(obj
+                    .getPrimitivePropertySafelyAsString("Picture"));
+            result.setFirstName(obj
+                    .getPrimitivePropertySafelyAsString("FirstName"));
+            result.setLastName(obj
+                    .getPrimitivePropertySafelyAsString("LastName"));
+            result.setLocation(obj
+                    .getPrimitivePropertySafelyAsString("Location"));
         }
         return result;
     }

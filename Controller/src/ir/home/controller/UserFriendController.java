@@ -1,9 +1,7 @@
 package ir.home.controller;
 
-import ir.home.model.TbComment;
 import ir.home.model.TbUserFriend;
 import ir.home.utility.HabehException;
-import ir.home.webservice.CommentService;
 import ir.home.webservice.UserMessageService;
 
 import java.io.IOException;

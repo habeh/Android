@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 		usAbout.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(), UsAbout.class);
+				Intent myIntent = new Intent(view.getContext(), UserFriendList.class);
 				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);

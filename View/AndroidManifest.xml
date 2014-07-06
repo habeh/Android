@@ -51,6 +51,8 @@
         </activity>
         <activity android:name="ir.home.view.ViewPeopleProfile" >
         </activity>
+         <activity android:name="ir.home.view.UserFriendList" >
+        </activity>
     </application>
 
 </manifest>
