@@ -1,21 +1,18 @@
 package ir.home.view;
 
+import ir.home.controller.CommentController;
 import ir.home.controller.MessageController;
 import ir.home.controller.UserController;
 import ir.home.controller.UserFriendController;
 import ir.home.habbeh.R;
 import ir.home.model.TbMessage;
 import ir.home.model.TbUser;
-import ir.home.model.TbUserFriend;
 import ir.home.utility.HabehException;
 import ir.home.view.adapter.MessageAdapter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.xmlpull.v1.XmlPullParserException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -69,8 +66,10 @@ public class ViewPeopleProfile extends Activity {
 		initReadUserMessage();
 
 		initFriendSendRequest();
-		
+
 		initCheckhasFriend();
+
+		initCreatOffendingComment();
 
 	}
 
@@ -117,23 +116,23 @@ public class ViewPeopleProfile extends Activity {
 	}
 
 	private void initFriendSendRequest() {
-		String state=initCheckhasFriend();
+		String state = initCheckhasFriend();
 
 		if (requester == friendId) {
 			friendRequest.setVisibility(View.GONE);
 			reportOffending.setVisibility(View.GONE);
 			sendMessage.setVisibility(View.GONE);
 		}
-		
-		if (state.equals("true")){
+
+		if (state.equals("true")) {
 			friendRequest.setText("√ Friend");
 			friendRequest.setEnabled(false);
 		}
-		if (state.equals("pending")){
+		if (state.equals("pending")) {
 			friendRequest.setText("Wating Accept");
 			friendRequest.setEnabled(false);
 		}
-		
+
 		friendRequest.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
@@ -154,6 +153,27 @@ public class ViewPeopleProfile extends Activity {
 			}
 		});
 
+	}
+
+	private void initCreatOffendingComment() {
+
+		reportOffending.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) {
+				CommentController controller = new CommentController();
+				try {
+					controller.Create(userId, requester, 0, "Offending Report",
+							2);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (XmlPullParserException e) {
+					e.printStackTrace();
+				} catch (HabehException e) {
+					Toast.makeText(getBaseContext(), e.getMessage(),
+							Toast.LENGTH_LONG).show();
+				}
+			}
+		});
 	}
 
 	private String initCheckhasFriend() {
