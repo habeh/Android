@@ -13,15 +13,15 @@ import org.xmlpull.v1.XmlPullParserException;
 
 public class CommentController {
 
-    public void Create(int userId,int reportuserId, int messageId, String description,int CommenttypeId)
+    public void Create(int userId,int offendingUserId, int messageId, String description,int commentTypeId)
             throws IOException, XmlPullParserException, HabehException {
         HashMap<String, Object> params = new HashMap<String, Object>();
 
         params.put("userId", userId);
-        params.put("reportuserId", reportuserId);
+        params.put("offendingUserId", offendingUserId);
         params.put("messageId", messageId);
         params.put("description", description);
-        params.put("CommenttypeId", CommenttypeId);
+        params.put("commentTypeId", commentTypeId);
 
         new CommentService().callMethod("Create", params);
     }
