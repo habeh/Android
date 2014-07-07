@@ -61,8 +61,8 @@ public class UserComment extends Activity {
 			public void onClick(View view) {
 				CommentController controller = new CommentController();
 				try {
-					controller.Create(userId, messageId, comment.getText()
-							.toString());
+					controller.Create(userId,0, messageId, comment.getText()
+							.toString(),1);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (XmlPullParserException e) {
