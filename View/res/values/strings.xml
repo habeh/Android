@@ -40,5 +40,6 @@
     <string name="reportoffending">گزارش تخلف</string>
     <string name="friendRequest">دوستم شو</string>
     <string name="sendmessageinpeopleprofile">ارسال پیام</string>
+    <string name="ConnectToInternet">کاربر گرامی : برای بهره مندی از تمامی امکانات برنامه ، گوشی خود را به اینترنت متصل نمائید.</string>
 
 </resources>
