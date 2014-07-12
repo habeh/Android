@@ -325,7 +325,7 @@ public class MainActivity extends Activity {
 			
 		} else {
 			Toast.makeText(getBaseContext(),
-					"For Receipt New Message Please Connect To Internet",
+					getResources().getString(R.string.ConnectToInternet),
 					Toast.LENGTH_LONG).show();
 		}
 		

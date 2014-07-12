@@ -70,6 +70,7 @@ public class SendMessage extends Activity {
                             e.getMessage(),
                             Toast.LENGTH_LONG).show();
                 }
+                description.setText("");
             }
         });
     }

@@ -17,6 +17,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
+
     // TbMessage
     static final String Message_ROWID = "Id";
     static final String Message_MESSAGEID = "MessageId";
@@ -149,6 +150,7 @@ public class DBAdapter {
 
     // ---retrieves all the SavedMassage---
     public List<TbMessage> getAllSaveMessage(int categoryId) {
+        String orderBy = Message_SENDDATE + " DESC";
         Cursor cursor = db.query(DATABASE_TBMESSAGE, new String[] {
                 Message_MESSAGEID,
                 Message_USERID, Message_CATEGORYTITLE, Message_USERNAME,
@@ -156,7 +158,7 @@ public class DBAdapter {
                 Message_LOCALSHARE
         }, Message_CATEGORYID + "=?", new String[] {
             String.valueOf(categoryId)
-        }, null, null, null);
+        }, null, null, orderBy);
         List<TbMessage> allOfflineMessage = cursorToList(cursor);
         return allOfflineMessage;
     }
