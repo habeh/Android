@@ -144,10 +144,12 @@ public class DBAdapter {
 
 	// ---retrieves all the SavedMassage---
 	public List<TbMessage> getAllSaveMessage(String tabale) {
+		String orderBy = Message_SENDDATE + " DESC";
+		
 		Cursor cursor = db.query(tabale, new String[] { Message_MESSAGEID,
 				Message_USERID, Message_CATEGORYTITLE, Message_USERNAME,
 				Message_DESCRIPTION, Message_SENDDATE, Message_TOTALSHARE,
-				Message_LOCALSHARE }, null, null, null, null, null);
+				Message_LOCALSHARE }, null, null, null, null, orderBy);
 		List<TbMessage> allOfflineMessage = cursorToList(cursor);
 		return allOfflineMessage;
 	}
