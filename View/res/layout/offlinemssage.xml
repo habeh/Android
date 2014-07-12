@@ -5,9 +5,11 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/messagelistView"
+        android:id="@+id/offlinemessage_listview_messages"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:dividerHeight="5dp"
+        android:divider="@android:color/transparent">
     </ListView>
 
 </LinearLayout>

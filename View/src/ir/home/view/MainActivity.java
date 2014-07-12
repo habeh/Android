@@ -164,7 +164,7 @@ public class MainActivity extends Activity {
 
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
-						OfflineTextMessage.class);
+						OfflineTextMessageMainActivity.class);
 				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
@@ -185,11 +185,15 @@ public class MainActivity extends Activity {
 					initGetUserInformation(temp);
 
 					try {
-						db.insertTbMessage(temp.getId(), temp.getUserId(),
-								userNameText, temp.getCategoryTitle(),
-								temp.getDescription(), temp.getShare(),
-								temp.getSendDate(),
-								DBAdapter.DATABASE_TBMESSAGE);
+						db.insertTbMessage(
+						        temp.getId(), 
+						        temp.getUserId(),
+								userNameText, 
+								temp.getCategoryTitle(),
+								temp.getCategoryId(),
+								temp.getDescription(),								
+								temp.getShare(),
+								temp.getSendDate());
 
 					} catch (ParseException e) {
 						e.printStackTrace();
