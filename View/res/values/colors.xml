@@ -15,6 +15,7 @@
     <color name="solid_green_light">#53933f</color>
     <color name="solid_green">#00ff00</color>
     <color name="solid_green_dark">#70c656</color>
+    <color name="solid_green_darker">#339933</color>
     
     <color name="solid_gray_light">#919191</color>
     <color name="solid_gray">#ABABAB</color>

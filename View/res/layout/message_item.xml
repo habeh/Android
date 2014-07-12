@@ -1,98 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/solid_white"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_selector_white"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/background_shape_round_blue_lighter"
-        android:orientation="vertical"
-        android:padding="5dp" >
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right" >
+            android:layout_margin="5dp"
+            android:background="@drawable/background_shape_round_blue_lighter"
+            android:orientation="vertical"
+            android:padding="3dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+                <TextView
+                    android:id="@+id/message_item_textview_senderFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="کریم مدوسا"
+                    android:textColor="@color/solid_blue" />
+
+                <TextView
+                    android:id="@+id/message_item_textview_senderLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ارسال شده توسط :"
+                    android:textColor="@color/solid_green_darker" />
+
+                <ImageView
+                    android:id="@+id/message_item_imageview_addFriend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_friend" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/message_item_textview_senderFullName"
-                android:layout_width="wrap_content"
+                android:id="@+id/message_item_textview_sendDate"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="کریم مدوسا"
-                android:textColor="@color/solid_blue" />
-
-            <TextView
-                android:id="@+id/message_item_textview_senderLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ارسال شده توسط :"
-                android:textColor="@color/solid_green" />
+                android:gravity="right"
+                android:text="1392/02/02 12:25:02"
+                android:textColor="@color/solid_red" />
         </LinearLayout>
+
+        <ir.home.view.utility.RoundedImageView
+            android:id="@+id/message_item_imageview_userPicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/change_pass_icon" />
 
-        <TextView
-            android:id="@+id/message_item_textview_sendDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="1392/02/02 12:25:02"
-            android:textColor="@color/solid_red" />
-    </LinearLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/message_item_textview_Message"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
         android:gravity="right"
-        android:text="سیلنمتانلتساینباسنتانیباسنیباسخهعقشغنستیبلشنمصعثقفنتسیالبنتسیلارئوطظزذدرنتسلبخشعفلخشصثهعبلنستلبمشسنیتبذوطئذرنتسیلبشمثلبخصهشعثبلنیتسلبمشسنتیلبشنستیابئدیبذرنشستیعبلفخصشهعثقلمنتابمسینتبا نتیب لسین تنل لنتیابلهع لعهغلفنتالسی لنتا یلبعغث عفغ  "
+        android:text="سیلنمتانلتساینباسنتانیباسنیباسخهعقشغنستیبلشنمصثقلمنتابمسینتبا نتیب لسین تنل لنتیابلهع لعهغلفنتالسی لنتا یلبعغث عفغ"
         android:textColor="@color/solid_black" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/solid_gray_light" >
+        android:layout_height="38dp" >
 
         <Button
             android:id="@+id/message_item_button_share"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/solid_white"
+            android:background="@drawable/background_selector_white"
             android:drawableLeft="@drawable/archive_share_icon"
-            android:text="0"
-            android:paddingLeft="5dp" />
+            android:text="0" />
 
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="48dp" />
-        
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/separator_line_vertical_gray" />
+
         <Button
             android:id="@+id/message_item_button_comment"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/solid_white"
+            android:background="@drawable/background_selector_white"
             android:drawableLeft="@drawable/archive_comment_icon"
-            android:paddingLeft="5dp"
             android:text="0" />
 
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="48dp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/separator_line_vertical_gray" />
 
         <Button
             android:id="@+id/message_item_button_Like"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/solid_white"
+            android:background="@drawable/background_selector_white"
             android:drawableLeft="@drawable/archive_like_icon"
-            android:text="0" 
-            android:paddingLeft="5dp"/>
+            android:text="0" />
     </LinearLayout>
 
 </LinearLayout>
