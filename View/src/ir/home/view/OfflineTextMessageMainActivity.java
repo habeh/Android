@@ -2,6 +2,7 @@
 package ir.home.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -34,7 +35,8 @@ public class OfflineTextMessageMainActivity extends FragmentActivity {
         try {
             MessageController controller = new MessageController();
 
-            List<TbCategory> categories = controller.retrieveCategoryList();
+            List<TbCategory> categories = controller.retrieveCategoryUsedList();
+            
             messageCategoryPagerAdapter =
                     new MessageCategoryPagerAdapter(
                             getSupportFragmentManager(), categories);
@@ -47,7 +49,7 @@ public class OfflineTextMessageMainActivity extends FragmentActivity {
                             getActionBar().setSelectedNavigationItem(position);
                         }
                     });
-            
+
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
             // Add 3 tabs, specifying the tab's text and TabListener
@@ -71,7 +73,7 @@ public class OfflineTextMessageMainActivity extends FragmentActivity {
 
         @Override
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
-           
+
         }
 
         @Override
