@@ -1,16 +1,17 @@
 package ir.home.view;
 
 import ir.home.controller.UserController;
-import ir.home.controller.UserFriendController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUser;
-import ir.home.model.TbUserFriend;
 import ir.home.utility.HabehException;
 import ir.home.view.adapter.UserAdapter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -66,21 +67,19 @@ public class UserSearch extends Activity {
 				} catch (XmlPullParserException e) {
 					e.printStackTrace();
 				} catch (HabehException e) {
-                    Toast.makeText(getBaseContext(),
-                            e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
+					Toast.makeText(getBaseContext(), e.getMessage(),
+							Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 
 	}
-	
 
-	
 	public void onBackPressed() {
-        Intent myIntent = new Intent(UserSearch.this, MainActivity.class);
-        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivityForResult(myIntent, 0);
-        super.onBackPressed();
-    }
+		Intent myIntent = new Intent(UserSearch.this, MainActivity.class);
+		myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivityForResult(myIntent, 0);
+		super.onBackPressed();
+	}
 }
