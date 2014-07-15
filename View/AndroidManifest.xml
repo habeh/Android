@@ -15,46 +15,47 @@
         android:theme="@android:style/Theme.Holo" >
         <activity
             android:name="ir.home.view.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ir.home.view.UserLogin" >
+        <activity android:name="ir.home.view.UserLogin" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UserRegister" >
+        <activity android:name="ir.home.view.UserRegister" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.OnlineTextMessage" >
+        <activity android:name="ir.home.view.OnlineTextMessage" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.OfflineTextMessageMainActivity" android:theme="@style/OffLineMessageTheme">            
+        <activity android:name="ir.home.view.OfflineTextMessageMainActivity" android:theme="@style/OffLineMessageTheme" android:screenOrientation="portrait">            
         </activity>
-        <activity android:name="ir.home.view.OfflineTextMessage" >
+        <activity android:name="ir.home.view.OfflineTextMessage" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.Findpeople" >
+        <activity android:name="ir.home.view.Findpeople" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UsContact" >
+        <activity android:name="ir.home.view.UsContact" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UsAbout" >
+        <activity android:name="ir.home.view.UsAbout" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.HabbehAbout" >
+        <activity android:name="ir.home.view.HabbehAbout" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UserProfile" >
+        <activity android:name="ir.home.view.UserProfile" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UserSearch" >
+        <activity android:name="ir.home.view.UserSearch" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UserForgiveInformation" >
+        <activity android:name="ir.home.view.UserForgiveInformation" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.SendMessage" >
+        <activity android:name="ir.home.view.SendMessage" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.ChangePassword" >
+        <activity android:name="ir.home.view.ChangePassword" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UserComment" >
+        <activity android:name="ir.home.view.UserComment" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.ViewPeopleProfile" >
+        <activity android:name="ir.home.view.ViewPeopleProfile" android:screenOrientation="portrait">
         </activity>
-        <activity android:name="ir.home.view.UserFriendList" >
+        <activity android:name="ir.home.view.UserFriendList" android:screenOrientation="portrait">
         </activity>
     </application>
 
