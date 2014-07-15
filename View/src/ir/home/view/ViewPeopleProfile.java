@@ -17,8 +17,10 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,14 +43,14 @@ public class ViewPeopleProfile extends Activity {
 	private MessageAdapter adapter;
 	private int friendId;
 	List<TbMessage> getofflineMessage;
+	private SharedPreferences sp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.viewpeopleprofile);
 
-		final SharedPreferences sp = this.getSharedPreferences(
-				"UserInformation", MODE_PRIVATE);
+		sp = this.getSharedPreferences("UserInformation", MODE_PRIVATE);
 
 		userName = (TextView) findViewById(R.id.viewpeopleprofile_textview_userName);
 		name = (TextView) findViewById(R.id.viewpeopleprofile_textview_name);
@@ -59,68 +61,23 @@ public class ViewPeopleProfile extends Activity {
 		usermessageListView = (ListView) findViewById(R.id.viewpeopleprofile_list_messagelistView);
 		adapter = new MessageAdapter(this, new ArrayList<TbMessage>());
 		usermessageListView.setAdapter(adapter);
+		friendRequest.setVisibility(View.GONE);
+		reportOffending.setVisibility(View.GONE);
+		sendMessage.setVisibility(View.GONE);
 
-		initGetUserInformation();
+		new AsyncGetUserInformation().execute();
 
-		initReadUserMessage();
+		new AsyncReadUserMessage().execute();
 
-		initFriendSendRequest(sp);
-
-		initCheckhasFriend(sp);
-
-		initCreatOffendingComment(sp);
-
-	}
-
-	private void initGetUserInformation() {
-		int userId = Integer.parseInt(getIntent().getStringExtra("userId"));
-		UserController controller = new UserController();
-		try {
-			currentUser = controller.getProfile(userId);
-
-			if (currentUser != null) {
-				userName.setText(currentUser.getUserName());
-				name.setText(currentUser.getFirstName() + " "
-						+ currentUser.getLastName());
-				status.setText(currentUser.getStatus());
-				friendId = currentUser.getId();
-
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		} catch (HabehException e) {
-			Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG)
-					.show();
-		}
-	}
-
-	private void initReadUserMessage() {
-		int userId = Integer.parseInt(getIntent().getStringExtra("userId"));
-		MessageController controller = new MessageController();
-		try {
-			userMessage = controller.ReadUserMessage(userId);
-			adapter.setData(userMessage);
-			adapter.notifyDataSetChanged();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		} catch (HabehException e) {
-			Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG)
-					.show();
-		}
 	}
 
 	private void initFriendSendRequest(final SharedPreferences sp) {
 		String state = initCheckhasFriend(sp);
 		final int userId = Integer.parseInt(sp.getString("UserId", "0"));
-		if (userId == friendId) {
-			friendRequest.setVisibility(View.GONE);
-			reportOffending.setVisibility(View.GONE);
-			sendMessage.setVisibility(View.GONE);
+		if (userId != friendId) {
+			friendRequest.setVisibility(View.VISIBLE);
+			reportOffending.setVisibility(View.VISIBLE);
+			sendMessage.setVisibility(View.VISIBLE);
 		}
 
 		if (state.equals("true")) {
@@ -196,10 +153,102 @@ public class ViewPeopleProfile extends Activity {
 		return resultcheck;
 	}
 
+	private class AsyncGetUserInformation extends
+			AsyncTask<String, Void, TbUser> {
+		ProgressDialog pdLoading = new ProgressDialog(ViewPeopleProfile.this);
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pdLoading.setMessage(getResources().getString(
+					R.string.userinformation));
+			pdLoading.show();
+		}
+
+		@Override
+		protected TbUser doInBackground(String... params) {
+			int userId = Integer.parseInt(getIntent().getStringExtra("userId"));
+			UserController controller = new UserController();
+			try {
+				currentUser = controller.getProfile(userId);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			} catch (HabehException e) {
+				Toast.makeText(getBaseContext(), e.getMessage(),
+						Toast.LENGTH_LONG).show();
+			}
+			return currentUser;
+		}
+
+		protected void onPostExecute(TbUser result) {
+			super.onPostExecute(result);
+
+			if (result != null) {
+				userName.setText(result.getUserName());
+				name.setText(result.getFirstName() + " " + result.getLastName());
+				status.setText(result.getStatus());
+				friendId = result.getId();
+				pdLoading.dismiss();
+
+				initFriendSendRequest(sp);
+
+				initCheckhasFriend(sp);
+
+				initCreatOffendingComment(sp);
+			}
+
+		}
+
+	}
+
+	private class AsyncReadUserMessage extends
+			AsyncTask<String, Void, List<TbMessage>> {
+		ProgressDialog pdLoading = new ProgressDialog(ViewPeopleProfile.this);
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pdLoading.setMessage(getResources().getString(
+					R.string.userinformation));
+			pdLoading.show();
+		}
+
+		@Override
+		protected List<TbMessage> doInBackground(String... params) {
+			int userId = Integer.parseInt(getIntent().getStringExtra("userId"));
+			MessageController controller = new MessageController();
+			try {
+				userMessage = controller.ReadUserMessage(userId);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			} catch (HabehException e) {
+				Toast.makeText(getBaseContext(), e.getMessage(),
+						Toast.LENGTH_LONG).show();
+			}
+			return userMessage;
+		}
+
+		protected void onPostExecute(List<TbMessage> result) {
+			super.onPostExecute(result);
+
+			adapter.setData(result);
+			adapter.notifyDataSetChanged();
+			pdLoading.dismiss();
+
+		}
+
+	}
+
 	@Override
 	public void onBackPressed() {
 		Intent myIntent = new Intent(ViewPeopleProfile.this,
-				OfflineTextMessage.class);
+				OfflineTextMessageMainActivity.class);
 		myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivityForResult(myIntent, 0);
