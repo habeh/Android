@@ -14,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 public class WebService {
     protected final String NAMESPACE = "http://tempuri.org/";
+   // protected final String URL = "http://www.fpkaroon.com/";
     protected final String URL = "http://10.0.2.2:6694/";
 
     protected String getURL() {
