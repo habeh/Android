@@ -111,8 +111,9 @@ public class UserLogin extends Activity {
 
                                 // Go To Next Page
                                 Intent myIntent = new Intent(getBaseContext(),
-                                        OfflineTextMessage.class);
+                                		OfflineTextMessageMainActivity.class);
                                 startActivityForResult(myIntent, 0);
+                                finish();
 
                             }
 

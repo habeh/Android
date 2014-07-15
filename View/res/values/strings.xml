@@ -41,5 +41,7 @@
     <string name="friendRequest">دوستم شو</string>
     <string name="sendmessageinpeopleprofile">ارسال پیام</string>
     <string name="ConnectToInternet">کاربر گرامی : برای بهره مندی از تمامی امکانات برنامه ، گوشی خود را به اینترنت متصل نمائید.</string>
+    <string name="GetNewMessage">در حال دریافت جملک های جدید</string>
+    <string name="userinformation">در حال دریافت اطلاعات کاربر</string>
 
 </resources>

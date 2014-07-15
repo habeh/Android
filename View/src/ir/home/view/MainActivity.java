@@ -8,14 +8,18 @@ import ir.home.model.TbUser;
 import ir.home.utility.HabehException;
 import ir.home.view.database.DBAdapter;
 import ir.home.view.utility.ConnectedToInternet;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -57,10 +61,8 @@ public class MainActivity extends Activity {
 
 		lastUpdate = db.getLastUpdate();
 
-		
-
 		initGetOnlineMessage();
-		
+
 		initLogin();
 
 		initRegister();
@@ -82,8 +84,8 @@ public class MainActivity extends Activity {
 		initHabbehAbout();
 
 		initSendMessage(sp);
-		
-		initCountNewMessage();
+
+		new AsyncCountNewMessage().execute();
 
 	}
 
@@ -97,7 +99,7 @@ public class MainActivity extends Activity {
 				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
-				finish();
+
 			}
 		});
 	}
@@ -121,7 +123,8 @@ public class MainActivity extends Activity {
 		usAbout.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(), UserFriendList.class);
+				Intent myIntent = new Intent(view.getContext(),
+						UserFriendList.class);
 				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
@@ -177,36 +180,7 @@ public class MainActivity extends Activity {
 		onlineMessage.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-				db.open();
-				int i = 0;
-
-				for (; i < list.size(); i++) {
-					TbMessage temp = list.get(i);
-					initGetUserInformation(temp);
-
-					try {
-						db.insertTbMessage(
-						        temp.getId(), 
-						        temp.getUserId(),
-								userNameText, 
-								temp.getCategoryTitle(),
-								temp.getCategoryId(),
-								temp.getDescription(),								
-								temp.getShare(),
-								temp.getSendDate());
-
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-
-				}
-				lastUpdate = db.getLastUpdate();
-				initCountNewMessage();
-				db.close();
-				Toast.makeText(getBaseContext(), "Download Complete",
-						Toast.LENGTH_LONG).show();
-				
-				
+				new AsyncGetOnlineMessage().execute();
 
 			}
 		});
@@ -269,7 +243,7 @@ public class MainActivity extends Activity {
 				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 						| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(myIntent, 0);
-				finish();
+
 			}
 		});
 	}
@@ -309,7 +283,6 @@ public class MainActivity extends Activity {
 		int count = 0;
 		if (ConnectedToInternet.isOnline(getBaseContext())) {
 			MessageController controller = new MessageController();
-			
 			db.close();
 			try {
 				count = controller.CountNewMessage(lastUpdate);
@@ -322,14 +295,95 @@ public class MainActivity extends Activity {
 						Toast.LENGTH_LONG).show();
 			}
 			onlineMessage.setText("You Have  " + count + "  New Message");
-			
+
 		} else {
 			Toast.makeText(getBaseContext(),
 					getResources().getString(R.string.ConnectToInternet),
 					Toast.LENGTH_LONG).show();
 		}
-		
-		
+
+	}
+
+
+	private class AsyncCountNewMessage extends AsyncTask<String, Void, Integer> {
+		ProgressDialog pdLoading = new ProgressDialog(MainActivity.this);
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pdLoading.setMessage("Loading...");
+			pdLoading.show();
+		}
+
+		@Override
+		protected Integer doInBackground(String... params) {
+			int count = 0;
+			MessageController controller = new MessageController();
+			db.close();
+			try {
+				count = controller.CountNewMessage(lastUpdate);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				e.printStackTrace();
+			} catch (HabehException e) {
+				Toast.makeText(getBaseContext(), e.getMessage(),
+						Toast.LENGTH_LONG).show();
+			}
+
+			return count;
+		}
+
+		protected void onPostExecute(Integer result) {
+			super.onPostExecute(result);
+			onlineMessage.setText("You Have  " + result.toString()
+					+ "  New Message");
+			pdLoading.dismiss();
+		}
+
+	}
+
+	private class AsyncGetOnlineMessage extends
+			AsyncTask<String, Void, Integer> {
+		ProgressDialog pdLoading = new ProgressDialog(MainActivity.this);
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pdLoading.setMessage(getResources().getString(
+					R.string.GetNewMessage));
+			pdLoading.show();
+		}
+
+		@Override
+		protected Integer doInBackground(String... params) {
+			db.open();
+			int i = 0;
+			for (; i < list.size(); i++) {
+				TbMessage temp = list.get(i);
+				initGetUserInformation(temp);
+				try {
+					db.insertTbMessage(temp.getId(), temp.getUserId(),
+							userNameText, temp.getCategoryTitle(),
+							temp.getCategoryId(), temp.getDescription(),
+							temp.getShare(), temp.getSendDate());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+			lastUpdate = db.getLastUpdate();
+			db.close();
+			return null;
+		}
+
+		protected void onPostExecute(Integer result) {
+			super.onPostExecute(result);
+			initCountNewMessage();
+			Toast.makeText(getBaseContext(), "Download Complete",
+					Toast.LENGTH_LONG).show();
+			pdLoading.dismiss();
+		}
+
 	}
 
 }
