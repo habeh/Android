@@ -4,12 +4,15 @@ package ir.home.controller;
 import ir.home.model.TbCategory;
 import ir.home.model.TbMessage;
 import ir.home.utility.HabehException;
+import ir.home.utility.MethodResult;
 import ir.home.webservice.MessageService;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
+
 
 public class MessageController {
 
@@ -42,6 +45,7 @@ public class MessageController {
         return TbMessage.ToList(result);
     }
 
+
     public int CountLike(int messageid) throws IOException,
             XmlPullParserException, HabehException {
         HashMap<String, Object> params = new HashMap<String, Object>();
@@ -67,12 +71,13 @@ public class MessageController {
         return TbCategory.ToList(result);
     }
 
-    public List<TbCategory> retrieveCategoryUsedList() throws IOException, XmlPullParserException, HabehException{                  
+    public List<TbCategory> retrieveCategoryUsedList() throws IOException, XmlPullParserException,
+            HabehException {
         SoapObject result = (SoapObject) new MessageService().callMethod(
                 "RetrieveCategoryUsedList", null);
         return TbCategory.ToList(result);
-}
-    
+    }
+
     public List<TbMessage> ReadUserMessage(int userId) throws IOException, XmlPullParserException,
             HabehException {
         HashMap<String, Object> params = new HashMap<String, Object>();

@@ -1,7 +1,4 @@
-
-package ir.home.webservice;
-
-import ir.home.utility.HabehException;
+package ir.home.webservice.json;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,7 +9,6 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
-
 public class WebService {
     protected final String NAMESPACE = "http://tempuri.org/";
     protected final String URL = "http://10.0.2.2:6694/";
@@ -21,9 +17,8 @@ public class WebService {
         return URL + "Service.asmx";
     }
 
-    public Object callMethod(String methodName,
-            HashMap<String, Object> params) throws IOException,
-            XmlPullParserException, HabehException {
+    public String callMethod(String methodName,
+            HashMap<String, Object> params) throws IOException, XmlPullParserException  {
 
         SoapObject request = new SoapObject(NAMESPACE, methodName);
 
@@ -42,24 +37,9 @@ public class WebService {
 
         androidHttpTransport.call(NAMESPACE + methodName, envelope);
 
-        Object response = envelope.getResponse();
-        if(response instanceof SoapObject){
-            SoapObject obj= (SoapObject) response;
-            
-            Boolean hasError =Boolean.valueOf(obj.getPrimitivePropertySafelyAsString("HasError"));
-            if(hasError){
-                String msg  =obj.getPrimitivePropertySafelyAsString("Message");
-                throw new HabehException(msg);
-            }
-            else
-            {
-                return obj.getPropertySafely("Data");   
-            }            
-        }
-        else
-        {
-            //throw new HabehException("web service method must return MethodResult");            
-            return  response.toString();
-        }
+        String jsonString = envelope.getResponse().toString();
+        
+        return jsonString;
+
     }
 }

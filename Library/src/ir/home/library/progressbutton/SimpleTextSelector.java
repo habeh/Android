@@ -16,7 +16,7 @@ public class SimpleTextSelector implements TextSelector {
 		super();
 		this.checkedText = checkedText;
 		this.loadingText = loadingText;
-		this.uncheckedText = uncheckedText;
+		this.uncheckedText = uncheckedText;			
 	}
 
 	public SimpleTextSelector(Context context, int checkedText,

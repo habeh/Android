@@ -1,12 +1,17 @@
 
 package ir.home.model;
 
+import ir.home.utility.Json;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 
 public class TbMessage {
@@ -92,7 +97,8 @@ public class TbMessage {
         this.share = share;
     }
 
-    private static TbMessage parseSOAPObject(SoapObject obj) {
+
+    public static TbMessage ToEntity(SoapObject obj) {
         TbMessage result = null;
         if (obj != null) {
             result = new TbMessage();
@@ -123,22 +129,45 @@ public class TbMessage {
         return result;
     }
 
-    public static TbMessage ToEntity(SoapObject obj) {
-        return parseSOAPObject(obj);
-    }
-
     public static List<TbMessage> ToList(SoapObject obj) {
         List<TbMessage> result = null;
         if (obj != null) {
             result = new ArrayList<TbMessage>();
             int count = obj.getPropertyCount();
-            for (int i = 0; i < count; i++) {
-                SoapObject messageObj = (SoapObject) obj.getProperty(i);
-                TbMessage newmessage = parseSOAPObject(messageObj);
-                result.add(newmessage);
+            for (int i = 0; i < count; i++) {                           
+                result.add(ToEntity((SoapObject) obj.getProperty(i)));
             }
         }
 
         return result;
+    }
+    
+    
+    public static List<TbMessage> ToList(JSONArray datas) throws JSONException {
+
+        List<TbMessage> messages = new ArrayList<TbMessage>();
+
+        for (int i = 0; i < datas.length(); i++) {
+            JSONObject obj = datas.getJSONObject(i);
+            messages.add(ToEntity(obj));
+        }
+        return messages;
+    }
+
+    public static TbMessage ToEntity(JSONObject obj) throws JSONException {
+        TbMessage msg = new TbMessage();
+        
+        msg.setCategoryId(obj.getInt("CategoryId"));
+        msg.setCategoryTitle(obj.getString("CategoryTitle"));
+        msg.setDescription(obj.getString("Description"));
+        msg.setId(obj.getInt("Id"));
+
+        msg.setRegisterDate(Json.JsonDateToDate(obj.getString("RegisterDate")));
+
+        msg.setSendDate(Json.JsonDateToDate(obj.getString("SendDate")).toString());
+        msg.setShare(obj.getInt("Share"));
+        msg.setUserId(obj.getInt("UserId"));
+
+        return msg;
     }
 }
