@@ -36,6 +36,14 @@ new UserMessageService().callMethod("CheckhasFriend", params);
 		params.put("id", id);
 		new UserMessageService().callMethod("FriendAcceptRequest", params);
 	}
+	
+	public void FriendRejectRequest(int id) throws IOException,
+	XmlPullParserException, HabehException {
+HashMap<String, Object> params = new HashMap<String, Object>();
+params.put("id", id);
+new UserMessageService().callMethod("FriendRejectRequest", params);
+}
+
 
 	public List<TbUserFriend> FriendList(int userId) throws IOException,
 			XmlPullParserException, HabehException {

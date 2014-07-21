@@ -1,18 +1,29 @@
 package ir.home.view.adapter;
 
+import ir.home.controller.UserFriendController;
 import ir.home.habbeh.R;
 import ir.home.model.TbUserFriend;
+import ir.home.utility.HabehException;
+
+import java.io.IOException;
 import java.util.List;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class FriendAdapter extends BaseAdapter {
 
+	private Button accept;
+	private Button reject;
 	private Activity activity;
 	private List<TbUserFriend> data;
 	private static LayoutInflater inflater = null;
@@ -51,12 +62,16 @@ public class FriendAdapter extends BaseAdapter {
 		View vi = convertView;
 
 		if (convertView == null)
-			vi = inflater.inflate(R.layout.user_item, null);
+			vi = inflater.inflate(R.layout.friendlist_item, null);
 
 		TextView frienduserName = (TextView) vi
-				.findViewById(R.id.userItemUserNameTextView);
+				.findViewById(R.id.userfriendlist_textview_username);
 		TextView Status = (TextView) vi.findViewById(R.id.UserStatus);
-		String State = null;
+		 accept = (Button) vi.findViewById(R.id.userfriendlist_button_accept);
+		reject = (Button) vi.findViewById(R.id.userfriendlist_button_reject);
+		accept.setVisibility(View.GONE);
+		reject.setVisibility(View.GONE);
+		
 
 		if (data.size() <= 0) {
 			frienduserName.setText("No Data");
@@ -64,14 +79,19 @@ public class FriendAdapter extends BaseAdapter {
 		} else {
 			TbUserFriend temp = (TbUserFriend) data.get(position);
 			if (temp.getAccept().equals("false")) {
-				State = "( Wating For Accept Request )";
+				accept.setVisibility(View.VISIBLE);
+				reject.setVisibility(View.VISIBLE);
 				frienduserName.setEnabled(false);
-				frienduserName.setText(temp.getFriendUserName() + State);
-			} else {
 				frienduserName.setText(temp.getFriendUserName());
+			} else {
+				frienduserName.setText(temp.getFriendUserName() + " √ ");
 			}
 
 			Status.setText(temp.getStatus());
+			
+			initAccept(temp);
+			
+			initReject(temp);
 
 		}
 		return vi;
@@ -80,4 +100,45 @@ public class FriendAdapter extends BaseAdapter {
 	public void setData(List<TbUserFriend> result) {
 		this.data = result;
 	}
+	
+	
+    private void initAccept(final TbUserFriend temp) {
+
+        accept.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View arg0) {
+
+            	UserFriendController acceptController = new UserFriendController();
+                 try {
+                      acceptController.FriendAcceptRequest(temp.getId());
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 } catch (XmlPullParserException e) {
+                     e.printStackTrace();
+                 } catch (HabehException e) {
+                     e.printStackTrace();
+                 }
+            }
+        });
+    }
+    
+    private void initReject(final TbUserFriend temp) {
+
+        reject.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View arg0) {
+
+            	UserFriendController acceptController = new UserFriendController();
+                 try {
+                      acceptController.FriendRejectRequest(temp.getId());
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 } catch (XmlPullParserException e) {
+                     e.printStackTrace();
+                 } catch (HabehException e) {
+                     e.printStackTrace();
+                 }
+            }
+        });
+    }
 }
